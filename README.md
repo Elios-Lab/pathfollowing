@@ -1,4 +1,4 @@
-# pathfollowing
+# Pathfollowing
 
 ## Links:
 * [Unity](https://unity.com/download)
