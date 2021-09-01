@@ -1,5 +1,11 @@
 # Pathfollowing
 
+## Required softwares and packages version
+
+* Unity: 2020.3.12f
+* Python: 3.8.10
+* MLagents: 0.20.0 
+
 ## Links:
 * [Unity](https://unity.com/download)
 * [Unity documentation](https://docs.unity3d.com/Manual/index.html)
@@ -20,3 +26,5 @@ After cloning or downloading the repository, you have to follow these simple ste
 Note that a Unityproject is a collection of files and directories, rather than just one specific Unity Project file. To open a Project, you must select the main Project folder, rather than a specific file.
 
 # MLAgents setup
+
+## Installation
