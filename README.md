@@ -1,9 +1,9 @@
 # pathfollowing
 
 ## Links:
-* Unity https://unity.com/download
-* Unity documentation https://docs.unity3d.com/Manual/index.html
-* MLAgents https://github.com/Unity-Technologies/ml-agents
+* [Unity](https://unity.com/download)
+* [Unity documentation](https://docs.unity3d.com/Manual/index.html)
+* [MLAgents](https://github.com/Unity-Technologies/ml-agents)
 
 Some of the 3D models used in this project are from Sketchfab:
 
