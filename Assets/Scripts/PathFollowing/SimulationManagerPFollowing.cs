@@ -8,8 +8,9 @@ using Random = UnityEngine.Random;
 
 public class SimulationManagerPFollowing : MonoBehaviour
 {
+    [SerializeField] public List<Target> target;
     [SerializeField] private PathFollowingAgent agent;
-    [SerializeField] public GameObject target;
+    //[SerializeField] public GameObject target;
 
     private bool _initComplete = false;
 

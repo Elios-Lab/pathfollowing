@@ -25,7 +25,7 @@ public class Target : MonoBehaviour
                     if (alignment > 0)
                         bonusfactor = 0.8f;
                     float bonus = bonusfactor * Mathf.Abs(alignment);
-                    StartCoroutine(other.gameObject.transform.parent.GetComponent<PathFollowingAgent>().JackpotReward(bonus));
+                    StartCoroutine(other.gameObject.transform.parent.GetComponent<PathFollowingAgent>().JackpotReward(bonus, this));
             }
         }
     }

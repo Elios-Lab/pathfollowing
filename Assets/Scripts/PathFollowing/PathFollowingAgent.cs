@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
@@ -13,7 +15,9 @@ public class PathFollowingAgent : Agent
     private CarController _controller;
     private SimulationManagerPFollowing _simulationManager;
     private float[] _lastActions;
-    private GameObject _targetGoal;
+    //private GameObject _targetGoal;
+    private Target _targetGoal;
+    int i = 0;
 
     public override void Initialize()
     {
@@ -27,7 +31,6 @@ public class PathFollowingAgent : Agent
     {
         _simulationManager.InitializeSimulation();
         _targetGoal = null;
-
     }
 
     public override void OnActionReceived(float[] vectorAction)
@@ -50,6 +53,12 @@ public class PathFollowingAgent : Agent
         if (other.gameObject.CompareTag("barrier"))
         {
             AddReward(-0.01f);
+
+            if(i != 2)
+            {
+                i = 0;
+            }
+
             EndEpisode();
         }
     }
@@ -59,7 +68,8 @@ public class PathFollowingAgent : Agent
         if (_lastActions != null && _simulationManager.InitComplete)
         {
             if (_targetGoal == null)
-                _targetGoal = _simulationManager.target;
+                _targetGoal = _simulationManager.target[i];
+                //_targetGoal = _simulationManager.target;
             Vector3 dirToTarget = (_targetGoal.transform.position - transform.position).normalized;
             sensor.AddObservation(transform.position.normalized);
             sensor.AddObservation(
@@ -80,13 +90,33 @@ public class PathFollowingAgent : Agent
         }
     }
 
-    public IEnumerator JackpotReward(float bonus)
+    public IEnumerator JackpotReward(float bonus, Target target)
     {
+        /*
         if (bonus > 0.2f)
-            Debug.LogWarning("Jackpot hit! " + bonus);
+            Debug.LogWarning("Jackpot hit! " + bonus + " Target " + i);
         AddReward(0.2f + bonus);
         yield return new WaitForEndOfFrame();
-        EndEpisode();
+
+        EndEpisode();*/
+        
+        if (i == 2) 
+        {
+            i = 0;
+            EndEpisode();
+        }
+        else if(target == _simulationManager.target[i])
+        {
+            if (bonus > 0.2f)
+                Debug.LogWarning("Jackpot hit! " + bonus + " Target" + i);
+            AddReward(0.2f + bonus);
+            yield return new WaitForEndOfFrame();
+
+            //lista di punti(waypoints), cambio il punto in cui devo passare
+            i++;
+            _targetGoal = _simulationManager.target[i];
+        }
+
     }
 
 }
