@@ -5,6 +5,7 @@
 * Unity: >= 2020.3.12f
 * Python3: >= 3.8.10
 * MLagents: 0.25.1 
+* MLagents packege version on Unity: 2.0.0
 
 To install all the requirements use the command:
 
@@ -29,6 +30,8 @@ After cloning or downloading the repository, you have to follow these simple ste
 3. Select the folder in which has been saved and open it
 
 Note that a Unity project is a collection of files and directories, rather than just one specific Unity Project file. To open a Project, you must select the main Project folder, rather than a specific file.
+
+After opening the project you need to install the MLAgents package vers.2.0.0 from Window\Package Manager in unity editor.
 
 # ML-Agents setup
 
