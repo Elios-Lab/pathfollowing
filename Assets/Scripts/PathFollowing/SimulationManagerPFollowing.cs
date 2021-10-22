@@ -8,41 +8,39 @@ using Random = UnityEngine.Random;
 
 public class SimulationManagerPFollowing : MonoBehaviour
 {
-    [SerializeField] public List<Target> target;
-    [SerializeField] private PathFollowingAgent agent;
-    //[SerializeField] public GameObject target;
+    //[SerializeField] public List<Target> target;
+    [SerializeField] public PathFollowingAgent agent;
+    [SerializeField] public ConfigurationManager configurationManager;
+    
 
     private bool _initComplete = false;
 
     public bool InitComplete => _initComplete;
 
+    /*
     public void RepositionAgentRandom()
     {
         if (agent != null)
         {
+            //Call the function for the generation of the random spot position
+            newRandPosition = SelectRandomSpawn();
             agent.GetComponent<Rigidbody>().velocity = Vector3.zero;
             agent.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             agent.GetComponent<CarController>().CurrentSteeringAngle = 0f;
             agent.GetComponent<CarController>().CurrentAcceleration = 0f;
             agent.GetComponent<CarController>().CurrentBrakeTorque = 0f;
-            agent.transform.rotation = Quaternion.Euler(0, -90, 0);
-            agent.transform.position = transform.parent.position + new Vector3(44.3f, 0.05999994f, -35.2f);
+            agent.transform.rotation = Quaternion.Euler(0, Random.Range(0,360), 0);
+            agent.transform.position = new Vector3(newRandPosition.x, newRandPosition.y,newRandPosition.z);
+            //agent.transform.position = transform.parent.position + new Vector3(, , );
         }
-    }
+    }*/
 
-    //al momento la posizione è fixata
-    public void RepositionTargetRandom()
-    {
-        //target.transform.rotation = Quaternion.Euler(0, 45, 0);
-        //target.transform.position = transform.parent.position + new Vector3(13.18f, 1.167712f, -37.79f);
-    }
 
     public void InitializeSimulation()
     {
         _initComplete = false;
-        RepositionAgentRandom();
-        RepositionTargetRandom();
-
+        configurationManager.RandomAgentPositioning();
+        configurationManager.RepositionTargetRandom();
 
         _initComplete = true;
     }
@@ -51,4 +49,10 @@ public class SimulationManagerPFollowing : MonoBehaviour
     {
         
     }
+
+    public void Update()
+    {
+
+    }
+
 }
