@@ -4,7 +4,11 @@
 
 * Unity: >= 2020.3.12f
 * Python3: >= 3.8.10
-* MLagents: 0.20.0 
+* MLagents: 0.25.1 
+
+To install all the requirements use the command:
+
+<code>pip install -r /path/to/requirements.txt</code>
 
 ## Links:
 
@@ -39,3 +43,12 @@ For further information it is better to consult the official documentation:
 
 Here is a detailed description of all the features [ML-Agents Overview](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/ML-Agents-Overview.md). 
 
+
+## Training 
+
+Go in the project folder and use the following command:
+
+<code>mlagents-learn config/trainer_config.yaml --run-id=name</code>
+
+For more informations and features:
+* [Training Documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_18_docs/docs/Training-ML-Agents.md)
