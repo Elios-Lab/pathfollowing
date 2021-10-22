@@ -38,7 +38,7 @@ public class AutoParkAgent : Agent
         _controller.CurrentBrakeTorque = vectorAction[2];
     }
 
-    public override void Heuristic(float[] actionsOut)
+    public override void Heuristic(ActionBuffers actionsOut)
     {
         actionsOut[0] = Input.GetAxis("Horizontal");
         actionsOut[1] = Input.GetAxis("Vertical");
