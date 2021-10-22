@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
+using Unity.MLAgents.Actuators;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,7 +13,7 @@ public class AutoParkAgent : Agent
     private Rigidbody _rigitBody;
     private CarController _controller;
     private SimulationManager _simulationManager;
-    private float[] _lastActions;
+    private ActionSegment<float> _lastActions;
     private ParkingLot _nearestLot;
 
     public override void Initialize()
@@ -30,19 +31,20 @@ public class AutoParkAgent : Agent
         _nearestLot = null;
     }
 
-    public override void OnActionReceived(float[] vectorAction)
+    public override void OnActionReceived(ActionBuffers vectorAction)
     {
-        _lastActions = vectorAction;
-        _controller.CurrentSteeringAngle = vectorAction[0];
-        _controller.CurrentAcceleration = vectorAction[1];
-        _controller.CurrentBrakeTorque = vectorAction[2];
+        _lastActions = vectorAction.ContinuousActions;
+        _controller.CurrentSteeringAngle = vectorAction.ContinuousActions[0];
+        _controller.CurrentAcceleration = vectorAction.ContinuousActions[1];
+        _controller.CurrentBrakeTorque = vectorAction.ContinuousActions[2];
     }
 
-    public override void Heuristic(float[] actionsOut)
+    public override void Heuristic(in ActionBuffers actionsOut)
     {
-        actionsOut[0] = Input.GetAxis("Horizontal");
-        actionsOut[1] = Input.GetAxis("Vertical");
-        actionsOut[2] = Input.GetAxis("Jump");
+        ActionSegment<float> continuousActionsOut = actionsOut.ContinuousActions;
+        continuousActionsOut[0] = Input.GetAxis("Horizontal");
+        continuousActionsOut[1] = Input.GetAxis("Vertical");
+        continuousActionsOut[2] = Input.GetAxis("Jump");
     }
 
     private void OnCollisionEnter(Collision other)
@@ -57,7 +59,7 @@ public class AutoParkAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        if (_lastActions != null && _simulationManager.InitComplete)
+        if (_simulationManager.InitComplete)
         {
             if(_nearestLot == null)
                 _nearestLot = _simulationManager.GetRandomEmptyParkingSlot();
