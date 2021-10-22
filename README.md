@@ -5,7 +5,7 @@
 * Unity: >= 2020.3.12f
 * Python3: >= 3.8.10
 * MLagents: 0.25.1 
-* MLagents packege version on Unity: 2.0.0
+* MLagents package version on Unity: 2.0.0
 
 To install all the requirements use the command:
 
