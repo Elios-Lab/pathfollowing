@@ -1,18 +1,18 @@
 {
   "dependencies": {
     "com.unity.barracuda": {
-      "version": "2.0.0",
+      "version": "2.0.0-pre.3",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.burst": "1.6.0",
+        "com.unity.burst": "1.3.4",
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.6.0",
+      "version": "1.3.4",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -69,15 +69,14 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ml-agents": {
-      "version": "2.0.0",
+      "version": "file:C:/Users/andre/Desktop/TESI MAGISTALE/ml-agents/com.unity.ml-agents",
       "depth": 0,
-      "source": "registry",
+      "source": "local",
       "dependencies": {
-        "com.unity.barracuda": "2.0.0",
+        "com.unity.barracuda": "2.0.0-pre.3",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
+      }
     },
     "com.unity.nuget.newtonsoft-json": {
       "version": "2.0.0",
