@@ -5,11 +5,11 @@ behaviors:
             batch_size: 512 
             buffer_size: 5120
             learning_rate_schedule: linear
-            learning_rate: 1e-3
+            learning_rate: 1e-4
         network_settings:
             hidden_units: 512
             normalize: false
-            num_layers: 4
+            num_layers: 7
             vis_encode_type: simple
             memory:
                 memory_size: 512
@@ -27,10 +27,11 @@ behaviors:
             batch_size: 512
             buffer_size: 5120
             learning_rate_schedule: linear
-            learning_rate: 1e-3
+            learning_rate: 1e-4
         network_settings:
-            hidden_units: 256
-            num_layers: 4
+            hidden_units: 512
+            num_layers: 7
             vis_encode_type: simple
-        max_steps: 10.0e6
+        summary_freq: 10000
+        max_steps: 20.0e6
         time_horizon: 128
