@@ -35,3 +35,6 @@ behaviors:
         summary_freq: 10000
         max_steps: 20.0e6
         time_horizon: 128
+
+torch_settings:
+    device: cpu
