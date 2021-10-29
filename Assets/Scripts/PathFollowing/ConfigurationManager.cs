@@ -117,9 +117,9 @@ public class ConfigurationManager : MonoBehaviour
 
     public void RepositionTargetRandom()
     {
-        //int i = Random.Range(0, garage.Length);
+        int i = Random.Range(0, garage.Length);
 
-        int i = 2;
+        //int i = 2;
 
         //Set the goal rotation -90 garage above 90 garage below
         if (i >= 0 && i <= 4)  
