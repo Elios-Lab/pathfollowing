@@ -7,6 +7,7 @@ public class ConfigurationManager : MonoBehaviour
 {
 
     [SerializeField] public PathFollowingAgent agent;
+    [SerializeField] public GameObject environment;
     [SerializeField] public GameObject goal;
     [SerializeField] public float carLength;
     [SerializeField] public float carWidth;
@@ -110,8 +111,8 @@ public class ConfigurationManager : MonoBehaviour
             agent.transform.rotation = Quaternion.Euler(0, rotation, 0);
 
             //Setting random position
-            agent.transform.position = transform.parent.position + new Vector3(x_base, 0.5f, z_base);
-
+            //agent.transform.position = transform.parent.position + new Vector3(x_base, 0.5f, z_base);
+            agent.transform.position = transform.parent.position + new Vector3(0.4f, 0.5f, 0.1f);
         }
     }
 

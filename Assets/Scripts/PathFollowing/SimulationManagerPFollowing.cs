@@ -11,7 +11,6 @@ public class SimulationManagerPFollowing : MonoBehaviour
     //[SerializeField] public List<Target> target;
     [SerializeField] public PathFollowingAgent agent;
     [SerializeField] public ConfigurationManager configurationManager;
-    
 
     private bool _initComplete = false;
 

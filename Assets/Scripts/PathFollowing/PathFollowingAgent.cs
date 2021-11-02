@@ -108,23 +108,24 @@ public class PathFollowingAgent : Agent
             Vector3 distance = _targetGoal.transform.position - transform.position;
             Vector3 dirToTarget = (distance).normalized;
             float magDistance = distance.magnitude;
+            Vector3 agentPos = transform.position - _simulationManager.configurationManager.environment.transform.position;
+            Vector3 targetPos = _targetGoal.transform.position - _simulationManager.configurationManager.environment.transform.position;
 
             //Observations
-            sensor.AddObservation(transform.position.normalized);
+            sensor.AddObservation(agentPos);
+            //modificato
+            //this.transform.InverseTransformPoint(_targetGoal.transform.position));
+            sensor.AddObservation(targetPos);
             sensor.AddObservation(
-                this.transform.InverseTransformPoint(_targetGoal.transform.position));
+                this.transform.InverseTransformVector(_rigitBody.velocity.normalized)); //come sono allinato con la velocità
             sensor.AddObservation(
-                this.transform.InverseTransformVector(_rigitBody.velocity.normalized));
-            sensor.AddObservation(
-                this.transform.InverseTransformDirection(dirToTarget));
+                this.transform.InverseTransformDirection(dirToTarget)); //dove dovrei andare
+            //valore di riferimento per obs precedenti.
             sensor.AddObservation(transform.forward);
             sensor.AddObservation(transform.right);
             //sensor.AddObservation(StepCount / MaxStep);
             float velocityAlignment = Vector3.Dot(dirToTarget, _rigitBody.velocity.normalized);
-            //Debug.Log("coseno " + velocityAlignment);
 
-            //Angolo
-            //float velocityAlignment = (dirToTarget - _rigitBody.velocity).y * Mathf.Rad2Deg;
             if (isTraining)
             { 
                 AddReward(ComputeReward(RewardType.Dense, velocityAlignment, magDistance));

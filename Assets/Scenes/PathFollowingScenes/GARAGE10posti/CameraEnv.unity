@@ -261,9 +261,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.5
     y: 0
-    width: 1
+    width: 0.5
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -306,6 +306,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2945989153149906729, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422197491665036356, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422197491665036356, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
+      propertyPath: far clip plane
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422197491665036356, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422197491665036356, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422197491665036356, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431277109744060077, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
+      propertyPath: m_Width
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431277109744060077, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
+      propertyPath: m_Height
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431277109744060077, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
+      propertyPath: m_Compression
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8625473388780187132, guid: 355ecc4edb5ac2143a8951d1ca254909,
         type: 3}
       propertyPath: m_Name
