@@ -28,7 +28,7 @@ behaviors:
             buffer_size: 5120
         network_settings:
             hidden_units: 512
-            num_layers: 4
+            num_layers: 6
         max_steps: 10.0e6
         time_horizon: 128
         
@@ -36,4 +36,4 @@ torch_settings:
     device: cuda
     
 env_settings:
-    num_envs: 16
+    num_envs: 1
