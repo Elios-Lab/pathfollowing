@@ -3,7 +3,7 @@ behaviors:
         trainer_type: ppo
         hyperparameters:
             batch_size: 512 
-            buffer_size: 5120
+            buffer_size: 51200
             learning_rate_schedule: linear
             learning_rate: 1e-1
         network_settings:
@@ -25,15 +25,16 @@ behaviors:
         trainer_type: ppo
         hyperparameters:
             batch_size: 512
-            buffer_size: 5120
+            buffer_size: 51200
         network_settings:
             hidden_units: 512
             num_layers: 6
         max_steps: 10.0e6
         time_horizon: 128
+        summary_freq: 10000
         
 torch_settings:
     device: cuda
     
 env_settings:
-    num_envs: 1
+    num_envs: 5
