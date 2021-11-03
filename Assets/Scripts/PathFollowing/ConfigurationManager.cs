@@ -57,17 +57,22 @@ public class ConfigurationManager : MonoBehaviour
     public void IncrementCollision()
     {       
         colNumber++;
-        Debug.Log(colNumber);
+        Debug.Log("Collision number" + colNumber);
+        Debug.Log("Success rate: " + ratio);
     }
 
     public void IncrementGoal() 
     {
         goalNumber++;
+        Debug.Log("Goal number: " + goalNumber);
+        Debug.Log("Success rate: " + ratio);
     }
 
     public void IncrementTimeout() 
     {
         timeoutNum++;
+        Debug.Log("Timeouts: " + timeoutNum);
+        Debug.Log("Success rate: " + ratio);
     }
 
     public void RandomAgentPositioning()
@@ -111,8 +116,8 @@ public class ConfigurationManager : MonoBehaviour
             agent.transform.rotation = Quaternion.Euler(0, rotation, 0);
 
             //Setting random position
-            //agent.transform.position = transform.parent.position + new Vector3(x_base, 0.5f, z_base);
-            agent.transform.position = transform.parent.position + new Vector3(0.4f, 0.5f, 0.1f);
+            agent.transform.position = transform.parent.position + new Vector3(x_base, 0.5f, z_base);
+            
         }
     }
 

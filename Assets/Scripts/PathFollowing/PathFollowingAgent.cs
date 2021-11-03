@@ -50,7 +50,7 @@ public class PathFollowingAgent : Agent
     public override void OnEpisodeBegin()
     {
         //Stop the simulation if isOver true
-        if(isOver && isTraining == false)
+        if(isOver == true && isTraining == false)
         {
             Time.timeScale = 0;
         }
@@ -88,7 +88,7 @@ public class PathFollowingAgent : Agent
             {
                 AddReward(ComputeReward(RewardType.Collision));
             }
-            else
+            else if (isTraining == false)
             {
                 _simulationManager.configurationManager.IncrementCollision();
             }
@@ -126,11 +126,11 @@ public class PathFollowingAgent : Agent
             //sensor.AddObservation(StepCount / MaxStep);
             float velocityAlignment = Vector3.Dot(dirToTarget, _rigitBody.velocity.normalized);
 
-            if (isTraining)
+            if (isTraining == true)
             { 
                 AddReward(ComputeReward(RewardType.Dense, velocityAlignment, magDistance));
             }
-            else
+            else if (isTraining == false)
             {   
                 if(StepCount == MaxStep - 1)
                     _simulationManager.configurationManager.IncrementTimeout();
@@ -145,11 +145,11 @@ public class PathFollowingAgent : Agent
     public IEnumerator JackpotReward(float bonus)
     {
 
-        if (isTraining) 
+        if (isTraining == true) 
         { 
             AddReward(ComputeReward(RewardType.Goal, bonus));
         }
-        else
+        else if (isTraining == false)
         {
             _simulationManager.configurationManager.IncrementGoal();
         }
