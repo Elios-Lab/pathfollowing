@@ -6,6 +6,7 @@ public class SensorResolution : MonoBehaviour
 {
     [SerializeField] float targetResolution;
     [SerializeField] float distance;
+
     public float numberRays;
     public float angle;
     public float maxDegree;
