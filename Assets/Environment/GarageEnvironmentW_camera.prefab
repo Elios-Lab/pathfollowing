@@ -1104,6 +1104,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8625473388780187135}
     m_Modifications:
+    - target: {fileID: 3831220121990384196, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5664579777547469321, guid: d5d06645ff209b141af7de1e5cfb7d21,
         type: 3}
       propertyPath: m_Name
@@ -1366,6 +1371,11 @@ PrefabInstance:
       propertyPath: isTraining
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4086070234327659936, guid: 869a2f5fae2f5294bbefe277e8112175,
+        type: 3}
+      propertyPath: environment
+      value: 
+      objectReference: {fileID: 8625473388780187132}
     - target: {fileID: 4086070234327659936, guid: 869a2f5fae2f5294bbefe277e8112175,
         type: 3}
       propertyPath: garage.Array.size

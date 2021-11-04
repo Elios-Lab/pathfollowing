@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280d350435e54494da772a09ea5161ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberInstances: 16
+  numberInstances: 8
   instancesPerRow: 4
   instancePrefab: {fileID: 8625473388780187132, guid: 355ecc4edb5ac2143a8951d1ca254909,
     type: 3}
