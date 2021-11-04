@@ -1174,6 +1174,11 @@ PrefabInstance:
       propertyPath: configurationManager
       value: 
       objectReference: {fileID: 4679842561468724930}
+    - target: {fileID: 6424249802685663746, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: m_Compression
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5d06645ff209b141af7de1e5cfb7d21, type: 3}
 --- !u!4 &4045776425253244581 stripped
