@@ -113,9 +113,8 @@ public class PathFollowingAgent : Agent
 
             //Observations
             sensor.AddObservation(agentPos);
-            //modificato
-            //this.transform.InverseTransformPoint(_targetGoal.transform.position));
-            sensor.AddObservation(targetPos);
+            sensor.AddObservation(
+                this.transform.InverseTransformPoint(_targetGoal.transform.position));
             sensor.AddObservation(
                 this.transform.InverseTransformVector(_rigitBody.velocity.normalized)); //come sono allinato con la velocità
             sensor.AddObservation(
