@@ -109,12 +109,11 @@ public class PathFollowingAgent : Agent
             Vector3 dirToTarget = (distance).normalized;
             float magDistance = distance.magnitude;
             Vector3 agentPos = transform.position - _simulationManager.configurationManager.environment.transform.position;
-            Vector3 targetPos = _targetGoal.transform.position - _simulationManager.configurationManager.environment.transform.position;
+            //Vector3 targetPos = _targetGoal.transform.position - _simulationManager.configurationManager.environment.transform.position;
 
             //Observations
-            sensor.AddObservation(agentPos);
-            sensor.AddObservation(
-                this.transform.InverseTransformPoint(_targetGoal.transform.position));
+            sensor.AddObservation(agentPos.normalized);
+            sensor.AddObservation(this.transform.InverseTransformPoint(_targetGoal.transform.position));
             sensor.AddObservation(
                 this.transform.InverseTransformVector(_rigitBody.velocity.normalized)); //come sono allinato con la velocità
             sensor.AddObservation(
