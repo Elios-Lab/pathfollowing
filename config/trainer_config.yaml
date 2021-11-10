@@ -38,3 +38,7 @@ behaviors:
 
 torch_settings:
     device: cpu
+
+env_settings:
+    num_envs: 2
+

@@ -1176,8 +1176,28 @@ PrefabInstance:
       objectReference: {fileID: 4679842561468724930}
     - target: {fileID: 6424249802685663746, guid: d5d06645ff209b141af7de1e5cfb7d21,
         type: 3}
+      propertyPath: m_Width
+      value: 84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424249802685663746, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: m_Height
+      value: 84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424249802685663746, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
       propertyPath: m_Compression
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748207190738454492, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: field of view
+      value: 72.05475
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748207190738454492, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: far clip plane
+      value: 5.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5d06645ff209b141af7de1e5cfb7d21, type: 3}

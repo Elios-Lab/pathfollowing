@@ -117,7 +117,7 @@ public class ConfigurationManager : MonoBehaviour
 
             //Setting random position
             agent.transform.position = transform.parent.position + new Vector3(x_base, 0.5f, z_base);
-            
+
         }
     }
 
