@@ -37,15 +37,7 @@ public class ConfigurationManager : MonoBehaviour
 
     void Update()
     {
-        //Check if we are in model checking mode
-        if(isTraining == false && colNumber + goalNumber + timeoutNum != 0)
-            //Update ratio
-            ratio = goalNumber / (float)(colNumber + goalNumber + timeoutNum);
-        
-        if(iteration >= maxIteration && isTraining == false)
-        {
-            isOver = true;
-        }    
+   
     }
 
     //Print ratio on GUI

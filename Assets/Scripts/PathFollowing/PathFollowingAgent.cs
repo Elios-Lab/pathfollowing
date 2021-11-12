@@ -100,6 +100,17 @@ public class PathFollowingAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        /*
+        //Check if we are in model checking mode
+        if (isTraining == false && colNumber + goalNumber + timeoutNum != 0)
+            //Update ratio
+            ratio = goalNumber / (float)(colNumber + goalNumber + timeoutNum);
+
+        if (iteration >= maxIteration && isTraining == false)
+        {
+            isOver = true;
+        }*/
+
         if (_simulationManager.InitComplete)
         {
             if (_targetGoal == null)

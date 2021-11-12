@@ -141,8 +141,8 @@ MonoBehaviour:
   m_SensorName: Lidar
   m_DetectableTags:
   - barrier
-  m_RaysPerDirection: 0
-  m_MaxRayDegrees: 0
+  m_RaysPerDirection: 50
+  m_MaxRayDegrees: 178.2083
   m_SphereCastRadius: 0.5
   m_RayLength: 20
   m_RayLayerMask:
@@ -250,15 +250,21 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 18
     NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 3
+      BranchSizes: 
     VectorActionSize: 03000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: PathFollowing
   TeamId: 0
   m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
 --- !u!114 &5734958511445089298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 10
+  DecisionPeriod: 1
   TakeActionsBetweenDecisions: 1
 --- !u!114 &322769742578244290
 MonoBehaviour:
