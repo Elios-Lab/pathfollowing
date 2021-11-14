@@ -26,16 +26,25 @@ public class PathFollowingAgent : Agent
     //debug purpouse
     private float printReward=0;
 
+    //Var to save the percentage of goals reached over the number of iterations
+    private float ratio = 0;
+
     private Rigidbody _rigitBody;
     private CarController _controller;
     private SimulationManagerPFollowing _simulationManager;
     private ActionSegment<float> _lastActions;
 
     private bool isTraining;
-    private bool isOver;
-    
-    private GameObject _targetGoal;
-   
+    private int maxIteration;
+
+    //Numero di collisioni
+    public int colNumber = 0;
+    //Numero di goal 
+    public int goalNumber = 0;
+    //Numero di volte in cui l'episodio termina senza goal/collisione
+    public int timeoutNum = 0;
+
+    private GameObject _targetGoal;  
 
     public override void Initialize()
     {
@@ -43,19 +52,19 @@ public class PathFollowingAgent : Agent
         _controller = GetComponent<CarController>();
         _simulationManager = GetComponent<SimulationManagerPFollowing>();
         isTraining = _simulationManager.configurationManager.isTraining;
-        isOver = _simulationManager.configurationManager.isOver;
+        maxIteration = _simulationManager.configurationManager.maxIteration;
         _simulationManager.InitializeSimulation();
     }
 
     public override void OnEpisodeBegin()
     {
         //Stop the simulation if isOver true
-        if(isOver == true && isTraining == false)
+        if(_simulationManager.configurationManager.isOver == true && isTraining == false)
         {
             Time.timeScale = 0;
         }
         
-        if(isTraining == false && isOver == false)
+        if(isTraining == false && _simulationManager.configurationManager.isOver == false)
         {
             _simulationManager.configurationManager.iteration++;
         }
@@ -90,7 +99,7 @@ public class PathFollowingAgent : Agent
             }
             else if (isTraining == false)
             {
-                _simulationManager.configurationManager.IncrementCollision();
+                IncrementCollision();
             }
 
             EndEpisode();
@@ -100,16 +109,16 @@ public class PathFollowingAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        /*
+        
         //Check if we are in model checking mode
         if (isTraining == false && colNumber + goalNumber + timeoutNum != 0)
             //Update ratio
-            ratio = goalNumber / (float)(colNumber + goalNumber + timeoutNum);
+           ratio = goalNumber / (float)(colNumber + goalNumber + timeoutNum);
 
-        if (iteration >= maxIteration && isTraining == false)
+        if (_simulationManager.configurationManager.iteration >= maxIteration && isTraining == false)
         {
-            isOver = true;
-        }*/
+            _simulationManager.configurationManager.isOver = true;
+        }
 
         if (_simulationManager.InitComplete)
         {
@@ -142,7 +151,7 @@ public class PathFollowingAgent : Agent
             else if (isTraining == false)
             {   
                 if(StepCount == MaxStep - 1)
-                    _simulationManager.configurationManager.IncrementTimeout();
+                    IncrementTimeout();
             }
         }
         else
@@ -160,7 +169,7 @@ public class PathFollowingAgent : Agent
         }
         else if (isTraining == false)
         {
-            _simulationManager.configurationManager.IncrementGoal();
+            IncrementGoal();
         }
 
         yield return new WaitForEndOfFrame();
@@ -243,6 +252,27 @@ public class PathFollowingAgent : Agent
         }
 
         return reward;
+    }
+
+    public void IncrementCollision()
+    {
+        colNumber++;
+        Debug.Log("Collision number: " + colNumber);
+        Debug.Log("Success rate: " + ratio);
+    }
+
+    public void IncrementGoal()
+    {
+        goalNumber++;
+        Debug.Log("Goal number: " + goalNumber);
+        Debug.Log("Success rate: " + ratio);
+    }
+
+    public void IncrementTimeout()
+    {
+        timeoutNum++;
+        Debug.Log("Timeouts: " + timeoutNum);
+        Debug.Log("Success rate: " + ratio);
     }
 
 }

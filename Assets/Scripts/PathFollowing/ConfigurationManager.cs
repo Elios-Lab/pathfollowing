@@ -25,47 +25,20 @@ public class ConfigurationManager : MonoBehaviour
     //Flag that becomes true when the number of iteration has reached maxIteration
     public bool isOver = false;
 
-    //Numero di collisioni
-    private int colNumber = 0;
-    //Numero di goal 
-    private int goalNumber = 0;
-    //Numero di volte in cui l'episodio termina senza goal/collisione
-    private int timeoutNum = 0;
 
-    //Var to save the percentage of goals reached over the number of iterations
-    private float ratio = 0;
 
     void Update()
     {
    
     }
 
+    /*
     //Print ratio on GUI
     private void OnGUI()
     {
         GUI.Label(new Rect(10,10,100,100),"Ratio= " + ratio.ToString("F"));
-    }
+    }*/
 
-    public void IncrementCollision()
-    {       
-        colNumber++;
-        Debug.Log("Collision number" + colNumber);
-        Debug.Log("Success rate: " + ratio);
-    }
-
-    public void IncrementGoal() 
-    {
-        goalNumber++;
-        Debug.Log("Goal number: " + goalNumber);
-        Debug.Log("Success rate: " + ratio);
-    }
-
-    public void IncrementTimeout() 
-    {
-        timeoutNum++;
-        Debug.Log("Timeouts: " + timeoutNum);
-        Debug.Log("Success rate: " + ratio);
-    }
 
     public void RandomAgentPositioning()
     {

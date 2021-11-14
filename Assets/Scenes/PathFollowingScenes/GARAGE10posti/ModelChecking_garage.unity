@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 4679842561468724930, guid: 355ecc4edb5ac2143a8951d1ca254909,
         type: 3}
       propertyPath: maxIteration
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4869208222153197291, guid: 355ecc4edb5ac2143a8951d1ca254909,
         type: 3}
@@ -159,7 +159,7 @@ PrefabInstance:
     - target: {fileID: 4869208222153197291, guid: 355ecc4edb5ac2143a8951d1ca254909,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8625473388780187132, guid: 355ecc4edb5ac2143a8951d1ca254909,
         type: 3}
