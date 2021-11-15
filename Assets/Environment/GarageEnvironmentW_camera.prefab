@@ -1109,6 +1109,11 @@ PrefabInstance:
       propertyPath: m_Model
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3831220121990384196, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5664579777547469321, guid: d5d06645ff209b141af7de1e5cfb7d21,
         type: 3}
       propertyPath: m_Name
@@ -1174,6 +1179,26 @@ PrefabInstance:
       propertyPath: configurationManager
       value: 
       objectReference: {fileID: 4679842561468724930}
+    - target: {fileID: 5664579777547469332, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: MaxStep
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664579777547469332, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: varianceThreshold
+      value: 0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664579777547469333, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: DecisionPeriod
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664579777547469333, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: TakeActionsBetweenDecisions
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6424249802685663746, guid: d5d06645ff209b141af7de1e5cfb7d21,
         type: 3}
       propertyPath: m_Width
