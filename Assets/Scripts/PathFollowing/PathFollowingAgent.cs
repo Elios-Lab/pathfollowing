@@ -48,14 +48,12 @@ public class PathFollowingAgent : Agent
     private GameObject _targetGoal;
 
     //Vector3 circular array for saving positions 
-    private Vector3[] arrayOfPosition = new Vector3[20];
+    private float[] arrayOfPosition = new float[20];
 
     //Index to manage array datas
     private int bufferIndex = 0;
 
-    //arrayOfPosition
-    private Vector3 arrayVarianceVector;
-    //vector3 element with max variance
+    //arrayOfPosition variance
     private float arrayVariance;
 
     //Variance threshold;
@@ -109,14 +107,9 @@ public class PathFollowingAgent : Agent
     {
         if (other.gameObject.CompareTag("barrier"))
         {
-            if (isTraining)
-            {
-                AddReward(ComputeReward(RewardType.Collision));
-            }
-            else if (isTraining == false)
-            {
-                IncrementCollision();
-            }
+
+            AddReward(ComputeReward(RewardType.Collision));
+            IncrementCollision();
 
             EndEpisode();
 
@@ -136,6 +129,8 @@ public class PathFollowingAgent : Agent
             _simulationManager.configurationManager.isOver = true;
         }
 
+        if(StepCount == 10000)
+
         if (_simulationManager.InitComplete)
         {
             //Check the index value, set it to 0 if has reached the array's max size
@@ -153,10 +148,10 @@ public class PathFollowingAgent : Agent
             Vector3 agentPos = transform.position - _simulationManager.configurationManager.environment.transform.position;
             //Vector3 targetPos = _targetGoal.transform.position - _simulationManager.configurationManager.environment.transform.position;
 
-            arrayOfPosition[bufferIndex] = transform.position;
+            arrayOfPosition[bufferIndex] = transform.position.magnitude;
             Debug.Log("PosArray: " + arrayOfPosition);
 
-            if(arrayOfPosition[19] != new Vector3(0,0,0))
+            if(arrayOfPosition[19] != 0f)
             {
                 //Compute variance
                 StartCoroutine(ComputeVariance(arrayOfPosition, 20));
@@ -174,16 +169,12 @@ public class PathFollowingAgent : Agent
             sensor.AddObservation(transform.right);
             //sensor.AddObservation(StepCount / MaxStep);
             float velocityAlignment = Vector3.Dot(dirToTarget, _rigitBody.velocity.normalized);
+            
+            //Dense reward 
+            AddReward(ComputeReward(RewardType.Dense, velocityAlignment, magDistance));
 
-            if (isTraining == true)
-            { 
-                AddReward(ComputeReward(RewardType.Dense, velocityAlignment, magDistance));
-            }
-            else if (isTraining == false)
-            {   
-                if(StepCount == MaxStep - 1)
-                    IncrementTimeout();
-            }
+            if(StepCount == MaxStep - 1)
+                IncrementTimeout();
 
             //Increase buffer index 
             bufferIndex++;
@@ -197,19 +188,12 @@ public class PathFollowingAgent : Agent
     public IEnumerator JackpotReward(float bonus)
     {
 
-        if (isTraining == true) 
-        { 
-            AddReward(ComputeReward(RewardType.Goal, bonus));
-        }
-        else if (isTraining == false)
-        {
-            IncrementGoal();
-        }
+        AddReward(ComputeReward(RewardType.Goal, bonus));
+        IncrementGoal();
 
         yield return new WaitForEndOfFrame();
 
         EndEpisode();
-
 
         /*
         if (i == n && target == _simulationManager.target[n]) 
@@ -298,46 +282,52 @@ public class PathFollowingAgent : Agent
     {
         colNumber++;
         Debug.Log("Collision number: " + colNumber);
-        Debug.Log("Success rate: " + ratio);
+        if(isTraining == false)
+            Debug.Log("Success rate: " + ratio);
     }
 
     public void IncrementGoal()
     {
         goalNumber++;
-        Debug.Log("Goal number: " + goalNumber);
-        Debug.Log("Success rate: " + ratio);
+
+        if (isTraining == false) 
+        { 
+            Debug.Log("Goal number: " + goalNumber);
+            Debug.Log("Success rate: " + ratio);
+        }
     }
 
     public void IncrementTimeout()
     {
         timeoutNum++;
-        Debug.Log("Timeouts: " + timeoutNum);
-        Debug.Log("Success rate: " + ratio);
+
+        if(isTraining == false) 
+        { 
+            Debug.Log("Timeouts: " + timeoutNum);
+            Debug.Log("Success rate: " + ratio);
+        }
     }
 
     // Function for calculating
     // variance
-    public IEnumerator ComputeVariance(Vector3[] a, int n)
+    public IEnumerator ComputeVariance(float[] a, int n)
     {
         // Compute mean (average of elements)
-        Vector3 sum = new Vector3(0,0,0);
+        float sum = 0f;
 
         for (int i = 0; i < n; i++)
             sum += a[i];
 
-        Vector3 mean = (Vector3)sum / (float)n;
+        float mean = (float)sum / (float)n;
 
         // Compute sum squared
         // differences with mean.
-        Vector3 sqDiff = new Vector3(0,0,0);
+        float sqDiff = 0f;
 
         for (int i = 0; i < n; i++)
-            sqDiff += Vector3.Scale(a[i] - mean, a[i] - mean);
+            sqDiff += (a[i] - mean) * (a[i] - mean);
 
-        arrayVarianceVector = sqDiff / n;
-        //Debug.Log("VectorVariance: " + arrayVarianceVector);
-
-        arrayVariance = Mathf.Max(Mathf.Max(arrayVarianceVector.x, arrayVarianceVector.y), arrayVarianceVector.z);
+        arrayVariance = sqDiff / n;
         //Debug.Log("Variance: " + arrayVariance);
 
         if (arrayVariance < varianceThreshold)
