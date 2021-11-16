@@ -129,8 +129,6 @@ public class PathFollowingAgent : Agent
             _simulationManager.configurationManager.isOver = true;
         }
 
-        if(StepCount == 10000)
-
         if (_simulationManager.InitComplete)
         {
             //Check the index value, set it to 0 if has reached the array's max size
@@ -148,7 +146,7 @@ public class PathFollowingAgent : Agent
             Vector3 agentPos = transform.position - _simulationManager.configurationManager.environment.transform.position;
             //Vector3 targetPos = _targetGoal.transform.position - _simulationManager.configurationManager.environment.transform.position;
 
-            arrayOfPosition[bufferIndex] = transform.position.magnitude;
+            arrayOfPosition[bufferIndex] = agentPos.magnitude;
             Debug.Log("PosArray: " + arrayOfPosition);
 
             if(arrayOfPosition[19] != 0f)
