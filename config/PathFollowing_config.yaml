@@ -27,12 +27,12 @@ behaviors:
             batch_size: 512
             buffer_size: 51200
             learning_rate_schedule: linear
-            learning_rate: 1e-4
+            learning_rate: 1e-5
         network_settings:
-            hidden_units: 512
-            num_layers: 6
+            hidden_units: 256
+            num_layers: 2
             vis_encode_type: simple
-        max_steps: 30.0e6
+        max_steps: 50.0e6
         time_horizon: 128
         summary_freq: 10000
         
@@ -40,4 +40,4 @@ torch_settings:
     device: cuda
     
 env_settings:
-    num_envs: 8
+    num_envs: 2
