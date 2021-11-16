@@ -21,7 +21,8 @@ public class PathFollowingAgent : Agent
         Goal,
         Collision,
         Dense,
-        Stuck
+        Stuck,
+        TimeOut
     }
 
     //debug purpouse
@@ -116,6 +117,15 @@ public class PathFollowingAgent : Agent
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (StepCount == MaxStep - 1)
+        {
+            IncrementTimeout();
+            ComputeReward(RewardType.TimeOut);
+        }
+    }
+
     public override void CollectObservations(VectorSensor sensor)
     {
         
@@ -147,7 +157,6 @@ public class PathFollowingAgent : Agent
             //Vector3 targetPos = _targetGoal.transform.position - _simulationManager.configurationManager.environment.transform.position;
 
             arrayOfPosition[bufferIndex] = agentPos.magnitude;
-            Debug.Log("PosArray: " + arrayOfPosition);
 
             if(arrayOfPosition[19] != 0f)
             {
@@ -171,9 +180,6 @@ public class PathFollowingAgent : Agent
             //Dense reward 
             AddReward(ComputeReward(RewardType.Dense, velocityAlignment, magDistance));
 
-            if(StepCount == MaxStep - 1)
-                IncrementTimeout();
-
             //Increase buffer index 
             bufferIndex++;
         }
@@ -193,28 +199,6 @@ public class PathFollowingAgent : Agent
 
         EndEpisode();
 
-        /*
-        if (i == n && target == _simulationManager.target[n]) 
-        {
-            if (bonus > 0.2f)
-                Debug.LogWarning("Jackpot hit! " + bonus + " Target" + i);
-            AddReward(0.3f + bonus);
-            yield return new WaitForEndOfFrame();
-
-            i = 0;
-            EndEpisode();
-        }
-        else if(i != n && target == _simulationManager.target[i])
-        {
-            if (bonus > 0.2f)
-                Debug.LogWarning("Jackpot hit! " + bonus + " Target" + i);
-            AddReward(0.001f + bonus);
-            yield return new WaitForEndOfFrame();
-
-            //lista di punti(waypoints), cambio il punto in cui devo passare
-            i++;
-            _targetGoal = _simulationManager.target[i];
-        }*/
     }
 
     public float ComputeReward(RewardType type, float bonus1 = 0f, float bonus2 = 0f)
@@ -237,6 +221,7 @@ public class PathFollowingAgent : Agent
         float rewardGoal = 40f;
         float rewardCollision = -75f;
         float rewardStucked = -50f;
+        float rewardTimeOut = -65f;
 
         //coefficient for the ending alignment between the agent and the goal
         float c0 = 75f;
@@ -270,7 +255,10 @@ public class PathFollowingAgent : Agent
                 reward = rewardStucked;
                 Debug.Log("Stucked Vehicle");
                 break;
-
+            case RewardType.TimeOut:
+                reward = rewardTimeOut;
+                Debug.Log("TimeOut");
+                break;
         }
 
         return reward;
@@ -279,9 +267,12 @@ public class PathFollowingAgent : Agent
     public void IncrementCollision()
     {
         colNumber++;
-        Debug.Log("Collision number: " + colNumber);
-        if(isTraining == false)
+
+        if (isTraining == false) 
+        { 
+            Debug.Log("Collision number: " + colNumber);
             Debug.Log("Success rate: " + ratio);
+        }
     }
 
     public void IncrementGoal()
