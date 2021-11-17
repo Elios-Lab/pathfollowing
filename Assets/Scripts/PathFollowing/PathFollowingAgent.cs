@@ -219,7 +219,7 @@ public class PathFollowingAgent : Agent
 
         ////////// Reward values
         float rewardGoal = 40f;
-        float rewardCollision = -75f;
+        float rewardCollision = -100f; //backup 75
         float rewardStucked = -50f;
         float rewardTimeOut = -30f;
 
@@ -239,7 +239,7 @@ public class PathFollowingAgent : Agent
                 //calcolo reward goal             
                 //il goal fornisce all'agente un reward pari a 0.3 + il valore bonus dato dall'allineamento moltiplicato per il coeff c0
                 reward = rewardGoal + c0 * bonus1;
-                Debug.Log("Goal reached! Reward: " + reward + " Steps " + StepCount);
+                //Debug.Log("Goal reached! Reward: " + reward + " Steps " + StepCount);
                 break;
             case RewardType.Dense:
                 //calcolo reward denso, dato dal prodottto tra una costante e l'allineamento della velocità rispetto al target
@@ -249,15 +249,15 @@ public class PathFollowingAgent : Agent
             case RewardType.Collision:
                 //penalità per aver colpito un ostacolo
                 reward = rewardCollision;
-                Debug.Log("Collision detected! Reward: " + reward + " Steps " + StepCount);
+                //Debug.Log("Collision detected! Reward: " + reward + " Steps " + StepCount);
                 break;
             case RewardType.Stuck:
                 reward = rewardStucked;
-                Debug.Log("Stucked Vehicle");
+                //Debug.Log("Stucked Vehicle");
                 break;
             case RewardType.TimeOut:
                 reward = rewardTimeOut;
-                Debug.Log("TimeOut");
+                //Debug.Log("TimeOut");
                 break;
         }
 
