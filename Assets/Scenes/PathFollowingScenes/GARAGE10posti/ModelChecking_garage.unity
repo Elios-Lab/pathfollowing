@@ -138,12 +138,12 @@ PrefabInstance:
     - target: {fileID: 4045776425253244602, guid: 355ecc4edb5ac2143a8951d1ca254909,
         type: 3}
       propertyPath: DecisionPeriod
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4045776425253244603, guid: 355ecc4edb5ac2143a8951d1ca254909,
         type: 3}
       propertyPath: varianceThreshold
-      value: -2000
+      value: 0.00001
       objectReference: {fileID: 0}
     - target: {fileID: 4679842561468724930, guid: 355ecc4edb5ac2143a8951d1ca254909,
         type: 3}
@@ -159,7 +159,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: bac7f0f23514e4b499130cb2b0d4311f,
+      objectReference: {fileID: 5022602860645237092, guid: 86c286c2c1d357d4ca221fd5ac138ae1,
         type: 3}
     - target: {fileID: 4869208222153197291, guid: 355ecc4edb5ac2143a8951d1ca254909,
         type: 3}
