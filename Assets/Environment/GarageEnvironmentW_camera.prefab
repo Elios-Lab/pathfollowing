@@ -1192,7 +1192,7 @@ PrefabInstance:
     - target: {fileID: 5664579777547469333, guid: d5d06645ff209b141af7de1e5cfb7d21,
         type: 3}
       propertyPath: DecisionPeriod
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5664579777547469333, guid: d5d06645ff209b141af7de1e5cfb7d21,
         type: 3}

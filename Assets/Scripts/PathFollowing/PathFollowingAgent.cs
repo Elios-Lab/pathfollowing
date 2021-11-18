@@ -21,7 +21,6 @@ public class PathFollowingAgent : Agent
         Goal,
         Collision,
         Dense,
-        Stuck,
         TimeOut
     }
 
@@ -49,16 +48,16 @@ public class PathFollowingAgent : Agent
     private GameObject _targetGoal;
 
     //Vector3 circular array for saving positions 
-    private float[] arrayOfPosition = new float[20];
+    //private float[] arrayOfPosition = new float[20];
 
     //Index to manage array datas
-    private int bufferIndex = 0;
+    //private int bufferIndex = 0;
 
     //arrayOfPosition variance
-    private float arrayVariance;
+    //private float arrayVariance;
 
     //Variance threshold;
-    public float varianceThreshold;
+    //public float varianceThreshold;
 
     public override void Initialize()
     {
@@ -83,7 +82,7 @@ public class PathFollowingAgent : Agent
             _simulationManager.configurationManager.iteration++;
         }
 
-        Array.Clear(arrayOfPosition, 0, 20);
+        //Array.Clear(arrayOfPosition, 0, 20);
         _simulationManager.InitializeSimulation();
         _targetGoal = null;
     }
@@ -142,10 +141,10 @@ public class PathFollowingAgent : Agent
         if (_simulationManager.InitComplete)
         {
             //Check the index value, set it to 0 if has reached the array's max size
-            if(bufferIndex > 19)
-            {
-                bufferIndex = 0;
-            }
+            //if(bufferIndex > 19)
+            //{
+            //    bufferIndex = 0;
+            //}
 
             if (_targetGoal == null)
                 _targetGoal = _simulationManager.configurationManager.goal;
@@ -156,13 +155,13 @@ public class PathFollowingAgent : Agent
             Vector3 agentPos = transform.position - _simulationManager.configurationManager.environment.transform.position;
             //Vector3 targetPos = _targetGoal.transform.position - _simulationManager.configurationManager.environment.transform.position;
 
-            arrayOfPosition[bufferIndex] = agentPos.magnitude;
-
+            //arrayOfPosition[bufferIndex] = agentPos.magnitude;
+            /*
             if(arrayOfPosition[19] != 0f)
             {
                 //Compute variance
                 StartCoroutine(ComputeVariance(arrayOfPosition, 20));
-            } 
+            }*/ 
 
             //Observations
             sensor.AddObservation(agentPos.normalized);
@@ -181,7 +180,7 @@ public class PathFollowingAgent : Agent
             AddReward(ComputeReward(RewardType.Dense, velocityAlignment, magDistance));
 
             //Increase buffer index 
-            bufferIndex++;
+            //bufferIndex++;
         }
         else
         {
@@ -219,9 +218,9 @@ public class PathFollowingAgent : Agent
 
         ////////// Reward values
         float rewardGoal = 40f;
-        float rewardCollision = -100f; //backup 75
-        float rewardStucked = -50f;
-        float rewardTimeOut = -30f;
+        float rewardCollision = -75f; //backup 75
+        //float rewardStucked = -50f;
+        float rewardTimeOut = -75f;
 
         //coefficient for the ending alignment between the agent and the goal
         float c0 = 75f;
@@ -251,10 +250,11 @@ public class PathFollowingAgent : Agent
                 reward = rewardCollision;
                 //Debug.Log("Collision detected! Reward: " + reward + " Steps " + StepCount);
                 break;
+            /*
             case RewardType.Stuck:
                 reward = rewardStucked;
                 //Debug.Log("Stucked Vehicle");
-                break;
+                break;*/
             case RewardType.TimeOut:
                 reward = rewardTimeOut;
                 //Debug.Log("TimeOut");
@@ -297,8 +297,9 @@ public class PathFollowingAgent : Agent
         }
     }
 
-    // Function for calculating
+    
     // variance
+    /*
     public IEnumerator ComputeVariance(float[] a, int n)
     {
         // Compute mean (average of elements)
@@ -328,6 +329,6 @@ public class PathFollowingAgent : Agent
 
             EndEpisode();
         }
-    }
+    }*/
 
 }

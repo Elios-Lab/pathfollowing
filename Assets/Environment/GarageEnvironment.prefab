@@ -633,6 +633,16 @@ PrefabInstance:
       propertyPath: m_BehaviorType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5734958511445089288, guid: 66eb19cae1a6da94bb7c78a04b290f70,
+        type: 3}
+      propertyPath: varianceThreshold
+      value: 0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734958511445089289, guid: 66eb19cae1a6da94bb7c78a04b290f70,
+        type: 3}
+      propertyPath: DecisionPeriod
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5734958511445089298, guid: 66eb19cae1a6da94bb7c78a04b290f70,
         type: 3}
       propertyPath: configurationManager
