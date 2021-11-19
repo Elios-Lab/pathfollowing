@@ -40,4 +40,4 @@ torch_settings:
     device: cuda
     
 env_settings:
-    num_envs: 6
+    num_envs: 3
