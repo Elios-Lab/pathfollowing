@@ -381,5 +381,15 @@ PrefabInstance:
       propertyPath: m_BehaviorType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6001361674077633526, guid: 3ee6c3a7e50e28049b0218c30e5020ea,
+        type: 3}
+      propertyPath: m_GridSize.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001361674077633526, guid: 3ee6c3a7e50e28049b0218c30e5020ea,
+        type: 3}
+      propertyPath: m_GridSize.z
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ee6c3a7e50e28049b0218c30e5020ea, type: 3}

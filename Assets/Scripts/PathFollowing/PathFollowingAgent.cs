@@ -230,9 +230,9 @@ public class PathFollowingAgent : Agent
 
         ////////// Reward values
         float rewardGoal = 40f;
-        float rewardCollision = -75f; //backup 75
+        float rewardCollision = -80f; //backup 75
         //float rewardStucked = -50f;
-        float rewardTimeOut = -75f;
+        float rewardTimeOut = -70f; //75backup
 
         //coefficient for the ending alignment between the agent and the goal
         float c0 = 75f;
