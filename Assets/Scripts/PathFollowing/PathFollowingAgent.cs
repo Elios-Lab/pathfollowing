@@ -16,6 +16,8 @@ using Random = UnityEngine.Random;
 public class PathFollowingAgent : Agent
 {
 
+    StatsRecorder statsRecorder;
+
     public enum RewardType
     {
         Goal,
@@ -58,6 +60,11 @@ public class PathFollowingAgent : Agent
 
     //Variance threshold;
     //public float varianceThreshold;
+
+    public void Awake()
+    {
+        statsRecorder = Academy.Instance.StatsRecorder;
+    }
 
     public override void Initialize()
     {
@@ -123,6 +130,11 @@ public class PathFollowingAgent : Agent
             IncrementTimeout();
             ComputeReward(RewardType.TimeOut);
         }
+
+        statsRecorder.Add("Environment/Success rate", ratio);
+        statsRecorder.Add("Environment/Collision", colNumber);
+        statsRecorder.Add("Environment/Goal", goalNumber);
+        statsRecorder.Add("Environment/Timeout", timeoutNum);
     }
 
     public override void CollectObservations(VectorSensor sensor)
