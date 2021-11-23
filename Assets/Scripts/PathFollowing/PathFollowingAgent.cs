@@ -131,10 +131,12 @@ public class PathFollowingAgent : Agent
             ComputeReward(RewardType.TimeOut);
         }
 
-        statsRecorder.Add("Environment/Success rate", ratio);
-        statsRecorder.Add("Environment/Collision", colNumber);
-        statsRecorder.Add("Environment/Goal", goalNumber);
-        statsRecorder.Add("Environment/Timeout", timeoutNum);
+        if (((goalNumber + timeoutNum + colNumber) % 100) == 0)
+        {
+            statsRecorder.Add("Goal Ratio %", 100 * (float)goalNumber / (goalNumber + timeoutNum + colNumber));
+            statsRecorder.Add("Collision Ratio %", 100 * (float)colNumber / (goalNumber + timeoutNum + colNumber));
+            statsRecorder.Add("Timeout Ratio %", 100 * (float)timeoutNum / (goalNumber + timeoutNum + colNumber));
+        }
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -229,17 +231,19 @@ public class PathFollowingAgent : Agent
         float reward = 0;
 
         ////////// Reward values
-        float rewardGoal = 40f;
-        float rewardCollision = -80f; //backup 75
+        float rewardGoal = 50f; //was 40
+        float rewardCollision = -100f; //backup 75
         //float rewardStucked = -50f;
-        float rewardTimeOut = -70f; //75backup
+        float rewardTimeOut = -0f; //was -75
 
         //coefficient for the ending alignment between the agent and the goal
         float c0 = 75f;
         //Angle
         float c1 = 1f;
         //Coeff. distance
-        float c2 = -0.01f; 
+        float c2 = -0.01f;
+        //Coeff to scale relu-like function
+        float c3 = 0.01f;
 
 
         //float c3 = 0.001f;
@@ -254,7 +258,7 @@ public class PathFollowingAgent : Agent
                 break;
             case RewardType.Dense:
                 //calcolo reward denso, dato dal prodottto tra una costante e l'allineamento della velocità rispetto al target
-                reward = c1 * (bonus1 - 1) / (bonus2 + 1) + c2 * (bonus2 * bonus2); //-1 aggiunto al bonus per avere reward sempre negativo tranne quando sta facendo bene |||| aggiungere distanza 
+                reward = c1 * (bonus1 - 1) / (bonus2 + 1) + c2 * (bonus2 * bonus2) * Mathf.Max(1, StepCount - 700) * c3; //-1 aggiunto al bonus per avere reward sempre negativo tranne quando sta facendo bene |||| aggiungere distanza 
                 this.printReward = reward;
                 break;
             case RewardType.Collision:
