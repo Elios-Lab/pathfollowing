@@ -1428,6 +1428,11 @@ PrefabInstance:
       objectReference: {fileID: 8625473388780187132}
     - target: {fileID: 4086070234327659936, guid: 869a2f5fae2f5294bbefe277e8112175,
         type: 3}
+      propertyPath: maxIteration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086070234327659936, guid: 869a2f5fae2f5294bbefe277e8112175,
+        type: 3}
       propertyPath: garage.Array.size
       value: 10
       objectReference: {fileID: 0}

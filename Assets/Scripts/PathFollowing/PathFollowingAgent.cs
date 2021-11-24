@@ -178,7 +178,7 @@ public class PathFollowingAgent : Agent
             }*/ 
 
             //Observations
-            sensor.AddObservation(agentPos.normalized);
+            //sensor.AddObservation(agentPos.normalized);
             sensor.AddObservation(this.transform.InverseTransformPoint(_targetGoal.transform.position));
             sensor.AddObservation(
                 this.transform.InverseTransformVector(_rigitBody.velocity.normalized)); //come sono allinato con la velocità
@@ -186,7 +186,7 @@ public class PathFollowingAgent : Agent
                 this.transform.InverseTransformDirection(dirToTarget)); //dove dovrei andare
             //valore di riferimento per obs precedenti.
             sensor.AddObservation(transform.forward);
-            sensor.AddObservation(transform.right);
+            //sensor.AddObservation(transform.right);
             //sensor.AddObservation(StepCount / MaxStep);
             float velocityAlignment = Vector3.Dot(dirToTarget, _rigitBody.velocity.normalized);
             
@@ -234,7 +234,6 @@ public class PathFollowingAgent : Agent
         float rewardGoal = 50f; //was 40
         float rewardCollision = -100f; //backup 75
         //float rewardStucked = -50f;
-        float rewardTimeOut = -0f; //was -75
 
         //coefficient for the ending alignment between the agent and the goal
         float c0 = 75f;
@@ -271,10 +270,6 @@ public class PathFollowingAgent : Agent
                 reward = rewardStucked;
                 //Debug.Log("Stucked Vehicle");
                 break;*/
-            case RewardType.TimeOut:
-                reward = rewardTimeOut;
-                //Debug.Log("TimeOut");
-                break;
         }
 
         return reward;
