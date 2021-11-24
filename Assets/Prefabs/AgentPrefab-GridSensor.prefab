@@ -464,7 +464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 726036048377028516}
-  configurationManager: {fileID: 0}
+  configurationManager: {fileID: 4086070234327659936, guid: 869a2f5fae2f5294bbefe277e8112175,
+    type: 3}
 --- !u!114 &726036048377028516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 1
+  DecisionPeriod: 10
   TakeActionsBetweenDecisions: 1
 --- !u!114 &4755654761329678702
 MonoBehaviour:

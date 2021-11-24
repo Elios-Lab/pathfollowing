@@ -302,6 +302,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Initializer
       objectReference: {fileID: 0}
+    - target: {fileID: 3785796257107714329, guid: f5399e1cafefc7c4cbc25e8c29eed3f6,
+        type: 3}
+      propertyPath: instancePrefab
+      value: 
+      objectReference: {fileID: 8625473388780187132, guid: 355ecc4edb5ac2143a8951d1ca254909,
+        type: 3}
     - target: {fileID: 3785796257107714330, guid: f5399e1cafefc7c4cbc25e8c29eed3f6,
         type: 3}
       propertyPath: m_RootOrder
