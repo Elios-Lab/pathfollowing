@@ -1,0 +1,8 @@
+sensor.AddObservation(
+     this.transform.InverseTransformVector(_rigitBody.velocity.normalized)); //come sono allinato con la vel
+sensor.AddObservation(
+     this.transform.InverseTransformDirection(dirToTarget)); 
+sensor.AddObservation(transform.forward);
+sensor.AddObservation(distance);
+
+penalty collision -100

@@ -144,12 +144,12 @@ PrefabInstance:
     - target: {fileID: 3785796257107714329, guid: f5399e1cafefc7c4cbc25e8c29eed3f6,
         type: 3}
       propertyPath: instancesPerRow
-      value: 16
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3785796257107714329, guid: f5399e1cafefc7c4cbc25e8c29eed3f6,
         type: 3}
       propertyPath: numberInstances
-      value: 64
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3785796257107714330, guid: f5399e1cafefc7c4cbc25e8c29eed3f6,
         type: 3}
