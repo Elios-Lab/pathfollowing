@@ -133,9 +133,9 @@ public class PathFollowingAgent : Agent
 
         if (((goalNumber + timeoutNum + colNumber) % 100) == 0)
         {
-            statsRecorder.Add("Goal Ratio %", 100 * (float)goalNumber / (goalNumber + timeoutNum + colNumber));
-            statsRecorder.Add("Collision Ratio %", 100 * (float)colNumber / (goalNumber + timeoutNum + colNumber));
-            statsRecorder.Add("Timeout Ratio %", 100 * (float)timeoutNum / (goalNumber + timeoutNum + colNumber));
+            statsRecorder.Add("environment/Goal Ratio %", 100 * (float)goalNumber / (goalNumber + timeoutNum + colNumber));
+            statsRecorder.Add("environment/Collision Ratio %", 100 * (float)colNumber / (goalNumber + timeoutNum + colNumber));
+            statsRecorder.Add("environmen/Timeout Ratio %", 100 * (float)timeoutNum / (goalNumber + timeoutNum + colNumber));
         }
     }
 
@@ -178,16 +178,15 @@ public class PathFollowingAgent : Agent
             }*/ 
 
             //Observations
-            //sensor.AddObservation(agentPos.normalized);
-            //sensor.AddObservation(this.transform.InverseTransformPoint(_targetGoal.transform.position));
+            sensor.AddObservation(agentPos.normalized);
+            sensor.AddObservation(this.transform.InverseTransformPoint(_targetGoal.transform.position));
             sensor.AddObservation(
                 this.transform.InverseTransformVector(_rigitBody.velocity.normalized)); //come sono allinato con la velocità
             sensor.AddObservation(
                 this.transform.InverseTransformDirection(dirToTarget)); //dove dovrei andare
             //valore di riferimento per obs precedenti.
             sensor.AddObservation(transform.forward);
-            sensor.AddObservation(distance);
-            //sensor.AddObservation(transform.right);
+            sensor.AddObservation(transform.right);
             //sensor.AddObservation(StepCount / MaxStep);
             float velocityAlignment = Vector3.Dot(dirToTarget, _rigitBody.velocity.normalized);
             
@@ -233,7 +232,7 @@ public class PathFollowingAgent : Agent
 
         ////////// Reward values
         float rewardGoal = 50f; //was 40
-        float rewardCollision = -150f; //backup 75
+        float rewardCollision = -100f; //backup 75
         //float rewardStucked = -50f;
 
         //coefficient for the ending alignment between the agent and the goal

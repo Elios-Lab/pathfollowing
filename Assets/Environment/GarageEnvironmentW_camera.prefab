@@ -1104,6 +1104,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8625473388780187135}
     m_Modifications:
+    - target: {fileID: 990334047529990117, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: FieldOfView
+      value: 84.54738
+      objectReference: {fileID: 0}
+    - target: {fileID: 990334047529990117, guid: d5d06645ff209b141af7de1e5cfb7d21,
+        type: 3}
+      propertyPath: imageDimension
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3831220121990384196, guid: d5d06645ff209b141af7de1e5cfb7d21,
         type: 3}
       propertyPath: m_Model
@@ -1217,7 +1227,7 @@ PrefabInstance:
     - target: {fileID: 6748207190738454492, guid: d5d06645ff209b141af7de1e5cfb7d21,
         type: 3}
       propertyPath: field of view
-      value: 72.05475
+      value: 84.54738
       objectReference: {fileID: 0}
     - target: {fileID: 6748207190738454492, guid: d5d06645ff209b141af7de1e5cfb7d21,
         type: 3}
