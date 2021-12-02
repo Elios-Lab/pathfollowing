@@ -32,7 +32,7 @@ behaviors:
             hidden_units: 512
             num_layers: 4
             vis_encode_type: simple
-        max_steps: 50.0e6
+        max_steps: 120.0e6
         time_horizon: 128
         summary_freq: 10000
         
