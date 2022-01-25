@@ -2,7 +2,7 @@
 
 ## Prerequisites:
 
-* Unity: >= 2020.3.12f
+* Unity: >= 2020.3.22f1
 * Python3: >= 3.8.10
 * MLagents: 0.25.1 
 * MLagents package version on Unity: 2.0.0
