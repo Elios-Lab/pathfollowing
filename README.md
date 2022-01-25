@@ -1,4 +1,4 @@
-# Pathfollowing
+# Pathfollowing with Deep Reinforcement Learning
 
 ## Prerequisites:
 
