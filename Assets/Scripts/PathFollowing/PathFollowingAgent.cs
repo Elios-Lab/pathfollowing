@@ -172,7 +172,6 @@ public class PathFollowingAgent : Agent {
             collisions_count++;
             hasCollided = true;
         }
-        EndEpisode();
     }
 
     // Timeout

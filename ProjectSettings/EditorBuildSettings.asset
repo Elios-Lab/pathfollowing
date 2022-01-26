@@ -5,16 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/PathFollowingScenes/GARAGE10posti/GarageEnv.unity
-    guid: c2a18705995304945aa53ff489140a17
-  - enabled: 0
-    path: Assets/Scenes/PathFollowingScenes/GARAGE10posti/CameraEnv.unity
-    guid: dfdddef2fac6a984bbc916f72ae0e855
-  - enabled: 0
-    path: Assets/Scenes/PathFollowingScenes/GARAGE10posti/GridSensorEnv.unity
-    guid: f19decec2467d8447969ea70c944b861
+    path: Assets/Scenes/PathFollowingScenes/TrainingScene.unity
+    guid: 7201f2dece94b439081fa084b99ce39f
   m_configObjects: {}
