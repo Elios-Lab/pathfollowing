@@ -164,7 +164,7 @@ public class PathFollowingAgent : Agent {
 
     // Collision reward
     public void CollisionReward() {
-        float reward = -0.001f;
+        float reward = -0.01f;
         //Debug.Log(reward);
         if (isTraining == true) AddReward(reward);
         collisions_reward += reward;

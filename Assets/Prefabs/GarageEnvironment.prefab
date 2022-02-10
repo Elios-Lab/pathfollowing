@@ -499,8 +499,8 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 0c7a7478a5918463c921b9e405e5a30a, type: 3}
-  m_InferenceDevice: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: PathFollowing
   TeamId: 0
@@ -4337,7 +4337,7 @@ MonoBehaviour:
   goal: {fileID: 5396864914810100907}
   carLength: 4.9
   carWidth: 2.1
-  isTraining: 0
+  isTraining: 1
   iteration: 0
   maxIteration: 10
   garage:
