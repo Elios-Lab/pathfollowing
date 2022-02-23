@@ -13,7 +13,8 @@ public class DrawCheckpoint : MonoBehaviour
 
             for(int i = 0; i < checkpoints.Length-1; i++) {
                 //Vector3 frontAxlePosition = 
-                DrawLine(checkpoints[i].transform.position, checkpoints[i+1].transform.position, 2f);
+                DrawLine(checkpoints[i].transform.position, 
+                        checkpoints[i+1].transform.position, 2f);
                 //Debug.DrawLine(checkpoints[i].transform.position, checkpoints[i+1].transform.position, Color.green, 0.05f, false);
             }
         }

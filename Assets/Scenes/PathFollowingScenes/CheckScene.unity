@@ -445,6 +445,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5366537591434217398, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5396864914810100901, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: m_RootOrder
@@ -555,11 +560,36 @@ PrefabInstance:
       propertyPath: makeCheckpoint
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6965435507392608451, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965435507423419152, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965435507601929617, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965435508324548065, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6965435508403664631, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: drawCheckpoint
       value: 
       objectReference: {fileID: 470013045}
+    - target: {fileID: 6965435508707756362, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7664982078758904234, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: m_Model

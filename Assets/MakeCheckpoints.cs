@@ -10,7 +10,7 @@ public class MakeCheckpoints : MonoBehaviour
     {
         objToSpawn = new GameObject("Checkpoint");
         objToSpawn.tag = "Checkpoint";
-        objToSpawn.transform.position = this.transform.position;
+        objToSpawn.transform.position = this.transform.GetChild(2).position;
     }
 
     public void ResetObjectToSpawn () 
