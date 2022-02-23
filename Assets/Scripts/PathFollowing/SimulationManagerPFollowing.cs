@@ -11,6 +11,9 @@ public class SimulationManagerPFollowing : MonoBehaviour
     //[SerializeField] public List<Target> target;
     [SerializeField] public PathFollowingAgent agent;
     [SerializeField] public ConfigurationManager configurationManager;
+    [SerializeField] public DrawCheckpoint drawCheckpoint;
+    [SerializeField] public MakeCheckpoints makeCheckpoint; 
+
 
     private bool _initComplete = false;
 
@@ -38,6 +41,9 @@ public class SimulationManagerPFollowing : MonoBehaviour
     public void InitializeSimulation()
     {
         _initComplete = false;
+        
+        drawCheckpoint.ResetCheckpoints();
+        makeCheckpoint.ResetObjectToSpawn();
         configurationManager.RandomAgentPositioning();
         configurationManager.RepositionTargetRandom();
 
@@ -47,11 +53,6 @@ public class SimulationManagerPFollowing : MonoBehaviour
     public void ResetSimulation()
     {
         
-    }
-
-    public void Update()
-    {
-
     }
 
 }

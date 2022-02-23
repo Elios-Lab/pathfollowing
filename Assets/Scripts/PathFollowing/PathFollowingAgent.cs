@@ -13,6 +13,8 @@ using Random = UnityEngine.Random;
 
 public class PathFollowingAgent : Agent {
 
+
+
     private Rigidbody _rigidBody;
     private CarController _controller;
     private SimulationManagerPFollowing _simulationManager;
@@ -54,10 +56,11 @@ public class PathFollowingAgent : Agent {
 
     public override void OnEpisodeBegin() {
         if(_simulationManager.configurationManager.isOver == true && isTraining == false) Time.timeScale = 0;
-        if(isTraining == false && _simulationManager.configurationManager.isOver == false) _simulationManager.configurationManager.iteration++;
+        if(isTraining == false && _simulationManager.configurationManager.isOver == false) 
+        _simulationManager.configurationManager.iteration++;
         _simulationManager.InitializeSimulation();
-       _target = _simulationManager.configurationManager.goal;
-       hasCollided = false;
+        _target = _simulationManager.configurationManager.goal;
+        hasCollided = false;
         UpdateRatio();
     }
 

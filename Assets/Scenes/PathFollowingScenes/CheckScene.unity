@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 470013044}
   - component: {fileID: 470013043}
   - component: {fileID: 470013042}
+  - component: {fileID: 470013045}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -206,12 +207,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &470013045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470013041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb623d2837e047a69efd21fa4caef90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpoints: []
+--- !u!1 &1056941923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1056941924}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Checkpoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1056941924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056941923}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1305700609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1757230996283102014, guid: df21b3ac4f50c482ba828f1113bbf3d9,
     type: 3}
   m_PrefabInstance: {fileID: 1757230995045959085}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1394288688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6965435508403664625, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1757230995045959085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed215bf3f62e45a28a53f23fab457e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1928759128
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +370,79 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1757230994602080592, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 0c7a7478a5918463c921b9e405e5a30a,
+        type: 3}
+    - target: {fileID: 1757230994602080592, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
       propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757230994602080593, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: drawCheckpoint
+      value: 
+      objectReference: {fileID: 470013045}
+    - target: {fileID: 1757230994602080593, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: makeCheckpoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953904307695664829, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 0c7a7478a5918463c921b9e405e5a30a,
+        type: 3}
+    - target: {fileID: 1953904307695664829, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_InferenceDevice
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315116910666428788, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460740510928818192, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462570763481510268, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463208070706539480, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463383668318376630, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556054057980347076, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556669270436260782, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2557228585327926518, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2557266026272267012, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5396864914810100901, guid: df21b3ac4f50c482ba828f1113bbf3d9,
@@ -372,6 +500,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5396864914810100903, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396864914810100904, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 1394288688}
     - target: {fileID: 5396864914810100904, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: carWidth
@@ -389,6 +527,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5396864914810100904, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
+      propertyPath: drawCheckpoint
+      value: 
+      objectReference: {fileID: 470013045}
+    - target: {fileID: 5396864914810100904, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
       propertyPath: garage.Array.data[9]
       value: 
       objectReference: {fileID: 1305700609}
@@ -396,6 +539,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GarageEnvironment
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396864914810100906, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: drawCheckpoint
+      value: 
+      objectReference: {fileID: 470013045}
+    - target: {fileID: 6130265114499146109, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: drawCheckpoint
+      value: 
+      objectReference: {fileID: 470013045}
+    - target: {fileID: 6130265114499146109, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: makeCheckpoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965435508403664631, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: drawCheckpoint
+      value: 
+      objectReference: {fileID: 470013045}
+    - target: {fileID: 7664982078758904234, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 0c7a7478a5918463c921b9e405e5a30a,
+        type: 3}
+    - target: {fileID: 7664982078758904234, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664982078758904234, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_InferenceDevice
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df21b3ac4f50c482ba828f1113bbf3d9, type: 3}
