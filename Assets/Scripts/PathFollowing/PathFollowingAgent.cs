@@ -6,14 +6,14 @@ using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System.IO;
+
 
 [RequireComponent(typeof(CarController))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SimulationManagerPFollowing))]
 
 public class PathFollowingAgent : Agent {
-
-
 
     private Rigidbody _rigidBody;
     private CarController _controller;
@@ -41,6 +41,14 @@ public class PathFollowingAgent : Agent {
     private float allignment_reward = 0;
     private float collisions_reward = 0;
     private float goals_reward = 0;
+
+    //computing acceleration purpose
+    public Vector3 lastVelocity;
+
+    public List<Vector3> path = new List<Vector3>();
+    public List<float> agentAccel = new List<float>();
+
+    public Dictionary<string, dynamic> dic = new Dictionary<string, dynamic>();
 
     public override void Initialize() {
         _rigidBody = GetComponent<Rigidbody>();
@@ -78,8 +86,27 @@ public class PathFollowingAgent : Agent {
         continuousActionsOut[2] = Input.GetAxis("Jump");
     }
 
-    // Timeout
-    void FixedUpdate() { if(StepCount == MaxStep - 1) TimeOut(); }
+    // Timeout and draw path
+    void FixedUpdate()
+    {
+        if (StepCount == MaxStep - 1)
+            TimeOut();
+        
+        Vector3 acceleration = (this.GetComponent<Rigidbody>().velocity - lastVelocity) / Time.fixedDeltaTime;
+        lastVelocity = this.GetComponent<Rigidbody>().velocity;
+
+        path.Add(this.transform.GetChild(2).position);
+        agentAccel.Add(acceleration.magnitude);
+
+        if (path.Count > 1)
+        {
+            for (int i = 0; i < path.Count - 1; i++)
+            {
+                DrawLine(path[i], path[i + 1], 2f);
+                //Debug.DrawLine(checkpoints[i].transform.position, checkpoints[i+1].transform.position, Color.green, 0.05f, false);
+            }
+        }
+    }
 
     // Collision
     private void OnCollisionEnter(Collision other) {  if (other.gameObject.CompareTag("barrier")) CollisionReward(); }
@@ -141,6 +168,7 @@ public class PathFollowingAgent : Agent {
     private float distance_contribution(float weight, float distance) { return (float)(-weight * distance); }
     private float alignment_contribution(float weight, float alignment, float distance) { return (float)(-weight * (1 - alignment) / (distance * distance + 1)); }
     private float time_contribution(float weight, float time, float distance) { return -weight * sigmoid((time/30)-4) * sigmoid(distance-4); }
+    
     public void DenseReward(float alignment, float time, float distance) {
         //float tc = time_contribution(0.1f, time, distance);
         float tc = 0;
@@ -157,12 +185,16 @@ public class PathFollowingAgent : Agent {
 
     // Goal reward
     public void GoalReward() {
+
         float reward = 1.0f;
         //Debug.Log(reward);
         if (isTraining == true) AddReward(reward);
         goals_reward += reward;
         goals_achieved_count++;
+        //SaveToFile("test");
+        //Time.timeScale = 0;
         EndEpisode();
+        
     }
 
     // Collision reward
@@ -175,11 +207,67 @@ public class PathFollowingAgent : Agent {
             collisions_count++;
             hasCollided = true;
         }
+
+        //SaveToFile("test");
     }
 
     // Timeout
-     public void TimeOut() {
+    public void TimeOut() 
+    {
         timeouts_count++;
+        //SaveToFile("test");
         EndEpisode();
     }
+
+    public void ResetPathList()
+    {
+        path.Clear();
+        agentAccel.Clear();
+    }
+
+    void SaveToFile(string fileName)
+    {
+        System.IO.File.WriteAllText(fileName, ""); // clear old file, if any
+        string firstLine = System.String.Format("x,y,z\r\n");
+        System.IO.File.AppendAllText(fileName, firstLine);
+        foreach (Vector3 pos in path)
+        {
+            // format XYZ separated by ; and with 2 decimal places:
+            string line = System.String.Format("{0,3:f2},{1,3:f2},{2,3:f2}\r\n", pos.x, pos.y, pos.z);
+            System.IO.File.AppendAllText(fileName, line); // append to the file
+        }
+    }
+
+    public static void DrawLine(Vector3 p1, Vector3 p2, float width)
+    {
+        int count = 1 + Mathf.CeilToInt(width); // how many lines are needed.
+        if (count == 1)
+        {
+            Debug.DrawLine(p1, p2, Color.green, 0.05f, false);
+        }
+        else
+        {
+            Camera c = Camera.main;
+            if (c == null)
+            {
+                Debug.LogError("Camera.main is null");
+                return;
+            }
+            var scp1 = c.WorldToScreenPoint(p1);
+            var scp2 = c.WorldToScreenPoint(p2);
+
+            Vector3 v1 = (scp2 - scp1).normalized; // line direction
+            Vector3 n = Vector3.Cross(v1, Vector3.forward); // normal vector
+
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 o = 0.99f * n * width * ((float)i / (count - 1) - 0.5f);
+                Vector3 origin = c.ScreenToWorldPoint(scp1 + o);
+                Vector3 destiny = c.ScreenToWorldPoint(scp2 + o);
+                Debug.DrawLine(origin, destiny, Color.green, 0.05f, false);
+            }
+        }
+    }
+
+
 }

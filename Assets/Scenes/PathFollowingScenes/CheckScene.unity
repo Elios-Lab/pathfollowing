@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 470013044}
   - component: {fileID: 470013043}
   - component: {fileID: 470013042}
-  - component: {fileID: 470013045}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -207,19 +206,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &470013045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470013041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eb623d2837e047a69efd21fa4caef90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkpoints: []
 --- !u!1 &1056941923
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +369,7 @@ PrefabInstance:
         type: 3}
       propertyPath: drawCheckpoint
       value: 
-      objectReference: {fileID: 470013045}
+      objectReference: {fileID: 0}
     - target: {fileID: 1757230994602080593, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: makeCheckpoint
@@ -458,7 +444,7 @@ PrefabInstance:
     - target: {fileID: 5396864914810100901, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 5396864914810100901, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
@@ -468,7 +454,7 @@ PrefabInstance:
     - target: {fileID: 5396864914810100901, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5396864914810100901, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
@@ -534,7 +520,7 @@ PrefabInstance:
         type: 3}
       propertyPath: drawCheckpoint
       value: 
-      objectReference: {fileID: 470013045}
+      objectReference: {fileID: 0}
     - target: {fileID: 5396864914810100904, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: garage.Array.data[9]
@@ -549,12 +535,12 @@ PrefabInstance:
         type: 3}
       propertyPath: drawCheckpoint
       value: 
-      objectReference: {fileID: 470013045}
+      objectReference: {fileID: 0}
     - target: {fileID: 6130265114499146109, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: drawCheckpoint
       value: 
-      objectReference: {fileID: 470013045}
+      objectReference: {fileID: 0}
     - target: {fileID: 6130265114499146109, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: makeCheckpoint
@@ -573,18 +559,28 @@ PrefabInstance:
     - target: {fileID: 6965435507601929617, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6965435508324548065, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6965435508403664627, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965435508403664627, guid: df21b3ac4f50c482ba828f1113bbf3d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.11
+      objectReference: {fileID: 0}
     - target: {fileID: 6965435508403664631, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: drawCheckpoint
       value: 
-      objectReference: {fileID: 470013045}
+      objectReference: {fileID: 0}
     - target: {fileID: 6965435508707756362, guid: df21b3ac4f50c482ba828f1113bbf3d9,
         type: 3}
       propertyPath: m_RootOrder

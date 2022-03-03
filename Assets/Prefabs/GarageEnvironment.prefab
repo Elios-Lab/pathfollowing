@@ -5094,7 +5094,7 @@ PrefabInstance:
     - target: {fileID: 387289526615603369, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -19.44
       objectReference: {fileID: 0}
     - target: {fileID: 387289526615603369, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
@@ -5104,7 +5104,7 @@ PrefabInstance:
     - target: {fileID: 387289526615603369, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.62
       objectReference: {fileID: 0}
     - target: {fileID: 387289526615603369, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
@@ -5150,26 +5150,15 @@ PrefabInstance:
         type: 3}
       propertyPath: makeCheckpoint
       value: 
-      objectReference: {fileID: 4135174888824341819}
+      objectReference: {fileID: 0}
     - target: {fileID: 387289526615603373, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
       propertyPath: configurationManager
       value: 
       objectReference: {fileID: 5396864914810100904}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6671740710838963041, guid: e43555bd90b0a42db8d71fdd385969b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e43555bd90b0a42db8d71fdd385969b9, type: 3}
---- !u!114 &4135174888824341819 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6671740710838963041, guid: e43555bd90b0a42db8d71fdd385969b9,
-    type: 3}
-  m_PrefabInstance: {fileID: 7347024060786413146}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 965c7a793b85240fb8826da60948fb54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6965435508403664627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 387289526615603369, guid: e43555bd90b0a42db8d71fdd385969b9,

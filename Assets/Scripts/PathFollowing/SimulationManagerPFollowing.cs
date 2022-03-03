@@ -41,9 +41,8 @@ public class SimulationManagerPFollowing : MonoBehaviour
     public void InitializeSimulation()
     {
         _initComplete = false;
-        
-        drawCheckpoint.ResetCheckpoints();
-        makeCheckpoint.ResetObjectToSpawn();
+
+        agent.ResetPathList();
         configurationManager.RandomAgentPositioning();
         configurationManager.RepositionTargetRandom();
 

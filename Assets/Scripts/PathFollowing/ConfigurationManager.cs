@@ -78,19 +78,19 @@ public class ConfigurationManager : MonoBehaviour
             agent.GetComponent<CarController>().CurrentBrakeTorque = 0f;
 
             //Setting random rotation
-            agent.transform.rotation = Quaternion.Euler(0, rotation, 0);
+            agent.transform.rotation = Quaternion.Euler(0, 0, 0);
 
             //Setting random position
-            agent.transform.position = transform.parent.position + new Vector3(x_base, 0.5f, z_base);
+            agent.transform.position = transform.parent.position + new Vector3(0f, 0.5f, 0.1f);
 
         }
     }
 
     public void RepositionTargetRandom()
     {
-        int i = Random.Range(0, garage.Length);
+        //int i = Random.Range(0, garage.Length);
 
-        //int i = 2;
+        int i = 5;
 
         //Set the goal rotation -90 garage above 90 garage below
         if (i >= 0 && i <= 4)  
