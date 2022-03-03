@@ -11,8 +11,6 @@ public class SimulationManagerPFollowing : MonoBehaviour
     //[SerializeField] public List<Target> target;
     [SerializeField] public PathFollowingAgent agent;
     [SerializeField] public ConfigurationManager configurationManager;
-    [SerializeField] public DrawCheckpoint drawCheckpoint;
-    [SerializeField] public MakeCheckpoints makeCheckpoint; 
 
 
     private bool _initComplete = false;

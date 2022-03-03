@@ -11,8 +11,6 @@ public class Simulation : MonoBehaviour
     //[SerializeField] public List<Target> target;
     [SerializeField] public GeneralizationAgent agent;
     [SerializeField] public ConfigManager configManager;
-    [SerializeField] public DrawCheckpoint drawCheckpoint;
-    [SerializeField] public MakeCheckpoints makeCheckpoint; 
 
 
     private bool _initComplete = false;
@@ -42,8 +40,6 @@ public class Simulation : MonoBehaviour
     {
         _initComplete = false;
         
-        drawCheckpoint.ResetCheckpoints();
-        makeCheckpoint.ResetObjectToSpawn();
         configManager.RandomObstaclesPositioning();
         configManager.RandomAgentPositioning();
         configManager.RepositionTargetRandom();
