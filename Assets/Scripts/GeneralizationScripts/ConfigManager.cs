@@ -39,36 +39,26 @@ public class ConfigManager : MonoBehaviour
         GUI.Label(new Rect(10,10,100,100),"Ratio= " + ratio.ToString("F"));
     }*/
 
-
+    int count = 0;
     public void RandomAgentPositioning()
     {
         if (agent != null && isOver == false)
         {
-            //Call the function for the generation of the random spot position
-            float maxX = 0, maxZ = 0, minX = 0, minZ = 0;
-
+            float maxX = 0, maxZ = 0;
             float rotation = Random.Range(0,360);
-
             float x_base;
             float z_base;
-
-            maxX = 9.75f- (carWidth / 2) * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * rotation)) - (carLength / 2) * Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * rotation));
-            maxZ = 3.75f - (carWidth / 2) * Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * rotation)) - (carLength / 2) * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * rotation));
-            minX = -maxX;
-            minZ = -maxZ;
+            Transform max;
+            
+            max = GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>();
+            maxX = max.localScale.x / 2 - carLength;            
+            maxZ = maxX;   
 
             //X coordinate for possible available position randomized after the rotation of the vehicle
-            x_base = Random.Range(0f, Mathf.Floor(maxX));
+            x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
 
             //Z coordinate for possible available position randomized after the rotation of the vehicle
-            z_base = Random.Range(0f, Mathf.Floor(maxZ));
-
-            //Creating a random boolean... 
-            if (Random.Range(0, 2) == 1)
-                x_base = -x_base;
-
-            if (Random.Range(0, 2) == 1)
-                z_base = -z_base;
+            z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
 
             //Setting properties
             agent.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -78,12 +68,17 @@ public class ConfigManager : MonoBehaviour
             agent.GetComponent<CarController>().CurrentBrakeTorque = 0f;
 
             //Setting random rotation
-            agent.transform.rotation = Quaternion.Euler(0, rotation, 0);
+            agent.transform.rotation = Quaternion.Euler(0, rotation, 0);            
 
             //Setting random position
-            agent.transform.position = transform.parent.position + new Vector3(x_base, 0.5f, z_base);
+            agent.transform.position = new Vector3(x_base, 1, z_base);            
 
+            Debug.Log("RandomAgentPositioning DENTRO");
+
+            count++;
+            Debug.Log("count: " + count + " x_base: " + x_base + " z_base: " + z_base + " agent_x: " + agent.transform.position.x + " agent_z: " + agent.transform.position.z);
         }
+        Debug.Log("RandomAgentPositioning FUORI");
     }
 
     public void RepositionTargetRandom()

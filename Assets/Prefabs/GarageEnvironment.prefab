@@ -3652,7 +3652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e8b729496866645b0fcf841f202c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 6965435508403664625}
   environment: {fileID: 5396864914810100905}
   goal: {fileID: 5396864914810100907}
   carLength: 4.9
@@ -5094,7 +5094,7 @@ PrefabInstance:
     - target: {fileID: 387289526615603369, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.44
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: 387289526615603369, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
@@ -5156,6 +5156,17 @@ PrefabInstance:
       propertyPath: configurationManager
       value: 
       objectReference: {fileID: 5396864914810100904}
+    - target: {fileID: 9144689784766214375, guid: e43555bd90b0a42db8d71fdd385969b9,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 0c7a7478a5918463c921b9e405e5a30a,
+        type: 3}
+    - target: {fileID: 9144689784766214375, guid: e43555bd90b0a42db8d71fdd385969b9,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6671740710838963041, guid: e43555bd90b0a42db8d71fdd385969b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e43555bd90b0a42db8d71fdd385969b9, type: 3}
@@ -5165,3 +5176,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7347024060786413146}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6965435508403664625 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 387289526615603371, guid: e43555bd90b0a42db8d71fdd385969b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7347024060786413146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed215bf3f62e45a28a53f23fab457e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

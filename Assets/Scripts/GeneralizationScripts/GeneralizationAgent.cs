@@ -50,6 +50,8 @@ public class GeneralizationAgent : Agent {
         recorder = Academy.Instance.StatsRecorder;
 
         if (isTraining == false) stat_period = maxIteration;
+
+        Debug.Log("Initialize");
     }
 
     public override void OnEpisodeBegin() {
@@ -60,6 +62,7 @@ public class GeneralizationAgent : Agent {
         _target = _simulation.configManager.goal;
         hasCollided = false;
         UpdateRatio();
+        Debug.Log("Inizio episodio");
     }
 
     public override void OnActionReceived(ActionBuffers vectorAction) {
@@ -155,12 +158,12 @@ public class GeneralizationAgent : Agent {
 
     // Goal reward
     public void GoalReward() {
-        float reward = 1.0f;
-        //Debug.Log(reward);
+        float reward = 1.0f;        
         if (isTraining == true) AddReward(reward);
         goals_reward += reward;
         goals_achieved_count++;
         EndEpisode();
+        Debug.Log("reward");
     }
 
     // Collision reward

@@ -1,0 +1,29 @@
+{
+    "PathFollowing": {
+        "checkpoints": [
+            {
+                "steps": 0,
+                "file_path": "results\\temp0\\PathFollowing\\PathFollowing-0.onnx",
+                "reward": null,
+                "creation_time": 1650901296.7870934
+            },
+            {
+                "steps": 0,
+                "file_path": "results\\temp0\\PathFollowing\\PathFollowing-0.onnx",
+                "reward": null,
+                "creation_time": 1650901579.1506803
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 0,
+            "file_path": "results\\temp0\\PathFollowing.onnx",
+            "reward": null,
+            "creation_time": 1650901579.1506803
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.25.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

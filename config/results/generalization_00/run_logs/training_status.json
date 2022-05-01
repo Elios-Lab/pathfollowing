@@ -1,0 +1,47 @@
+{
+    "PathFollowing": {
+        "checkpoints": [
+            {
+                "steps": 60608,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-60608.onnx",
+                "reward": -5.12456214427948,
+                "creation_time": 1651424854.7599707
+            },
+            {
+                "steps": 62108,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-62108.onnx",
+                "reward": -5.81835263967514,
+                "creation_time": 1651424974.9855134
+            },
+            {
+                "steps": 83180,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-83180.onnx",
+                "reward": -2.162398839103324,
+                "creation_time": 1651425484.185367
+            },
+            {
+                "steps": 101868,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-101868.onnx",
+                "reward": null,
+                "creation_time": 1651428529.5790188
+            },
+            {
+                "steps": 102124,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-102124.onnx",
+                "reward": null,
+                "creation_time": 1651429515.4047377
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 102124,
+            "file_path": "results\\generalization_00\\PathFollowing.onnx",
+            "reward": null,
+            "creation_time": 1651429515.4047377
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.25.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

@@ -45,6 +45,8 @@ public class Simulation : MonoBehaviour
         configManager.RepositionTargetRandom();
 
         _initComplete = true;
+
+        Debug.Log("InitializeSimulation");
     }
 
     public void ResetSimulation()
