@@ -2,24 +2,6 @@
     "PathFollowing": {
         "checkpoints": [
             {
-                "steps": 60608,
-                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-60608.onnx",
-                "reward": -5.12456214427948,
-                "creation_time": 1651424854.7599707
-            },
-            {
-                "steps": 62108,
-                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-62108.onnx",
-                "reward": -5.81835263967514,
-                "creation_time": 1651424974.9855134
-            },
-            {
-                "steps": 83180,
-                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-83180.onnx",
-                "reward": -2.162398839103324,
-                "creation_time": 1651425484.185367
-            },
-            {
                 "steps": 101868,
                 "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-101868.onnx",
                 "reward": null,
@@ -30,13 +12,31 @@
                 "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-102124.onnx",
                 "reward": null,
                 "creation_time": 1651429515.4047377
+            },
+            {
+                "steps": 103788,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-103788.onnx",
+                "reward": null,
+                "creation_time": 1651932848.8902657
+            },
+            {
+                "steps": 106416,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-106416.onnx",
+                "reward": -1.369277758896351,
+                "creation_time": 1651932927.1596136
+            },
+            {
+                "steps": 109044,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-109044.onnx",
+                "reward": -2.6276917576789858,
+                "creation_time": 1651933015.8838618
             }
         ],
         "final_checkpoint": {
-            "steps": 102124,
+            "steps": 109044,
             "file_path": "results\\generalization_00\\PathFollowing.onnx",
-            "reward": null,
-            "creation_time": 1651429515.4047377
+            "reward": -2.6276917576789858,
+            "creation_time": 1651933015.8838618
         }
     },
     "metadata": {

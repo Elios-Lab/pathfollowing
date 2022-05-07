@@ -70,8 +70,8 @@ public class ConfigManager : MonoBehaviour
             //Setting random rotation
             agent.transform.rotation = Quaternion.Euler(0, rotation, 0);            
 
-            //Setting random position
-            agent.transform.position = new Vector3(x_base, 1, z_base);            
+            //Setting random position              
+            agent.transform.localPosition = new Vector3(x_base, 1, z_base);          
 
             Debug.Log("RandomAgentPositioning DENTRO");
 

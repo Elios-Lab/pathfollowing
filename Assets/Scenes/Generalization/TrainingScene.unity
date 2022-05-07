@@ -306,7 +306,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000000
+  MaxStep: 5000
 --- !u!1 &784643597
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,17 +645,17 @@ PrefabInstance:
     - target: {fileID: 8514580708745447444, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 53.9
       objectReference: {fileID: 0}
     - target: {fileID: 8514580708745447444, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 13.2
       objectReference: {fileID: 0}
     - target: {fileID: 8514580708745447444, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -14.8
       objectReference: {fileID: 0}
     - target: {fileID: 8514580708745447444, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
