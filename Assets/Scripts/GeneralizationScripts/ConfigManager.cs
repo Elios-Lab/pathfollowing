@@ -27,37 +27,34 @@ public class ConfigManager : MonoBehaviour
 
     public int cellWidth;
 
+    Transform max;
+    float maxX = 0, maxZ = 0;    
+
+    void Start() {
+    {
+            max = GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>();
+            maxX = max.localScale.x / 2 - carLength;            
+            maxZ = maxX; 
+    }
+}
     void Update()
     {
    
-    }
-
-    /*
-    //Print ratio on GUI
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(10,10,100,100),"Ratio= " + ratio.ToString("F"));
-    }*/
+    }             
 
     int count = 0;
     public void RandomAgentPositioning()
     {
         if (agent != null && isOver == false)
         {
-            float maxX = 0, maxZ = 0;
             float rotation = Random.Range(0,360);
             float x_base;
             float z_base;
-            Transform max;
-            
-            max = GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>();
-            maxX = max.localScale.x / 2 - carLength;            
-            maxZ = maxX;   
-
-            //X coordinate for possible available position randomized after the rotation of the vehicle
+           
+            //X coordinate for possible available position randomized 
             x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
 
-            //Z coordinate for possible available position randomized after the rotation of the vehicle
+            //Z coordinate for possible available position randomized 
             z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
 
             //Setting properties
@@ -83,19 +80,17 @@ public class ConfigManager : MonoBehaviour
 
     public void RepositionTargetRandom()
     {
-        int i = Random.Range(0, 22);
+        float x_base;
+        float z_base; 
 
-        //int i = 2;
+        //X coordinate for possible available position randomized 
+        x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
 
-        //Set the goal rotation -90 garage above 90 garage below
-        if (i >= 0 && i <= 4)  
-        {
-            goal.transform.rotation = Quaternion.Euler(0, 90, 0);
-        }
-        else
-        {
-            goal.transform.rotation = Quaternion.Euler(0, -90, 0);
-        }   
+        //Z coordinate for possible available position randomized 
+        z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+
+        //Setting random position              
+        goal.transform.localPosition = new Vector3(x_base, 1, z_base);
     }
 
     public void RandomObstaclesPositioning()
