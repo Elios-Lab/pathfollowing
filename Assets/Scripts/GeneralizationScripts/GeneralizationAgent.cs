@@ -83,7 +83,15 @@ public class GeneralizationAgent : Agent {
     void FixedUpdate() { if(StepCount == MaxStep - 1) TimeOut(); }
 
     // Collision
-    private void OnCollisionEnter(Collision other) {  if (other.gameObject.CompareTag("barrier")) CollisionReward(); }
+    private void OnCollisionEnter(Collision other) 
+    {  
+        if (other.gameObject.CompareTag("barrier")) 
+            CollisionReward(); 
+        
+        Debug.Log("Collisione!!!");
+
+        EndEpisode();
+    }
 
     // Observation
     public override void CollectObservations(VectorSensor sensor) {

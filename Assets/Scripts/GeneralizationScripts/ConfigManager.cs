@@ -8,7 +8,8 @@ public class ConfigManager : MonoBehaviour
 
     [SerializeField] public GeneralizationAgent agent;
     [SerializeField] public GameObject environment;
-    [SerializeField] public GameObject goal;
+    [SerializeField] public GameObject goal;    
+    [SerializeField] public GameObject obstacle;
     [SerializeField] public float carLength;
     [SerializeField] public float carWidth;
 
@@ -17,10 +18,7 @@ public class ConfigManager : MonoBehaviour
     
     //Declaring a variable for the number of iteration we wants to check the model
     public int iteration;
-    public int maxIteration; 
-
-    //Garage transform list
-    [SerializeField] public GameObject obstacle;
+    public int maxIteration;    
 
     //Flag that becomes true when the number of iteration has reached maxIteration
     public bool isOver = false;
@@ -30,13 +28,13 @@ public class ConfigManager : MonoBehaviour
     Transform max;
     float maxX = 0, maxZ = 0;    
 
-    void Start() {
+    void Start() 
     {
             max = GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>();
             maxX = max.localScale.x / 2 - carLength;            
             maxZ = maxX; 
     }
-}
+    
     void Update()
     {
    
@@ -93,16 +91,10 @@ public class ConfigManager : MonoBehaviour
         goal.transform.localPosition = new Vector3(x_base, 1, z_base);
     }
 
-    public void RandomObstaclesPositioning()
+    /* public void RandomObstaclesPositioning()
     {
-        for (int i = 0; i <= cellWidth; i++)
-        {
-            for (int j = 0; j <= cellWidth; j++)
-            {
-                Vector3 pos = new Vector3(Random.Range(1,10),0,0);
-                float rot = Random.Range(0,360);
-            }
-        }
-    }
+        obstacle.GetComponent<Rigidbody>().AddForce(10,0,0);
+        Debug.Log("Obstacle velocity: " + obstacle.GetComponent<Rigidbody>().velocity);
+    } */
 
 }
