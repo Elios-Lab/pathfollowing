@@ -9,7 +9,7 @@ public class ObstacleMovement : MonoBehaviour
 
     void Start() 
     {
-        speed = Random.Range(0.1f,4);
+        speed = Random.Range(0.1f,2);
         rotation = Random.Range(0,360);
         transform.rotation = Quaternion.Euler(0, rotation, 0);
     }

@@ -2,41 +2,41 @@
     "PathFollowing": {
         "checkpoints": [
             {
-                "steps": 176968,
-                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-176968.onnx",
-                "reward": -2.925626188516617,
-                "creation_time": 1652285968.5142603
+                "steps": 186244,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-186244.onnx",
+                "reward": -2.1171367466449738,
+                "creation_time": 1652287538.8056297
             },
             {
-                "steps": 177873,
-                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-177873.onnx",
-                "reward": -1.9952818155288696,
-                "creation_time": 1652286030.5522754
+                "steps": 186980,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-186980.onnx",
+                "reward": -1.2710972093045712,
+                "creation_time": 1652287608.0506463
             },
             {
-                "steps": 179849,
-                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-179849.onnx",
-                "reward": -2.7302117466926576,
-                "creation_time": 1652286123.7415218
+                "steps": 187681,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-187681.onnx",
+                "reward": -0.9614225576321284,
+                "creation_time": 1652287668.5817702
             },
             {
-                "steps": 181233,
-                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-181233.onnx",
-                "reward": -1.810240238904953,
-                "creation_time": 1652286518.6112034
+                "steps": 189341,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-189341.onnx",
+                "reward": -1.555702954530716,
+                "creation_time": 1652287795.040146
             },
             {
-                "steps": 185244,
-                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-185244.onnx",
-                "reward": -1.692259818315506,
-                "creation_time": 1652286643.4332714
+                "steps": 190568,
+                "file_path": "results\\generalization_00\\PathFollowing\\PathFollowing-190568.onnx",
+                "reward": -3.18454509973526,
+                "creation_time": 1652287940.1662784
             }
         ],
         "final_checkpoint": {
-            "steps": 185244,
+            "steps": 190568,
             "file_path": "results\\generalization_00\\PathFollowing.onnx",
-            "reward": -1.692259818315506,
-            "creation_time": 1652286643.4332714
+            "reward": -3.18454509973526,
+            "creation_time": 1652287940.1662784
         }
     },
     "metadata": {
