@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class ObstacleMovement : MonoBehaviour
 {
-    private float speed = 2f;
+    private float speed;
+    private float rotation;
+
+    void Start() 
+    {
+        speed = Random.Range(0.1f,4);
+        rotation = Random.Range(0,360);
+        transform.rotation = Quaternion.Euler(0, rotation, 0);
+    }
     
     //Moves this GameObject 2 units a second in the forward direction
     void Update()
