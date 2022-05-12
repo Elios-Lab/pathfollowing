@@ -50,8 +50,6 @@ public class GeneralizationAgent : Agent {
         recorder = Academy.Instance.StatsRecorder;
 
         if (isTraining == false) stat_period = maxIteration;
-
-        Debug.Log("Initialize");
     }
 
     public override void OnEpisodeBegin() {
@@ -62,7 +60,6 @@ public class GeneralizationAgent : Agent {
         _target = _simulation.configManager.goal;
         hasCollided = false;
         UpdateRatio();
-        Debug.Log("Inizio episodio");
     }
 
     public override void OnActionReceived(ActionBuffers vectorAction) {
@@ -85,12 +82,16 @@ public class GeneralizationAgent : Agent {
     // Collision
     private void OnCollisionEnter(Collision other) 
     {  
-        if (other.gameObject.CompareTag("barrier")) 
+        if (other.gameObject.CompareTag("barrier"))  
+        {
             CollisionReward(); 
-        
-        Debug.Log("Collisione!!!");
-
-        EndEpisode();
+            Debug.Log("Collisione Barrier-Agent");
+        }
+        if (other.gameObject.CompareTag("obstacle"))
+        {
+            CollisionReward();
+            Debug.Log("Collisione Obstacle-Agent");
+        }
     }
 
     // Observation
@@ -171,7 +172,6 @@ public class GeneralizationAgent : Agent {
         goals_reward += reward;
         goals_achieved_count++;
         EndEpisode();
-        Debug.Log("reward");
     }
 
     // Collision reward

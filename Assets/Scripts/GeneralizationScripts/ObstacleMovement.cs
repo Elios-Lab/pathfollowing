@@ -21,10 +21,18 @@ public class ObstacleMovement : MonoBehaviour
     }
 
     //Upon collision with another GameObject, this GameObject will reverse direction
-    private void OnTriggerEnter(Collider other) 
-    {
-        speed *= -1;
-        Debug.Log("Trigger!!!");
-    }        
-    
+    // private void OnTriggerEnter(Collider other) 
+    // {
+    //     speed *= -1;
+    //     Debug.Log("Trigger!!!");
+    // }       
+
+    private void OnCollisionEnter(Collision other) 
+    {  
+        if (other.gameObject.CompareTag("barrier"))  
+        {
+            speed *= -1;
+            Debug.Log("Collisione Obstacle-Barrier");
+        } 
+    }
 }
