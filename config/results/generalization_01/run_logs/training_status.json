@@ -1,0 +1,23 @@
+{
+    "PathFollowing": {
+        "checkpoints": [
+            {
+                "steps": 193008,
+                "file_path": "results\\generalization_01\\PathFollowing\\PathFollowing-193008.onnx",
+                "reward": null,
+                "creation_time": 1652458718.890101
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 193008,
+            "file_path": "results\\generalization_01\\PathFollowing.onnx",
+            "reward": null,
+            "creation_time": 1652458718.890101
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.25.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

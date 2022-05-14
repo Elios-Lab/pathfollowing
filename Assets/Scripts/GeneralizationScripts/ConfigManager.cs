@@ -25,6 +25,9 @@ public class ConfigManager : MonoBehaviour
 
     public int cellWidth;
 
+    public enum EnvironmentComplexity {ENTRY=1, BASIC=2, MEDIUM=3, ADVANCED=4, EXTREME=5};
+    public EnvironmentComplexity environmentComplexity = EnvironmentComplexity.ENTRY;
+
     Transform max;
     float maxX = 0, maxZ = 0;    
 
@@ -38,22 +41,40 @@ public class ConfigManager : MonoBehaviour
     void Update()
     {
    
-    }             
-
-    int count = 0;
+    }
+    
     public void RandomAgentPositioning()
     {
-        if (agent != null && isOver == false)
-        {
-            float rotation = Random.Range(0,360);
-            float x_base;
-            float z_base;
-           
-            //X coordinate for possible available position randomized 
-            x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+        float rotation;
+        float x_base;
+        float z_base;
 
-            //Z coordinate for possible available position randomized 
-            z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+        if (agent != null && isOver == false)
+        {           
+            switch(environmentComplexity)
+            {
+                case EnvironmentComplexity.ENTRY:
+                    x_base = 0f;
+                    z_base = 0f;
+                    rotation = 0f;
+                    break;
+                case EnvironmentComplexity.BASIC:
+                    x_base = 0f;
+                    z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                    rotation = 0f;
+                    break;
+                case EnvironmentComplexity.MEDIUM:
+                    x_base = 0f;
+                    z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                    rotation = Random.Range(0,360);
+                    break;
+                default:
+                    x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));                     
+                    z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                    rotation = Random.Range(0,360);
+                    break;
+            }
+            
 
             //Setting properties
             agent.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -66,14 +87,8 @@ public class ConfigManager : MonoBehaviour
             agent.transform.rotation = Quaternion.Euler(0, rotation, 0);            
 
             //Setting random position              
-            agent.transform.localPosition = new Vector3(x_base, 1, z_base);          
-
-            Debug.Log("RandomAgentPositioning DENTRO");
-
-            count++;
-            Debug.Log("count: " + count + " x_base: " + x_base + " z_base: " + z_base + " agent_x: " + agent.transform.position.x + " agent_z: " + agent.transform.position.z);
+            agent.transform.localPosition = new Vector3(x_base, 1, z_base);             
         }
-        Debug.Log("RandomAgentPositioning FUORI");
     }
 
     public void RepositionTargetRandom()
@@ -81,11 +96,27 @@ public class ConfigManager : MonoBehaviour
         float x_base;
         float z_base; 
 
-        //X coordinate for possible available position randomized 
-        x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+        switch(environmentComplexity)
+        {
+            case EnvironmentComplexity.ENTRY:
+                x_base = 0;
+                z_base = 2 * carLength;
+                break;
+            case EnvironmentComplexity.BASIC:
+                x_base = 0;
+                z_base = 5 * carLength;
+                break;
+            case EnvironmentComplexity.MEDIUM:
+                x_base = 0;
+                z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                break;
+            default:
+                x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                break;
+        }
 
-        //Z coordinate for possible available position randomized 
-        z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+        
 
         //Setting random position              
         goal.transform.localPosition = new Vector3(x_base, 1, z_base);

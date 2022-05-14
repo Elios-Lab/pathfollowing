@@ -507,6 +507,7 @@ MonoBehaviour:
   maxIteration: 10
   isOver: 0
   cellWidth: 10
+  levelOfTraining: 1
 --- !u!1 &405703327
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +682,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 500000
+  MaxStep: 50000
 --- !u!1 &784643597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,6 +1651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319894326139446601, guid: 7d58252adac394d5e9c5b72501a6d336,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8319894326139446604, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
