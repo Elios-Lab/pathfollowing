@@ -38,9 +38,8 @@ public class Simulation : MonoBehaviour
 
     public void InitializeSimulation()
     {
-        _initComplete = false;
+        _initComplete = false;        
         
-        //configManager.RandomObstaclesPositioning();
         configManager.RandomAgentPositioning();
         configManager.RepositionTargetRandom();
 

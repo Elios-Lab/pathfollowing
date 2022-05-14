@@ -8,8 +8,7 @@ public class ConfigManager : MonoBehaviour
 
     [SerializeField] public GeneralizationAgent agent;
     [SerializeField] public GameObject environment;
-    [SerializeField] public GameObject goal;    
-    [SerializeField] public GameObject obstacle;
+    [SerializeField] public GameObject goal;  
     [SerializeField] public float carLength;
     [SerializeField] public float carWidth;
 
@@ -28,6 +27,8 @@ public class ConfigManager : MonoBehaviour
     public enum EnvironmentComplexity {ENTRY=1, BASIC=2, MEDIUM=3, ADVANCED=4, EXTREME=5};
     public EnvironmentComplexity environmentComplexity = EnvironmentComplexity.ENTRY;
 
+    public GameObject obstacleToSpawn;
+
     Transform max;
     float maxX = 0, maxZ = 0;    
 
@@ -36,6 +37,8 @@ public class ConfigManager : MonoBehaviour
             max = GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>();
             maxX = max.localScale.x / 2 - carLength;            
             maxZ = maxX; 
+
+            RandomObstaclesPositioning();
     }
     
     void Update()
@@ -83,10 +86,10 @@ public class ConfigManager : MonoBehaviour
             agent.GetComponent<CarController>().CurrentAcceleration = 0f;
             agent.GetComponent<CarController>().CurrentBrakeTorque = 0f;
 
-            //Setting random rotation
+            //Setting agent rotation
             agent.transform.rotation = Quaternion.Euler(0, rotation, 0);            
 
-            //Setting random position              
+            //Setting agent position              
             agent.transform.localPosition = new Vector3(x_base, 1, z_base);             
         }
     }
@@ -114,18 +117,49 @@ public class ConfigManager : MonoBehaviour
                 x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
                 z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
                 break;
-        }
+        }        
 
-        
-
-        //Setting random position              
+        //Setting target position              
         goal.transform.localPosition = new Vector3(x_base, 1, z_base);
     }
 
-    /* public void RandomObstaclesPositioning()
+    public void RandomObstaclesPositioning()
     {
-        obstacle.GetComponent<Rigidbody>().AddForce(10,0,0);
-        Debug.Log("Obstacle velocity: " + obstacle.GetComponent<Rigidbody>().velocity);
-    } */
+        int numberOfObstacle;
+        float x_base = 0;
+        float z_base = 0;
+
+        switch(environmentComplexity)
+        {
+            case EnvironmentComplexity.ENTRY:
+                numberOfObstacle = 0;                
+                break;
+            case EnvironmentComplexity.BASIC:
+                numberOfObstacle = 1;
+                x_base = 0;
+                z_base = 2 * carLength;
+                obstacleToSpawn.GetComponent<ObstacleMovement>().speed = 0;
+                break;
+            case EnvironmentComplexity.MEDIUM:
+                numberOfObstacle = 0;
+                break;
+            case EnvironmentComplexity.ADVANCED:
+                numberOfObstacle = 0;
+                break;
+            case EnvironmentComplexity.EXTREME:
+                numberOfObstacle = 0;
+                break;
+            default:
+                numberOfObstacle = 0;
+                break;
+        }
+
+        obstacleToSpawn.transform.localPosition = new Vector3(x_base + environment.transform.position.x, 
+                                                    GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>().position.y , 
+                                                    z_base + environment.transform.position.z);
+
+        for (int i=0; i<numberOfObstacle; i++)
+            Instantiate(obstacleToSpawn, obstacleToSpawn.transform.localPosition, Quaternion.Euler(0, 0, 0), environment.transform);
+    }
 
 }
