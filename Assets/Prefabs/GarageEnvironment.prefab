@@ -3733,11 +3733,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e8b729496866645b0fcf841f202c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  config: {fileID: 4900000, guid: 1fe8087e0d4dc574f8646a9de90563c3, type: 3}
   agent: {fileID: 6965435508403664625}
   environment: {fileID: 5396864914810100905}
   goal: {fileID: 5396864914810100907}
-  carLength: 4.9
-  carWidth: 2.1
+  parameters:
+    car:
+      length: 0
+      width: 0
+      test: 
+  carModel: {fileID: 1234917319945025749}
   isTraining: 1
   iteration: 0
   maxIteration: 10
@@ -5250,6 +5255,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 387289526615603369, guid: e43555bd90b0a42db8d71fdd385969b9,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 387289526615603370, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
       propertyPath: m_Name
@@ -5265,6 +5275,31 @@ PrefabInstance:
       propertyPath: configurationManager
       value: 
       objectReference: {fileID: 5396864914810100904}
+    - target: {fileID: 387289526615603374, guid: e43555bd90b0a42db8d71fdd385969b9,
+        type: 3}
+      propertyPath: DecisionPeriod
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419076770545858190, guid: e43555bd90b0a42db8d71fdd385969b9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.017888317
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419076770545858190, guid: e43555bd90b0a42db8d71fdd385969b9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.047056574
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419076770545858190, guid: e43555bd90b0a42db8d71fdd385969b9,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419076770545858190, guid: e43555bd90b0a42db8d71fdd385969b9,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.0009714413
+      objectReference: {fileID: 0}
     - target: {fileID: 9144689784766214375, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
       propertyPath: m_Model
@@ -5273,11 +5308,17 @@ PrefabInstance:
     - target: {fileID: 9144689784766214375, guid: e43555bd90b0a42db8d71fdd385969b9,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6671740710838963041, guid: e43555bd90b0a42db8d71fdd385969b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e43555bd90b0a42db8d71fdd385969b9, type: 3}
+--- !u!1 &1234917319945025749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8419076770545858191, guid: e43555bd90b0a42db8d71fdd385969b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7347024060786413146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6965435508403664625 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 387289526615603371, guid: e43555bd90b0a42db8d71fdd385969b9,

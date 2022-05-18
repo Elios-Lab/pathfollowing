@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 387289525823306699}
   - {fileID: 387289525613459097}
@@ -61,6 +62,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.872, y: 0.5, z: 1.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 387289525601277258}
   m_RootOrder: 1
@@ -122,6 +124,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.8511, y: 0.5, z: 1.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 387289525601277258}
   m_RootOrder: 0
@@ -183,6 +186,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.872, y: 0.5, z: -1.149}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 387289525601277258}
   m_RootOrder: 2
@@ -232,7 +236,6 @@ GameObject:
   - component: {fileID: 387289526615603373}
   - component: {fileID: 387289526615603371}
   - component: {fileID: 387289526615603374}
-  - component: {fileID: 6671740710838963041}
   m_Layer: 8
   m_Name: AgentPrefab
   m_TagString: agent
@@ -250,6 +253,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5024094069544504947}
   - {fileID: 3426143054352583148}
@@ -344,8 +348,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 387289526615603371}
   configurationManager: {fileID: 0}
-  drawCheckpoint: {fileID: 0}
-  makeCheckpoint: {fileID: 0}
 --- !u!114 &387289526615603371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +364,9 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
+  lastVelocity: {x: 0, y: 0, z: 0}
+  path: []
+  agentAccel: []
 --- !u!114 &387289526615603374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,18 +381,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 10
   TakeActionsBetweenDecisions: 1
---- !u!114 &6671740710838963041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387289526615603370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 965c7a793b85240fb8826da60948fb54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &387289526848390929
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +408,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.8511, y: 0.5, z: -1.149}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 387289525601277258}
   m_RootOrder: 3
@@ -476,6 +470,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 387289526615603369}
   m_RootOrder: 3
@@ -532,6 +527,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 387289526615603369}
   m_RootOrder: 1
@@ -565,6 +561,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 387289526615603369}
   m_RootOrder: 0
@@ -588,6 +585,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

@@ -1,0 +1,11 @@
+{
+    "car": {
+        "length": 2,
+        "width": 1,
+        "height": 1,
+        "weight": 1500,
+        "steering": 33,
+        "torque": 400,
+        "brake": 300
+    }
+}
