@@ -85,12 +85,12 @@ public class GeneralizationAgent : Agent {
         if (other.gameObject.CompareTag("barrier"))  
         {
             CollisionReward(); 
-            Debug.Log("Collisione Barrier-Agent");
+            //Debug.Log("Collisione Barrier-Agent");
         }
         if (other.gameObject.CompareTag("obstacle"))
         {
             CollisionReward();
-            Debug.Log("Collisione Obstacle-Agent");
+            //Debug.Log("Collisione Obstacle-Agent");
         }
     }
 

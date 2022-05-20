@@ -13,7 +13,7 @@ public class TargetGeneral : MonoBehaviour {
         if (other.CompareTag("agent")) {
             if (fullEndCollider.bounds.Intersects(other.bounds)) {
                     other.gameObject.transform.parent.GetComponent<GeneralizationAgent>().GoalReward();
-                    Debug.Log("collision for reward");
+                    //Debug.Log("collision for reward");
             }
         }
     }

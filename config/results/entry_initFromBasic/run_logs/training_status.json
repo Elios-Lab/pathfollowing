@@ -1,0 +1,29 @@
+{
+    "PathFollowing": {
+        "checkpoints": [
+            {
+                "steps": 499956,
+                "file_path": "results\\entry_initFromBasic\\PathFollowing\\PathFollowing-499956.onnx",
+                "reward": -0.07939835992075649,
+                "creation_time": 1652982989.3808148
+            },
+            {
+                "steps": 880247,
+                "file_path": "results\\entry_initFromBasic\\PathFollowing\\PathFollowing-880247.onnx",
+                "reward": 0.10589195329409379,
+                "creation_time": 1652991894.9940822
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 880247,
+            "file_path": "results\\entry_initFromBasic\\PathFollowing.onnx",
+            "reward": 0.10589195329409379,
+            "creation_time": 1652991894.9940822
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.25.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

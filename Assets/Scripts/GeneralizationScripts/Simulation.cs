@@ -45,7 +45,7 @@ public class Simulation : MonoBehaviour
 
         _initComplete = true;
 
-        Debug.Log("InitializeSimulation");
+        Debug.Log("AgentX: " + agent.transform.position.x + "AgentZ: " + agent.transform.position.z);        
     }
 
     public void ResetSimulation()

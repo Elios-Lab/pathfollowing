@@ -24,8 +24,8 @@ public class ConfigManager : MonoBehaviour
 
     public int cellWidth;
 
-    public enum EnvironmentComplexity {ENTRY=1, BASIC=2, MEDIUM=3, ADVANCED=4, EXTREME=5};
-    public EnvironmentComplexity environmentComplexity = EnvironmentComplexity.ENTRY;
+    public enum EnvironmentComplexity {BASIC=1, ENTRY=2, MEDIUM=3, ADVANCED=4, EXTREME=5};
+    public EnvironmentComplexity environmentComplexity = EnvironmentComplexity.BASIC;
 
     public GameObject obstacleToSpawn;
 
@@ -56,15 +56,15 @@ public class ConfigManager : MonoBehaviour
         {           
             switch(environmentComplexity)
             {
-                case EnvironmentComplexity.ENTRY:
+                case EnvironmentComplexity.BASIC:
                     x_base = 0f;
                     z_base = 0f;
                     rotation = 0f;
                     break;
-                case EnvironmentComplexity.BASIC:
-                    x_base = 0f;
-                    z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
-                    rotation = 0f;
+                case EnvironmentComplexity.ENTRY:
+                    x_base = Random.Range(-Mathf.Floor(maxZ) / 3, Mathf.Floor(maxZ) / 3);
+                    z_base = Random.Range(-Mathf.Floor(maxZ) / 3, Mathf.Floor(maxZ) / 3);
+                    rotation = Random.Range(0,360);
                     break;
                 case EnvironmentComplexity.MEDIUM:
                     x_base = 0f;
@@ -98,16 +98,18 @@ public class ConfigManager : MonoBehaviour
     {
         float x_base;
         float z_base; 
+        float distanceX, distanceZ;
+        float deltaTargetAgent = 5 * carLength;
 
         switch(environmentComplexity)
         {
-            case EnvironmentComplexity.ENTRY:
+            case EnvironmentComplexity.BASIC:
                 x_base = 0;
                 z_base = 2 * carLength;
                 break;
-            case EnvironmentComplexity.BASIC:
-                x_base = 0;
-                z_base = 5 * carLength;
+            case EnvironmentComplexity.ENTRY:
+                x_base = Random.Range(-Mathf.Floor(maxZ) / 3, Mathf.Floor(maxZ) / 3);
+                z_base = Random.Range(-Mathf.Floor(maxZ) / 3, Mathf.Floor(maxZ) / 3);
                 break;
             case EnvironmentComplexity.MEDIUM:
                 x_base = 0;
@@ -119,8 +121,47 @@ public class ConfigManager : MonoBehaviour
                 break;
         }        
 
+        // To avoid target too near the agent
+        if(environmentComplexity != EnvironmentComplexity.BASIC)
+        {
+            distanceX = x_base - agent.transform.position.x;
+            distanceZ = z_base - agent.transform.position.z;
+
+            
+            if(Mathf.Abs(distanceX) < deltaTargetAgent)
+            {                
+                if(distanceX < 0)
+                {
+                    x_base += (deltaTargetAgent - distanceX);
+                    Debug.Log("Minore lungo X negativo");
+                }
+                else
+                {
+                    x_base -= (-deltaTargetAgent + distanceX);
+                    Debug.Log("Minore lungo X positivo");
+                }
+            }
+
+            if(Mathf.Abs(distanceZ) < deltaTargetAgent)
+            {                
+                if(distanceZ < 0)
+                {
+                    z_base += (deltaTargetAgent - distanceZ);
+                    Debug.Log("Minore lungo Z negativo");
+                }
+                else
+                {
+                    z_base -= (-deltaTargetAgent + distanceZ);
+                    Debug.Log("Minore lungo Z positivo");
+                }
+            }
+        }
+
         //Setting target position              
         goal.transform.localPosition = new Vector3(x_base, 1, z_base);
+
+        Debug.Log("TargetX: " + goal.transform.position.x + "TargetZ: " + goal.transform.position.z);
+        Debug.Log("PREAgentX: " + agent.transform.position.x + "PREAgentZ: " + agent.transform.position.z); 
     }
 
     public void RandomObstaclesPositioning()
@@ -131,17 +172,17 @@ public class ConfigManager : MonoBehaviour
 
         switch(environmentComplexity)
         {
-            case EnvironmentComplexity.ENTRY:
+            case EnvironmentComplexity.BASIC:
                 numberOfObstacle = 0;                
                 break;
-            case EnvironmentComplexity.BASIC:
+            case EnvironmentComplexity.ENTRY:
+                numberOfObstacle = 0;
+                break;
+            case EnvironmentComplexity.MEDIUM:
                 numberOfObstacle = 1;
                 x_base = 0;
                 z_base = 2 * carLength;
                 obstacleToSpawn.GetComponent<ObstacleMovement>().speed = 0;
-                break;
-            case EnvironmentComplexity.MEDIUM:
-                numberOfObstacle = 0;
                 break;
             case EnvironmentComplexity.ADVANCED:
                 numberOfObstacle = 0;
