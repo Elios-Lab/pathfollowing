@@ -24,10 +24,10 @@ public class ConfigManager : MonoBehaviour
 
     public int cellWidth;
 
-    public enum EnvironmentComplexity {BASIC=1, ENTRY=2, MEDIUM=3, ADVANCED=4, EXTREME=5};
+    public enum EnvironmentComplexity {BASIC=1, ENTRY=2, MEDIUM=3, ADVANCED=4, EXTREME=5, ROOM1=6, ROOM2=7, ROOM3=8, ROOM4=9};
     public EnvironmentComplexity environmentComplexity = EnvironmentComplexity.BASIC;
 
-    public GameObject obstacleToSpawn;
+    public GameObject obstacleToSpawn, staticObstacleToSpawn;
 
     Transform max;
     float maxX = 0, maxZ = 0;    
@@ -71,10 +71,30 @@ public class ConfigManager : MonoBehaviour
                     z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
                     rotation = Random.Range(0,360);
                     break;
+                case EnvironmentComplexity.ROOM1:
+                    x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                    z_base = Random.Range(-Mathf.Floor(maxZ), -Mathf.Floor(maxZ) * 5/6);
+                    rotation = Random.Range(-45, 45);
+                    break;
+                case EnvironmentComplexity.ROOM2:
+                    x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                    z_base = Random.Range(-Mathf.Floor(maxZ), -Mathf.Floor(maxZ) * 5/6);
+                    rotation = Random.Range(-45, 45);
+                    break;
+                case EnvironmentComplexity.ROOM3:
+                    x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                    z_base = Random.Range(-Mathf.Floor(maxZ), -Mathf.Floor(maxZ) * 5/6);
+                    rotation = Random.Range(-45, 45);
+                    break;
+                case EnvironmentComplexity.ROOM4:
+                    x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                    z_base = Random.Range(-Mathf.Floor(maxZ), -Mathf.Floor(maxZ) * 5/6);
+                    rotation = Random.Range(-45, 45);
+                    break;
                 default:
                     x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));                     
                     z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
-                    rotation = Random.Range(0,360);
+                    rotation = Random.Range(0, 360);
                     break;
             }
             
@@ -108,12 +128,28 @@ public class ConfigManager : MonoBehaviour
                 z_base = 2 * carLength;
                 break;
             case EnvironmentComplexity.ENTRY:
-                x_base = Random.Range(-Mathf.Floor(maxZ) / 3, Mathf.Floor(maxZ) / 3);
+                x_base = Random.Range(-Mathf.Floor(maxX) / 3, Mathf.Floor(maxX) / 3);
                 z_base = Random.Range(-Mathf.Floor(maxZ) / 3, Mathf.Floor(maxZ) / 3);
                 break;
             case EnvironmentComplexity.MEDIUM:
                 x_base = 0;
                 z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                break;
+            case EnvironmentComplexity.ROOM1:
+                x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                z_base = Random.Range(Mathf.Floor(maxZ) * 5/6, Mathf.Floor(maxZ));
+                break;
+            case EnvironmentComplexity.ROOM2:
+                x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                z_base = Random.Range(Mathf.Floor(maxZ) * 5/6, Mathf.Floor(maxZ));
+                break;
+            case EnvironmentComplexity.ROOM3:
+                x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                z_base = Random.Range(Mathf.Floor(maxZ) * 5/6, Mathf.Floor(maxZ));
+                break;
+            case EnvironmentComplexity.ROOM4:
+                x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                z_base = Random.Range(Mathf.Floor(maxZ) * 5/6, Mathf.Floor(maxZ));
                 break;
             default:
                 x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
@@ -122,7 +158,7 @@ public class ConfigManager : MonoBehaviour
         }        
 
         // To avoid target too near the agent
-        if(environmentComplexity != EnvironmentComplexity.BASIC)
+        if(environmentComplexity == EnvironmentComplexity.ENTRY)
         {
             distanceX = x_base - agent.transform.position.x;
             distanceZ = z_base - agent.transform.position.z;
@@ -169,6 +205,7 @@ public class ConfigManager : MonoBehaviour
         int numberOfObstacle;
         float x_base = 0;
         float z_base = 0;
+        float rotation = 0;
 
         switch(environmentComplexity)
         {
@@ -190,6 +227,23 @@ public class ConfigManager : MonoBehaviour
             case EnvironmentComplexity.EXTREME:
                 numberOfObstacle = 0;
                 break;
+            case EnvironmentComplexity.ROOM1:
+                numberOfObstacle = 0;
+                break;
+            case EnvironmentComplexity.ROOM2:
+                numberOfObstacle = 1; // zero dynamic obstacle
+                StatiObstaclePositioning();
+                break;
+            case EnvironmentComplexity.ROOM3:
+                numberOfObstacle = 4;
+                obstacleToSpawn.GetComponent<ObstacleMovement>().speed = 2;
+                StatiObstaclePositioning();
+                break;
+            case EnvironmentComplexity.ROOM4:
+                numberOfObstacle = 8; 
+                obstacleToSpawn.GetComponent<ObstacleMovement>().speed = 2;
+                StatiObstaclePositioning();
+                break;
             default:
                 numberOfObstacle = 0;
                 break;
@@ -200,7 +254,38 @@ public class ConfigManager : MonoBehaviour
                                                     z_base + environment.transform.position.z);
 
         for (int i=0; i<numberOfObstacle; i++)
-            Instantiate(obstacleToSpawn, obstacleToSpawn.transform.localPosition, Quaternion.Euler(0, 0, 0), environment.transform);
+        {
+            x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+            z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+            rotation = Random.Range(0, 360);
+            obstacleToSpawn.transform.localPosition = new Vector3(x_base + environment.transform.position.x, 
+                                                    GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>().position.y , 
+                                                    z_base + environment.transform.position.z);
+            Instantiate(obstacleToSpawn, obstacleToSpawn.transform.localPosition, Quaternion.Euler(0, rotation, 0), environment.transform);
+        }
+    }
+
+    public void StatiObstaclePositioning()
+    {
+        float x_base = 0;
+        float z_base = 0;
+
+        // first static obstacle
+        x_base = -max.localScale.x / 2 + staticObstacleToSpawn.transform.localScale.x / 2;
+        z_base = -(max.localScale.x / 2 - max.localScale.x / 3);
+        staticObstacleToSpawn.transform.localPosition = new Vector3(x_base + environment.transform.position.x, 
+                                            GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>().position.y, 
+                                            z_base + environment.transform.position.z); 
+        Instantiate(staticObstacleToSpawn, staticObstacleToSpawn.transform.localPosition, Quaternion.Euler(0, 0, 0), environment.transform);   
+        
+        // second static obstacle
+        x_base = max.localScale.x / 2 - staticObstacleToSpawn.transform.localScale.x / 2;
+        z_base = max.localScale.x / 2 - max.localScale.x / 3;
+        staticObstacleToSpawn.transform.localPosition = new Vector3(x_base + environment.transform.position.x, 
+                                            GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>().position.y, 
+                                            z_base + environment.transform.position.z); 
+        Instantiate(staticObstacleToSpawn, staticObstacleToSpawn.transform.localPosition, Quaternion.Euler(0, 0, 0), environment.transform);   
+        
     }
 
 }

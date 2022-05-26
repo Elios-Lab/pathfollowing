@@ -68,10 +68,10 @@ behaviors: !!python/object/apply:mlagents.trainers.settings.DefaultTrainerDict
             num_layers: 2
             vis_encode_type: simple
             memory: null
-      init_path: null
+      init_path: results\entry_initFromBasic\PathFollowing
       keep_checkpoints: 5
       checkpoint_interval: 500000
-      max_steps: 1100000
+      max_steps: 1000000
       time_horizon: 128
       summary_freq: 10000
       threaded: true
@@ -93,10 +93,10 @@ engine_settings:
   no_graphics: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: entry_initFromBasic
-  initialize_from: null
+  run_id: entry_initFromBasic_2M
+  initialize_from: entry_initFromBasic
   load_model: false
-  resume: true
+  resume: false
   force: false
   train_model: false
   inference: false

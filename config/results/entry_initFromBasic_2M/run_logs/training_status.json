@@ -1,0 +1,23 @@
+{
+    "PathFollowing": {
+        "checkpoints": [
+            {
+                "steps": 21889,
+                "file_path": "results\\entry_initFromBasic_2M\\PathFollowing\\PathFollowing-21889.onnx",
+                "reward": -0.06292902335288032,
+                "creation_time": 1653039665.502489
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 21889,
+            "file_path": "results\\entry_initFromBasic_2M\\PathFollowing.onnx",
+            "reward": -0.06292902335288032,
+            "creation_time": 1653039665.502489
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.25.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
