@@ -39,6 +39,8 @@ public class GeneralizationAgent : Agent {
     private float allignment_reward = 0;
     private float collisions_reward = 0;
     private float goals_reward = 0;
+    
+    private double maxObs; // To normalize observations
 
     public override void Initialize() {
         _rigidBody = GetComponent<Rigidbody>();
@@ -48,6 +50,8 @@ public class GeneralizationAgent : Agent {
         maxIteration = _simulation.configManager.maxIteration;
         _simulation.InitializeSimulation();
         recorder = Academy.Instance.StatsRecorder;
+        
+        maxObs = Math.Sqrt(2) * _simulation.configManager.MaxLength();
 
         if (isTraining == false) stat_period = maxIteration;
     }
@@ -107,7 +111,7 @@ public class GeneralizationAgent : Agent {
         Vector2 target_forward = new Vector2(_target.transform.forward.x, _target.transform.forward.z);
         int time = StepCount;
 
-        sensor.AddObservation(target_position - agent_position); // Direction towards the target
+        sensor.AddObservation( (target_position - agent_position) / (float)maxObs); // Direction towards the target
         sensor.AddObservation(velocity); // Agent velocity
         sensor.AddObservation(agent_forward); // Agent direction
         sensor.AddObservation(target_forward); // Target direction
@@ -118,6 +122,8 @@ public class GeneralizationAgent : Agent {
         float alignment = Mathf.Abs(Vector3.Dot(agent_forward, target_forward));
 
         DenseReward(alignment, time, distance);
+
+        Debug.Log("obs1: " + ((target_position - agent_position) / (float)maxObs) + " obs2: " + velocity + " obs3: " + agent_forward + " obs4: " + target_forward);
     }
 
     public void UpdateRatio() {

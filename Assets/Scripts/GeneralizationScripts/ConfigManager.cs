@@ -288,4 +288,9 @@ public class ConfigManager : MonoBehaviour
         
     }
 
+    public float MaxLength()
+    {
+        return GameObject.FindGameObjectWithTag("barrier").transform.localScale.x;
+    }
+
 }

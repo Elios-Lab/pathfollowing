@@ -256,7 +256,7 @@ MonoBehaviour:
   maxIteration: 10
   isOver: 0
   cellWidth: 10
-  environmentComplexity: 6
+  environmentComplexity: 2
   obstacleToSpawn: {fileID: 8647449929694869195, guid: 5eb180401f7652e4ea07c72251ee7e78,
     type: 3}
   staticObstacleToSpawn: {fileID: 7840964818332418059, guid: 79a094a1f64eb37428bf9aaec41f23f7,
