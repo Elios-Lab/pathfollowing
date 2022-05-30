@@ -36,9 +36,9 @@ public class ConfigManager : MonoBehaviour
     {
             max = GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>();
             maxX = max.localScale.x / 2 - carLength;            
-            maxZ = maxX; 
+            maxZ = maxX;       
 
-            RandomObstaclesPositioning();
+            RandomObstaclesPositioning();  
     }
     
     void Update()
@@ -232,17 +232,17 @@ public class ConfigManager : MonoBehaviour
                 break;
             case EnvironmentComplexity.ROOM2:
                 numberOfObstacle = 1; // zero dynamic obstacle
-                StatiObstaclePositioning();
+                StaticObstaclePositioning();
                 break;
             case EnvironmentComplexity.ROOM3:
                 numberOfObstacle = 4;
                 obstacleToSpawn.GetComponent<ObstacleMovement>().speed = 2;
-                StatiObstaclePositioning();
+                StaticObstaclePositioning();
                 break;
             case EnvironmentComplexity.ROOM4:
                 numberOfObstacle = 8; 
                 obstacleToSpawn.GetComponent<ObstacleMovement>().speed = 2;
-                StatiObstaclePositioning();
+                StaticObstaclePositioning();
                 break;
             default:
                 numberOfObstacle = 0;
@@ -265,7 +265,7 @@ public class ConfigManager : MonoBehaviour
         }
     }
 
-    public void StatiObstaclePositioning()
+    public void StaticObstaclePositioning()
     {
         float x_base = 0;
         float z_base = 0;
@@ -291,6 +291,18 @@ public class ConfigManager : MonoBehaviour
     public float MaxLength()
     {
         return GameObject.FindGameObjectWithTag("barrier").transform.localScale.x;
+    }
+
+    public void RandomizeObstacleAttribute()
+    {
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("obstacle");
+
+        foreach(GameObject obstacle in obstacles)
+        {
+            obstacle.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+            obstacleToSpawn.GetComponent<ObstacleMovement>().speed = Random.Range(0.5f, 4);
+            Debug.Log("randObstacle");
+        }
     }
 
 }

@@ -42,10 +42,10 @@ public class Simulation : MonoBehaviour
         
         configManager.RandomAgentPositioning();
         configManager.RepositionTargetRandom();
-
+        configManager.RandomizeObstacleAttribute();
         _initComplete = true;
 
-        Debug.Log("AgentX: " + agent.transform.position.x + "AgentZ: " + agent.transform.position.z);        
+        //Debug.Log("AgentX: " + agent.transform.position.x + "AgentZ: " + agent.transform.position.z);        
     }
 
     public void ResetSimulation()
