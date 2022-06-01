@@ -96,6 +96,11 @@ public class GeneralizationAgent : Agent {
             CollisionReward();
             //Debug.Log("Collisione Obstacle-Agent");
         }
+        if (other.gameObject.CompareTag("obstacleAligned"))
+        {
+            CollisionReward();
+            //Debug.Log("Collisione ObstacleAligned-Agent");
+        }
     }
 
     // Observation

@@ -2,29 +2,41 @@
     "PathFollowing": {
         "checkpoints": [
             {
-                "steps": 6128,
-                "file_path": "results\\Room2\\PathFollowing\\PathFollowing-6128.onnx",
-                "reward": -4.924497092763583,
-                "creation_time": 1653924620.6395965
+                "steps": 1289292,
+                "file_path": "results\\Room2\\PathFollowing\\PathFollowing-1289292.onnx",
+                "reward": -3.6279876828193665,
+                "creation_time": 1654084292.3679504
             },
             {
-                "steps": 8384,
-                "file_path": "results\\Room2\\PathFollowing\\PathFollowing-8384.onnx",
-                "reward": -6.15739044547081,
-                "creation_time": 1653924702.4472406
+                "steps": 1291410,
+                "file_path": "results\\Room2\\PathFollowing\\PathFollowing-1291410.onnx",
+                "reward": -2.847555451095104,
+                "creation_time": 1654084380.7496984
             },
             {
-                "steps": 10768,
-                "file_path": "results\\Room2\\PathFollowing\\PathFollowing-10768.onnx",
-                "reward": -6.304632872343063,
-                "creation_time": 1653926184.498753
+                "steps": 1292295,
+                "file_path": "results\\Room2\\PathFollowing\\PathFollowing-1292295.onnx",
+                "reward": 0.43464988097548485,
+                "creation_time": 1654084426.2116792
+            },
+            {
+                "steps": 1292689,
+                "file_path": "results\\Room2\\PathFollowing\\PathFollowing-1292689.onnx",
+                "reward": 0.4920012205839157,
+                "creation_time": 1654101137.6461005
+            },
+            {
+                "steps": 1315630,
+                "file_path": "results\\Room2\\PathFollowing\\PathFollowing-1315630.onnx",
+                "reward": -1.7784894887696614,
+                "creation_time": 1654101745.929214
             }
         ],
         "final_checkpoint": {
-            "steps": 10768,
+            "steps": 1315630,
             "file_path": "results\\Room2\\PathFollowing.onnx",
-            "reward": -6.304632872343063,
-            "creation_time": 1653926184.498753
+            "reward": -1.7784894887696614,
+            "creation_time": 1654101745.929214
         }
     },
     "metadata": {

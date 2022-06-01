@@ -2,41 +2,41 @@
     "PathFollowing": {
         "checkpoints": [
             {
-                "steps": 999923,
-                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-999923.onnx",
-                "reward": -1.2849801518023014,
-                "creation_time": 1653819400.1135042
+                "steps": 2697566,
+                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-2697566.onnx",
+                "reward": -0.961001637819651,
+                "creation_time": 1654090343.630843
             },
             {
-                "steps": 1499922,
-                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-1499922.onnx",
-                "reward": 0.023991165996602414,
-                "creation_time": 1653831276.568444
+                "steps": 2699275,
+                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-2699275.onnx",
+                "reward": -1.847902625799179,
+                "creation_time": 1654090560.700127
             },
             {
-                "steps": 1542798,
-                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-1542798.onnx",
-                "reward": 0.23801664053462446,
-                "creation_time": 1653832313.5784576
+                "steps": 2703290,
+                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-2703290.onnx",
+                "reward": -0.9013657053311666,
+                "creation_time": 1654090709.5350711
             },
             {
-                "steps": 1999978,
-                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-1999978.onnx",
-                "reward": 0.43495813866190935,
-                "creation_time": 1653905090.3039405
+                "steps": 2714485,
+                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-2714485.onnx",
+                "reward": -2.3417030785764967,
+                "creation_time": 1654091027.7784727
             },
             {
-                "steps": 2491621,
-                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-2491621.onnx",
-                "reward": 0.5917509353524494,
-                "creation_time": 1653916840.493829
+                "steps": 2777502,
+                "file_path": "results\\Room1\\PathFollowing\\PathFollowing-2777502.onnx",
+                "reward": -2.479013094305992,
+                "creation_time": 1654093227.9020457
             }
         ],
         "final_checkpoint": {
-            "steps": 2491621,
+            "steps": 2777502,
             "file_path": "results\\Room1\\PathFollowing.onnx",
-            "reward": 0.5917509353524494,
-            "creation_time": 1653916840.493829
+            "reward": -2.479013094305992,
+            "creation_time": 1654093227.9020457
         }
     },
     "metadata": {

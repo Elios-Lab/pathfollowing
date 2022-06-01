@@ -256,10 +256,12 @@ MonoBehaviour:
   maxIteration: 10
   isOver: 0
   cellWidth: 10
-  environmentComplexity: 7
+  environmentComplexity: 3
   obstacleToSpawn: {fileID: 8647449929694869195, guid: 5eb180401f7652e4ea07c72251ee7e78,
     type: 3}
   staticObstacleToSpawn: {fileID: 7840964818332418059, guid: 79a094a1f64eb37428bf9aaec41f23f7,
+    type: 3}
+  staticAlignedObstacleToSpawn: {fileID: 8434443159396147489, guid: 65942bed482759d42a2c029bef7fb8ae,
     type: 3}
 --- !u!1 &486041931 stripped
 GameObject:
