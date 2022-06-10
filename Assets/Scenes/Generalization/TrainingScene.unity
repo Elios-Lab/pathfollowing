@@ -256,7 +256,7 @@ MonoBehaviour:
   maxIteration: 10
   isOver: 0
   cellWidth: 10
-  environmentComplexity: 3
+  environmentComplexity: 2
   obstacleToSpawn: {fileID: 8647449929694869195, guid: 5eb180401f7652e4ea07c72251ee7e78,
     type: 3}
   staticObstacleToSpawn: {fileID: 7840964818332418059, guid: 79a094a1f64eb37428bf9aaec41f23f7,
@@ -506,8 +506,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: a0b3ace4459048f48a20fff597102f4e,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 630971112755342598, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
       propertyPath: m_InferenceDevice

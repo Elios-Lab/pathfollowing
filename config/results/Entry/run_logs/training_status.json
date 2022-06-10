@@ -1,0 +1,47 @@
+{
+    "PathFollowing": {
+        "checkpoints": [
+            {
+                "steps": 8499946,
+                "file_path": "results\\Entry\\PathFollowing\\PathFollowing-8499946.onnx",
+                "reward": -0.982211786094639,
+                "creation_time": 1654773050.5565774
+            },
+            {
+                "steps": 8999893,
+                "file_path": "results\\Entry\\PathFollowing\\PathFollowing-8999893.onnx",
+                "reward": -0.9113162669042746,
+                "creation_time": 1654781915.6904294
+            },
+            {
+                "steps": 9499893,
+                "file_path": "results\\Entry\\PathFollowing\\PathFollowing-9499893.onnx",
+                "reward": -0.9243275423844656,
+                "creation_time": 1654790774.7716334
+            },
+            {
+                "steps": 9999928,
+                "file_path": "results\\Entry\\PathFollowing\\PathFollowing-9999928.onnx",
+                "reward": -0.6819626537754255,
+                "creation_time": 1654799681.802801
+            },
+            {
+                "steps": 10000056,
+                "file_path": "results\\Entry\\PathFollowing\\PathFollowing-10000056.onnx",
+                "reward": -0.6819626537754255,
+                "creation_time": 1654799682.1788447
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000056,
+            "file_path": "results\\Entry\\PathFollowing.onnx",
+            "reward": -0.6819626537754255,
+            "creation_time": 1654799682.1788447
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.25.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

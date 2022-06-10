@@ -63,8 +63,8 @@ public class ConfigManager : MonoBehaviour
                     rotation = 0f;
                     break;
                 case EnvironmentComplexity.ENTRY:
-                    x_base = Random.Range(-Mathf.Floor(maxZ) / 3, Mathf.Floor(maxZ) / 3);
-                    z_base = Random.Range(-Mathf.Floor(maxZ) / 3, Mathf.Floor(maxZ) / 3);
+                    x_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                    z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
                     rotation = Random.Range(0,360);
                     break;
                 case EnvironmentComplexity.MEDIUM:
@@ -120,7 +120,7 @@ public class ConfigManager : MonoBehaviour
         float x_base;
         float z_base; 
         float distanceX, distanceZ;
-        float deltaTargetAgent = 5 * carLength;
+        float deltaTargetAgent = 2 * carLength;
 
         switch(environmentComplexity)
         {
@@ -129,8 +129,8 @@ public class ConfigManager : MonoBehaviour
                 z_base = 2 * carLength;
                 break;
             case EnvironmentComplexity.ENTRY:
-                x_base = Random.Range(-Mathf.Floor(maxX) / 3, Mathf.Floor(maxX) / 3);
-                z_base = Random.Range(-Mathf.Floor(maxZ) / 3, Mathf.Floor(maxZ) / 3);
+                x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
                 break;
             case EnvironmentComplexity.MEDIUM:
                 x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
