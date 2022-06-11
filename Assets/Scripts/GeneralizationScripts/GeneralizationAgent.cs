@@ -126,49 +126,25 @@ public class GeneralizationAgent : Agent {
         // Add dense reward
         float distance = Mathf.Abs(_target.transform.position.x - transform.position.x) + Mathf.Abs(_target.transform.position.z - transform.position.z); 
         float alignment = Mathf.Abs(Vector3.Dot(agent_forward, target_forward));
+        float alignmentDistance = Mathf.Abs(Vector3.Dot(agent_forward, target_position - agent_position));
 
-        DenseReward(alignment, time, distance);
-
+        DenseReward(alignment, time, distance, alignmentDistance);
         //Debug.Log("obs1: " + ((target_position - agent_position) / (float)maxObs) + " obs2: " + velocity + " obs3: " + agent_forward + " obs4: " + target_forward);
-    }
-
-    public void UpdateRatio() {
-        if(episode_count >= stat_period) {
-            recorder.Add("Events/Goals", 100 * goals_achieved_count / (float)stat_period);
-            recorder.Add("Events/Timeouts", 100 * timeouts_count / (float)stat_period);
-            recorder.Add("Events/Collisions", 100 * collisions_count / (float)(stat_period));
-            recorder.Add("Rewards/Goals", goals_reward / (float)stat_period);
-            recorder.Add("Rewards/Dense", dense_reward / (float)stat_period);
-            recorder.Add("Rewards/Collisions", collisions_reward / (float)stat_period);
-            recorder.Add("Rewards/Time", time_reward / (float)stat_period);
-            recorder.Add("Rewards/Distance", distance_reward / (float)stat_period);
-            recorder.Add("Rewards/Allignment", allignment_reward / (float)stat_period);
-            time_reward = 0;
-            distance_reward = 0;
-            allignment_reward = 0;
-            episode_count=0;
-            goals_achieved_count = 0;
-            timeouts_count = 0;
-            collisions_count = 0;
-            dense_reward = 0;
-            collisions_reward = 0;
-            goals_reward = 0;
-        }
-        if (isTraining == false) print("Episode: " + episode_count + " Goals: " + goals_achieved_count + " Collisions: " + collisions_count + " Timeouts: " + timeouts_count);
-        episode_count++;
-    }
+    }    
 
     // Dense reward
     private float sigmoid(float value) { return (float)(1.0f / (1.0f + Math.Pow(Math.E, -value))); }
     private float distance_contribution(float weight, float distance) { return (float)(-weight * distance); }
     private float alignment_contribution(float weight, float alignment, float distance) { return (float)(-weight * (1 - alignment) / (distance * distance + 1)); }
+    private float alignmentDistance_contribution(float weight, float alignment, float distance) { return (float)(-weight * (1 - alignment) / (distance * distance + 1)); }
     private float time_contribution(float weight, float time, float distance) { return -weight * sigmoid((time/30)-4) * sigmoid(distance-4); }
-    public void DenseReward(float alignment, float time, float distance) {
+    public void DenseReward(float alignment, float time, float distance, float alignmentDistance) {
         //float tc = time_contribution(0.1f, time, distance);
         float tc = 0;
-        float dc = distance_contribution(0.1f, distance);
+        float dc = distance_contribution(0.01f, distance);
         float ac = alignment_contribution(10f, alignment, distance);
-        float reward = 0.01f * ( tc + dc + ac );
+        float adc = alignmentDistance_contribution(10f, alignment, distance);
+        float reward = 0.01f * ( tc + dc + ac + adc);
         //Debug.Log("dc: " + dc + " ac: " + ac + " tc: " + tc + "reward: " + reward);
         if (isTraining == true) AddReward(reward);
         dense_reward += reward;
@@ -202,5 +178,33 @@ public class GeneralizationAgent : Agent {
      public void TimeOut() {
         timeouts_count++;
         EndEpisode();
+    }
+
+    public void UpdateRatio()
+    {
+        if (episode_count >= stat_period)
+        {
+            recorder.Add("Events/Goals", 100 * goals_achieved_count / (float)stat_period);
+            recorder.Add("Events/Timeouts", 100 * timeouts_count / (float)stat_period);
+            recorder.Add("Events/Collisions", 100 * collisions_count / (float)(stat_period));
+            recorder.Add("Rewards/Goals", goals_reward / (float)stat_period);
+            recorder.Add("Rewards/Dense", dense_reward / (float)stat_period);
+            recorder.Add("Rewards/Collisions", collisions_reward / (float)stat_period);
+            recorder.Add("Rewards/Time", time_reward / (float)stat_period);
+            recorder.Add("Rewards/Distance", distance_reward / (float)stat_period);
+            recorder.Add("Rewards/Allignment", allignment_reward / (float)stat_period);
+            time_reward = 0;
+            distance_reward = 0;
+            allignment_reward = 0;
+            episode_count = 0;
+            goals_achieved_count = 0;
+            timeouts_count = 0;
+            collisions_count = 0;
+            dense_reward = 0;
+            collisions_reward = 0;
+            goals_reward = 0;
+        }
+        if (isTraining == false) print("Episode: " + episode_count + " Goals: " + goals_achieved_count + " Collisions: " + collisions_count + " Timeouts: " + timeouts_count);
+        episode_count++;
     }
 }
