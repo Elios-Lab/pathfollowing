@@ -126,7 +126,7 @@ public class GeneralizationAgent : Agent {
         // Add dense reward
         float distance = Mathf.Abs(_target.transform.position.x - transform.position.x) + Mathf.Abs(_target.transform.position.z - transform.position.z); 
         float alignment = Mathf.Abs(Vector3.Dot(agent_forward, target_forward));
-        float alignmentDistance = Mathf.Abs(Vector3.Dot(agent_forward, target_position - agent_position));
+        float alignmentDistance = Mathf.Abs(Vector3.Dot(agent_forward, target_position - agent_position)); // To learn to go over the target
 
         DenseReward(alignment, time, distance, alignmentDistance);
         //Debug.Log("obs1: " + ((target_position - agent_position) / (float)maxObs) + " obs2: " + velocity + " obs3: " + agent_forward + " obs4: " + target_forward);
