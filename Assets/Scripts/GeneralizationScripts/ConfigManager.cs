@@ -167,29 +167,41 @@ public class ConfigManager : MonoBehaviour
             
             if(Mathf.Abs(distanceX) < deltaTargetAgent)
             {                
-                if(distanceX < 0)
+                if(distanceX > 0)
                 {
                     x_base += (deltaTargetAgent - distanceX);
-                    Debug.Log("Minore lungo X negativo");
+                    if (x_base >= maxX)
+                        x_base -= 1;
+
+                    Debug.Log("Minore X positivo");
                 }
                 else
                 {
-                    x_base -= (-deltaTargetAgent + distanceX);
-                    Debug.Log("Minore lungo X positivo");
+                    x_base -= (deltaTargetAgent - Mathf.Abs(distanceX));
+                    if (x_base <= -maxX)
+                        x_base += 1;
+
+                    Debug.Log("Minore X negativo");
                 }
             }
 
-            if(Mathf.Abs(distanceZ) < deltaTargetAgent)
-            {                
-                if(distanceZ < 0)
+            if (Mathf.Abs(distanceZ) < deltaTargetAgent)
+            {
+                if (distanceZ > 0)
                 {
                     z_base += (deltaTargetAgent - distanceZ);
-                    Debug.Log("Minore lungo Z negativo");
+                    if (z_base >= maxZ)
+                        z_base -= 1;
+
+                    Debug.Log("Minore Z positivo");
                 }
                 else
                 {
-                    z_base -= (-deltaTargetAgent + distanceZ);
-                    Debug.Log("Minore lungo Z positivo");
+                    z_base -= (deltaTargetAgent - Mathf.Abs(distanceZ));
+                    if (z_base <= -maxZ)
+                        z_base += 1;
+
+                    Debug.Log("Minore Z negativo");
                 }
             }
         }
