@@ -256,10 +256,13 @@ MonoBehaviour:
   maxIteration: 10
   isOver: 0
   cellWidth: 10
-  environmentComplexity: 6
+  environmentComplexity: 2
   obstacleToSpawn: {fileID: 8647449929694869195, guid: 5eb180401f7652e4ea07c72251ee7e78,
     type: 3}
-  staticObstacleToSpawn: {fileID: 0}
+  staticObstacleToSpawn: {fileID: 7840964818332418059, guid: 79a094a1f64eb37428bf9aaec41f23f7,
+    type: 3}
+  staticAlignedObstacleToSpawn: {fileID: 8434443159396147489, guid: 65942bed482759d42a2c029bef7fb8ae,
+    type: 3}
 --- !u!1 &486041931 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8319894326139446603, guid: 7d58252adac394d5e9c5b72501a6d336,
@@ -503,7 +506,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: a0b3ace4459048f48a20fff597102f4e,
+      objectReference: {fileID: 5022602860645237092, guid: a2b2a44553e295b4e95645eb61f43fb1,
         type: 3}
     - target: {fileID: 630971112755342598, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}

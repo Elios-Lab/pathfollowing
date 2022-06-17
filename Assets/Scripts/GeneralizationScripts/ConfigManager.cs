@@ -97,8 +97,7 @@ public class ConfigManager : MonoBehaviour
                     z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
                     rotation = Random.Range(0, 360);
                     break;
-            }
-            
+            }            
 
             //Setting properties
             agent.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -129,8 +128,8 @@ public class ConfigManager : MonoBehaviour
                 z_base = 2 * carLength;
                 break;
             case EnvironmentComplexity.ENTRY:
-                x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
-                z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                x_base = Random.Range(-Mathf.Floor(maxX) * 9/10, Mathf.Floor(maxX) * 9/10);
+                z_base = Random.Range(-Mathf.Floor(maxZ) * 9/10, Mathf.Floor(maxZ) * 9/10);
                 break;
             case EnvironmentComplexity.MEDIUM:
                 x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));

@@ -38,6 +38,7 @@ public class GeneralizationAgent : Agent {
     private float distance_reward = 0;
     private float allignment_reward = 0;
     private float collisions_reward = 0;
+    private float alignmentDistance_reward = 0;
     private float goals_reward = 0;
     
     private double maxObs; // To normalize observationss
@@ -151,6 +152,7 @@ public class GeneralizationAgent : Agent {
         time_reward += tc;
         distance_reward += dc;
         allignment_reward += ac;
+        alignmentDistance_reward += adc;
     }
 
     // Goal reward
@@ -193,6 +195,7 @@ public class GeneralizationAgent : Agent {
             recorder.Add("Rewards/Time", time_reward / (float)stat_period);
             recorder.Add("Rewards/Distance", distance_reward / (float)stat_period);
             recorder.Add("Rewards/Allignment", allignment_reward / (float)stat_period);
+            recorder.Add("Rewards/alignmentDistance_contribution", alignmentDistance_reward / (float)stat_period);
             time_reward = 0;
             distance_reward = 0;
             allignment_reward = 0;
