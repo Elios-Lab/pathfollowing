@@ -2,41 +2,41 @@
     "PathFollowing": {
         "checkpoints": [
             {
-                "steps": 8999946,
-                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-8999946.onnx",
-                "reward": 8.477142900900011,
-                "creation_time": 1655395796.7570512
+                "steps": 10406429,
+                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-10406429.onnx",
+                "reward": 9.328342612832785,
+                "creation_time": 1655473171.880043
             },
             {
-                "steps": 9499972,
-                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-9499972.onnx",
-                "reward": 9.071393622061874,
-                "creation_time": 1655404685.8136768
+                "steps": 10499885,
+                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-10499885.onnx",
+                "reward": 9.173746063273368,
+                "creation_time": 1655474826.7266865
             },
             {
-                "steps": 9582734,
-                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-9582734.onnx",
-                "reward": 8.388433284958204,
-                "creation_time": 1655406191.0741677
+                "steps": 10555635,
+                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-10555635.onnx",
+                "reward": 9.231767450154663,
+                "creation_time": 1655475874.0027974
             },
             {
-                "steps": 9597613,
-                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-9597613.onnx",
-                "reward": 9.531516980069378,
-                "creation_time": 1655406777.58527
+                "steps": 10580455,
+                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-10580455.onnx",
+                "reward": 9.412020725777829,
+                "creation_time": 1655476621.8610368
             },
             {
-                "steps": 9605292,
-                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-9605292.onnx",
-                "reward": 9.38775074109435,
-                "creation_time": 1655446628.5475774
+                "steps": 10623146,
+                "file_path": "results\\Entry_reward01\\PathFollowing\\PathFollowing-10623146.onnx",
+                "reward": 9.465655397574107,
+                "creation_time": 1655477758.7230928
             }
         ],
         "final_checkpoint": {
-            "steps": 9605292,
+            "steps": 10623146,
             "file_path": "results\\Entry_reward01\\PathFollowing.onnx",
-            "reward": 9.38775074109435,
-            "creation_time": 1655446628.5475774
+            "reward": 9.465655397574107,
+            "creation_time": 1655477758.7230928
         }
     },
     "metadata": {

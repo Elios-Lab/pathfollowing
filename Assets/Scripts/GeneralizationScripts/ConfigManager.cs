@@ -63,14 +63,14 @@ public class ConfigManager : MonoBehaviour
                     rotation = 0f;
                     break;
                 case EnvironmentComplexity.ENTRY:
-                    x_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                    x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
                     z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
                     rotation = Random.Range(0,360);
                     break;
                 case EnvironmentComplexity.MEDIUM:
                     x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
-                    z_base = Random.Range(-Mathf.Floor(maxZ), -Mathf.Floor(maxZ) * 5 / 6);
-                    rotation = Random.Range(-45, 45);
+                    z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                    rotation = Random.Range(0, 360);
                     break;
                 case EnvironmentComplexity.ROOM1:
                     x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
@@ -119,7 +119,7 @@ public class ConfigManager : MonoBehaviour
         float x_base;
         float z_base; 
         float distanceX, distanceZ;
-        float deltaTargetAgent = 2 * carLength;
+        float deltaTargetAgent = 5 * carLength;
 
         switch(environmentComplexity)
         {
@@ -128,12 +128,12 @@ public class ConfigManager : MonoBehaviour
                 z_base = 2 * carLength;
                 break;
             case EnvironmentComplexity.ENTRY:
-                x_base = Random.Range(-Mathf.Floor(maxX) * 9/10, Mathf.Floor(maxX) * 9/10);
-                z_base = Random.Range(-Mathf.Floor(maxZ) * 9/10, Mathf.Floor(maxZ) * 9/10);
+                x_base = Random.Range(-Mathf.Floor(maxX) * 7/10, Mathf.Floor(maxX) * 7/10);
+                z_base = Random.Range(-Mathf.Floor(maxZ) * 7/10, Mathf.Floor(maxZ) * 7/10);
                 break;
             case EnvironmentComplexity.MEDIUM:
-                x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
-                z_base = Random.Range(Mathf.Floor(maxZ) * 5 / 6, Mathf.Floor(maxZ));
+                x_base = Random.Range(-Mathf.Floor(maxX) * 7/10, Mathf.Floor(maxX) * 7/10);
+                z_base = Random.Range(-Mathf.Floor(maxZ) * 7/10, Mathf.Floor(maxZ) * 7/10);
                 break;
             case EnvironmentComplexity.ROOM1:
                 x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
@@ -158,52 +158,51 @@ public class ConfigManager : MonoBehaviour
         }        
 
         // To avoid target too near the agent
-        if(environmentComplexity == EnvironmentComplexity.ENTRY)
-        {
-            distanceX = x_base - agent.transform.position.x;
-            distanceZ = z_base - agent.transform.position.z;
+        
+		distanceX = x_base - agent.transform.position.x;
+		distanceZ = z_base - agent.transform.position.z;
 
-            
-            if(Mathf.Abs(distanceX) < deltaTargetAgent)
-            {                
-                if(distanceX > 0)
-                {
-                    x_base += (deltaTargetAgent - distanceX);
-                    if (x_base >= maxX)
-                        x_base -= 1;
+		
+		if(Mathf.Abs(distanceX) < deltaTargetAgent)
+		{                
+			if(distanceX > 0)
+			{
+				x_base += (deltaTargetAgent - distanceX);
+				if (x_base >= maxX)
+					x_base = maxX;
 
-                    Debug.Log("Minore X positivo");
-                }
-                else
-                {
-                    x_base -= (deltaTargetAgent - Mathf.Abs(distanceX));
-                    if (x_base <= -maxX)
-                        x_base += 1;
+				Debug.Log("Minore X positivo");
+			}
+			else
+			{
+				x_base -= (deltaTargetAgent - Mathf.Abs(distanceX));
+				if (x_base <= -maxX)
+					x_base = maxX;
 
-                    Debug.Log("Minore X negativo");
-                }
-            }
+				Debug.Log("Minore X negativo");
+			}
+		}
 
-            if (Mathf.Abs(distanceZ) < deltaTargetAgent)
-            {
-                if (distanceZ > 0)
-                {
-                    z_base += (deltaTargetAgent - distanceZ);
-                    if (z_base >= maxZ)
-                        z_base -= 1;
+		if(Mathf.Abs(distanceZ) < deltaTargetAgent)
+		{                
+			if(distanceZ > 0)
+			{
+				z_base += (deltaTargetAgent - distanceZ);
+				if (z_base >= maxZ)
+					z_base = maxZ;
 
-                    Debug.Log("Minore Z positivo");
-                }
-                else
-                {
-                    z_base -= (deltaTargetAgent - Mathf.Abs(distanceZ));
-                    if (z_base <= -maxZ)
-                        z_base += 1;
+				Debug.Log("Minore Z positivo");
+			}
+			else
+			{
+				z_base -= (deltaTargetAgent - Mathf.Abs(distanceZ));
+				if (z_base <= -maxZ)
+					z_base = maxX;
 
-                    Debug.Log("Minore Z negativo");
-                }
-            }
-        }
+				Debug.Log("Minore Z negativo");
+			}
+		}
+        
 
         //Setting target position              
         goal.transform.localPosition = new Vector3(x_base, 1, z_base);

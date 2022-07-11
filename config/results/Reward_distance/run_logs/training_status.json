@@ -1,0 +1,65 @@
+{
+    "PathFollowing": {
+        "checkpoints": [
+            {
+                "steps": 8499912,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-8499912.onnx",
+                "reward": 9.494650706075705,
+                "creation_time": 1657106945.8244429,
+                "auxillary_file_paths": [
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-8499912.pt"
+                ]
+            },
+            {
+                "steps": 8999967,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-8999967.onnx",
+                "reward": 9.570685575342615,
+                "creation_time": 1657109775.522544,
+                "auxillary_file_paths": [
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-8999967.pt"
+                ]
+            },
+            {
+                "steps": 9499954,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-9499954.onnx",
+                "reward": 9.55058179217074,
+                "creation_time": 1657112641.4895408,
+                "auxillary_file_paths": [
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-9499954.pt"
+                ]
+            },
+            {
+                "steps": 9999984,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-9999984.onnx",
+                "reward": 9.708495164724443,
+                "creation_time": 1657115506.025193,
+                "auxillary_file_paths": [
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-9999984.pt"
+                ]
+            },
+            {
+                "steps": 10088075,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-10088075.onnx",
+                "reward": 5.426972329616547,
+                "creation_time": 1657116024.0799837,
+                "auxillary_file_paths": [
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-10088075.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10088075,
+            "file_path": "results\\Reward_distance\\PathFollowing.onnx",
+            "reward": 5.426972329616547,
+            "creation_time": 1657116024.0799837,
+            "auxillary_file_paths": [
+                "results\\Reward_distance\\PathFollowing\\PathFollowing-10088075.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.12.0+cpu"
+    }
+}

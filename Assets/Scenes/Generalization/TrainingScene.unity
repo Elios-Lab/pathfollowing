@@ -819,6 +819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8319894326139446601, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319894326139446601, guid: 7d58252adac394d5e9c5b72501a6d336,
+        type: 3}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
@@ -891,6 +896,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RayLength
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743638570533762065, guid: 7d58252adac394d5e9c5b72501a6d336,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8319894326139446607, guid: 7d58252adac394d5e9c5b72501a6d336, type: 3}

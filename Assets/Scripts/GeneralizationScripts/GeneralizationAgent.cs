@@ -143,8 +143,8 @@ public class GeneralizationAgent : Agent {
         //float tc = time_contribution(0.1f, time, distance);
         float tc = 0;
         float dc = distance_contribution(0.01f, distance);
-        float ac = alignment_contribution(10f, alignment, distance);
-        float adc = alignmentDistance_contribution(10f, alignment, distance);
+        float ac = alignment_contribution(0, alignment, distance);
+        float adc = alignmentDistance_contribution(0, alignment, distance);
         float reward = 0.01f * ( tc + dc + ac + adc);
         //Debug.Log("dc: " + dc + " ac: " + ac + " tc: " + tc + "reward: " + reward);
         if (isTraining == true) AddReward(reward);
@@ -166,7 +166,7 @@ public class GeneralizationAgent : Agent {
 
     // Collision reward
     public void CollisionReward() {
-        float reward = -0.5f;
+        float reward = -5f;
         //Debug.Log(reward);
         if (isTraining == true) AddReward(reward);
         collisions_reward += reward;
@@ -178,7 +178,9 @@ public class GeneralizationAgent : Agent {
 
     // Timeout
      public void TimeOut() {
-        timeouts_count++;
+        float reward = -0.5f;
+		if (isTraining == true) AddReward(reward);
+		timeouts_count++;
         EndEpisode();
     }
 
