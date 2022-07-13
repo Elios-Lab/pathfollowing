@@ -39,6 +39,7 @@ public class GeneralizationAgent : Agent {
     private float allignment_reward = 0;
     private float collisions_reward = 0;
     private float alignmentDistance_reward = 0;
+	private float velocity_reward = 0;
     private float goals_reward = 0;
     
     private double maxObs; // To normalize observationss
@@ -72,6 +73,9 @@ public class GeneralizationAgent : Agent {
         _controller.CurrentSteeringAngle = vectorAction.ContinuousActions[0];
         _controller.CurrentAcceleration = vectorAction.ContinuousActions[1];
         _controller.CurrentBrakeTorque = vectorAction.ContinuousActions[2];
+		
+		Debug.Log("\n Action0: " + vectorAction.ContinuousActions[0] + " - Action1: " + vectorAction.ContinuousActions[1] + " - Action2: " + vectorAction.ContinuousActions[2]);
+		Debug.Log("\n Velocity: " + _rigidBody.velocity);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut) {
@@ -90,16 +94,19 @@ public class GeneralizationAgent : Agent {
         if (other.gameObject.CompareTag("barrier"))  
         {
             CollisionReward(); 
+			EndEpisode();
             //Debug.Log("Collisione Barrier-Agent");
         }
         if (other.gameObject.CompareTag("obstacle"))
         {
             CollisionReward();
+			EndEpisode();
             //Debug.Log("Collisione Obstacle-Agent");
         }
         if (other.gameObject.CompareTag("obstacleAligned"))
         {
             CollisionReward();
+			EndEpisode();
             //Debug.Log("Collisione ObstacleAligned-Agent");
         }
     }
@@ -129,7 +136,7 @@ public class GeneralizationAgent : Agent {
         float alignment = Mathf.Abs(Vector3.Dot(agent_forward, target_forward));
         float alignmentDistance = Mathf.Abs(Vector3.Dot(agent_forward, target_position - agent_position)); // To learn to go over the target
 
-        DenseReward(alignment, time, distance, alignmentDistance);
+        DenseReward(alignment, time, distance, alignmentDistance, _rigidBody.velocity);
         //Debug.Log("obs1: " + ((target_position - agent_position) / (float)maxObs) + " obs2: " + velocity + " obs3: " + agent_forward + " obs4: " + target_forward);
     }    
 
@@ -139,13 +146,24 @@ public class GeneralizationAgent : Agent {
     private float alignment_contribution(float weight, float alignment, float distance) { return (float)(-weight * (1 - alignment) / (distance * distance + 1)); }
     private float alignmentDistance_contribution(float weight, float alignment, float distance) { return (float)(-weight * (1 - alignment) / (distance * distance + 1)); }
     private float time_contribution(float weight, float time, float distance) { return -weight * sigmoid((time/30)-4) * sigmoid(distance-4); }
-    public void DenseReward(float alignment, float time, float distance, float alignmentDistance) {
+	
+	private float velocity_contribution(float weight, Vector3 velocity)
+	{
+		if (Mathf.Abs(velocity[0]) <= 0.05f && Mathf.Abs(velocity[2]) <= 0.05f)
+			return -weight;
+		else
+			return 0;
+	}
+	
+	
+    public void DenseReward(float alignment, float time, float distance, float alignmentDistance, Vector3 velocity) {
         //float tc = time_contribution(0.1f, time, distance);
         float tc = 0;
         float dc = distance_contribution(0.01f, distance);
         float ac = alignment_contribution(0, alignment, distance);
         float adc = alignmentDistance_contribution(0, alignment, distance);
-        float reward = 0.01f * ( tc + dc + ac + adc);
+		float vc = velocity_contribution(1, velocity);
+        float reward = 0.01f * ( tc + dc + ac + adc + vc);
         //Debug.Log("dc: " + dc + " ac: " + ac + " tc: " + tc + "reward: " + reward);
         if (isTraining == true) AddReward(reward);
         dense_reward += reward;
@@ -153,6 +171,7 @@ public class GeneralizationAgent : Agent {
         distance_reward += dc;
         allignment_reward += ac;
         alignmentDistance_reward += adc;
+		velocity_reward += vc;
     }
 
     // Goal reward
@@ -166,7 +185,7 @@ public class GeneralizationAgent : Agent {
 
     // Collision reward
     public void CollisionReward() {
-        float reward = -5f;
+        float reward = -10.0f;
         //Debug.Log(reward);
         if (isTraining == true) AddReward(reward);
         collisions_reward += reward;
@@ -198,6 +217,7 @@ public class GeneralizationAgent : Agent {
             recorder.Add("Rewards/Distance", distance_reward / (float)stat_period);
             recorder.Add("Rewards/Allignment", allignment_reward / (float)stat_period);
             recorder.Add("Rewards/alignmentDistance_contribution", alignmentDistance_reward / (float)stat_period);
+			recorder.Add("Rewards/velocity_contribution", velocity_reward / (float)stat_period);
             time_reward = 0;
             distance_reward = 0;
             allignment_reward = 0;
@@ -208,6 +228,7 @@ public class GeneralizationAgent : Agent {
             dense_reward = 0;
             collisions_reward = 0;
             goals_reward = 0;
+			velocity_reward = 0;
         }
         if (isTraining == false) print("Episode: " + episode_count + " Goals: " + goals_achieved_count + " Collisions: " + collisions_count + " Timeouts: " + timeouts_count);
         episode_count++;
