@@ -72,6 +72,11 @@ public class ConfigManager : MonoBehaviour
                     z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
                     rotation = Random.Range(0, 360);
                     break;
+                case EnvironmentComplexity.ADVANCED:
+                    x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
+                    z_base = Random.Range(-Mathf.Floor(maxZ), Mathf.Floor(maxZ));
+                    rotation = Random.Range(0, 360);
+                    break;
                 case EnvironmentComplexity.ROOM1:
                     x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
                     z_base = Random.Range(-Mathf.Floor(maxZ), -Mathf.Floor(maxZ) * 5/6);
@@ -135,6 +140,10 @@ public class ConfigManager : MonoBehaviour
                 x_base = Random.Range(-Mathf.Floor(maxX) * 7/10, Mathf.Floor(maxX) * 7/10);
                 z_base = Random.Range(-Mathf.Floor(maxZ) * 7/10, Mathf.Floor(maxZ) * 7/10);
                 break;
+            case EnvironmentComplexity.ADVANCED:
+                x_base = Random.Range(-Mathf.Floor(maxX) * 7 / 10, Mathf.Floor(maxX) * 7 / 10);
+                z_base = Random.Range(-Mathf.Floor(maxZ) * 7 / 10, Mathf.Floor(maxZ) * 7 / 10);
+                break;
             case EnvironmentComplexity.ROOM1:
                 x_base = Random.Range(-Mathf.Floor(maxX), Mathf.Floor(maxX));
                 z_base = Random.Range(Mathf.Floor(maxZ) * 5/6, Mathf.Floor(maxZ));
@@ -171,7 +180,7 @@ public class ConfigManager : MonoBehaviour
 				if (x_base >= maxX)
 					x_base = maxX;
 
-				Debug.Log("Minore X positivo");
+				//Debug.Log("Minore X positivo");
 			}
 			else
 			{
@@ -179,7 +188,7 @@ public class ConfigManager : MonoBehaviour
 				if (x_base <= -maxX)
 					x_base = maxX;
 
-				Debug.Log("Minore X negativo");
+				//Debug.Log("Minore X negativo");
 			}
 		}
 
@@ -191,7 +200,7 @@ public class ConfigManager : MonoBehaviour
 				if (z_base >= maxZ)
 					z_base = maxZ;
 
-				Debug.Log("Minore Z positivo");
+				//Debug.Log("Minore Z positivo");
 			}
 			else
 			{
@@ -199,7 +208,7 @@ public class ConfigManager : MonoBehaviour
 				if (z_base <= -maxZ)
 					z_base = maxX;
 
-				Debug.Log("Minore Z negativo");
+				//Debug.Log("Minore Z negativo");
 			}
 		}
         
@@ -234,7 +243,7 @@ public class ConfigManager : MonoBehaviour
                 break;
             case EnvironmentComplexity.ADVANCED:
                 numberOfDynamicObstacle = 0;
-                numberOfAlignedObstacle = 1;
+                numberOfAlignedObstacle = 3;
                 break;
             case EnvironmentComplexity.EXTREME:
                 numberOfDynamicObstacle = 0;
@@ -284,7 +293,7 @@ public class ConfigManager : MonoBehaviour
 
         for (int i = 0; i < numberOfAlignedObstacle; i++)
         {
-            Vector3 center = ((goal.transform.position + agent.transform.position) * 0.5f);            
+            Vector3 center = (goal.transform.position + agent.transform.position) * 0.5f;           
             Instantiate(staticAlignedObstacleToSpawn, center, Quaternion.Euler(0, rotation, 0), environment.transform);
         }
 
@@ -308,7 +317,7 @@ public class ConfigManager : MonoBehaviour
         z_base = max.localScale.x / 2 - max.localScale.x / 3;
         staticObstacleToSpawn.transform.localPosition = new Vector3(x_base + environment.transform.position.x, 
                                             GameObject.FindWithTag("barrier").GetComponentInChildren<Transform>().position.y, 
-                                            z_base + environment.transform.position.z); 
+                                            z_base + environment.transform.position.z); Debug.Log("Ciao 2");
         Instantiate(staticObstacleToSpawn, staticObstacleToSpawn.transform.localPosition, Quaternion.Euler(0, 0, 0), environment.transform);   
         
     }
@@ -330,24 +339,45 @@ public class ConfigManager : MonoBehaviour
             //Debug.Log("randObstacle");
         }
 
+        Vector3 targetPosition = GameObject.FindGameObjectWithTag("Finish").transform.localPosition;
+        Vector3 agentPosition = GameObject.FindGameObjectWithTag("agent").transform.localPosition;
+        Vector3 center = (targetPosition + agentPosition) * 0.5f;
+
+        float zAngle = (targetPosition.z - agentPosition.z);
+        float xAngle = (targetPosition.x - agentPosition.x);        
+        float angleTan = Mathf.Atan((targetPosition.z - agentPosition.z) / (targetPosition.x - agentPosition.x));
+        float angleRad = -angleTan;
+        float angleGrad;
+        float tempRand;
+
+        angleRad += Mathf.PI / 2;
+        angleGrad = angleRad * 180 / Mathf.PI;
+        //Debug.Log("Angle: " + angle);
+        //Debug.Log("zAngle: " + zAngle + "   xAngle: " + xAngle);
+        int i = 0;
         foreach (GameObject obstacle in obstaclesAligned)
         {
-            Vector3 targetPosition = GameObject.FindGameObjectWithTag("Finish").transform.localPosition;
-            Vector3 agentPosition = GameObject.FindGameObjectWithTag("agent").transform.localPosition;
-            Vector3 center = (targetPosition + agentPosition) * 0.5f;
-            offsetAlignedObstacle = Random.Range(-25, 25);            
-            float angle = Mathf.Atan( Mathf.Abs( (targetPosition.z - agentPosition.z) / (targetPosition.x - agentPosition.x) ) );
-            //center.x = center.x + Mathf.Cos(angle) * offsetAlignedObstacle;
-            //center.z = center.z + Mathf.Sin(angle) * offsetAlignedObstacle;
-
-
-            obstacle.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+            obstacle.transform.rotation = Quaternion.Euler(0, angleGrad + Random.Range(-30,30), 0);
             obstacle.transform.localPosition = center;
+
+            if (i != 0)
+            {
+                tempRand = Random.Range(12,15);
+                obstacle.transform.localPosition = new Vector3(center.x + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad), center.y,
+                                                                center.z + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad));
+                //Debug.Log("tempRand1[" + i + "]: " + tempRand);
+
+                tempRand = Random.Range(0, Mathf.Sqrt(Mathf.Pow(targetPosition.x - center.x, 2) + Mathf.Pow(targetPosition.z - center.z, 2)) * 4/5);
+                obstacle.transform.localPosition += new Vector3(tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad - Mathf.PI / 2), 0,
+                                                                tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad - Mathf.PI / 2));
+                //Debug.Log("tempRand2[" + i + "]: " + tempRand);
+            }
             //Debug.Log("Finish: x=" + targetPosition.x + " z=" + targetPosition.z);
             //Debug.Log("Agent: x=" + agentPosition.x + " z=" + agentPosition.z);
             //Debug.Log("Center: x=" + center.x + " z=" + center.z);
             //Debug.Log("Angle: " + angle + " rotation: " + rotation);
+           
+            i++;
         }
     }
-
 }

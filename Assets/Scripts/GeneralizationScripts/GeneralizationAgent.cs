@@ -74,8 +74,8 @@ public class GeneralizationAgent : Agent {
         _controller.CurrentAcceleration = vectorAction.ContinuousActions[1];
         _controller.CurrentBrakeTorque = vectorAction.ContinuousActions[2];
 		
-		Debug.Log("\n Action0: " + vectorAction.ContinuousActions[0] + " - Action1: " + vectorAction.ContinuousActions[1] + " - Action2: " + vectorAction.ContinuousActions[2]);
-		Debug.Log("\n Velocity: " + _rigidBody.velocity);
+		//Debug.Log("\n Action0: " + vectorAction.ContinuousActions[0] + " - Action1: " + vectorAction.ContinuousActions[1] + " - Action2: " + vectorAction.ContinuousActions[2]);
+		//Debug.Log("\n Velocity: " + _rigidBody.velocity);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut) {
@@ -185,7 +185,7 @@ public class GeneralizationAgent : Agent {
 
     // Collision reward
     public void CollisionReward() {
-        float reward = -10.0f;
+        float reward = -20.0f;
         //Debug.Log(reward);
         if (isTraining == true) AddReward(reward);
         collisions_reward += reward;
