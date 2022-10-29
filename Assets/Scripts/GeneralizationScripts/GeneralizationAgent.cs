@@ -33,6 +33,11 @@ public class GeneralizationAgent : Agent {
     private int goals_achieved_count = 0;
     private int timeouts_count = 0;
 
+    private int test_episode_count = 0;
+    private int test_collisions_count = 0;
+    private int test_goals_achieved_count = 0;
+    private int test_timeouts_count = 0;
+
     private float dense_reward = 0;
     private float time_reward = 0;
     private float distance_reward = 0;
@@ -180,6 +185,7 @@ public class GeneralizationAgent : Agent {
         if (isTraining == true) AddReward(reward);
         goals_reward += reward;
         goals_achieved_count++;
+        test_goals_achieved_count++;
         EndEpisode();
     }
 
@@ -191,6 +197,7 @@ public class GeneralizationAgent : Agent {
         collisions_reward += reward;
         if(!hasCollided) {
             collisions_count++;
+            test_collisions_count++;
             hasCollided = true;
         }
     }
@@ -200,37 +207,51 @@ public class GeneralizationAgent : Agent {
         float reward = -0.5f;
 		if (isTraining == true) AddReward(reward);
 		timeouts_count++;
+        test_timeouts_count++;
         EndEpisode();
     }
 
     public void UpdateRatio()
     {
-        if (episode_count >= stat_period)
+        //if //(!isTraining)
+        //{
+            Debug.Log("Episode: " + test_episode_count + " Goals: " + test_goals_achieved_count + " Collisions: " + test_collisions_count + " Timeouts: " + test_timeouts_count);
+        //}
+        //else
         {
-            recorder.Add("Events/Goals", 100 * goals_achieved_count / (float)stat_period);
-            recorder.Add("Events/Timeouts", 100 * timeouts_count / (float)stat_period);
-            recorder.Add("Events/Collisions", 100 * collisions_count / (float)(stat_period));
-            recorder.Add("Rewards/Goals", goals_reward / (float)stat_period);
-            recorder.Add("Rewards/Dense", dense_reward / (float)stat_period);
-            recorder.Add("Rewards/Collisions", collisions_reward / (float)stat_period);
-            recorder.Add("Rewards/Time", time_reward / (float)stat_period);
-            recorder.Add("Rewards/Distance", distance_reward / (float)stat_period);
-            recorder.Add("Rewards/Allignment", allignment_reward / (float)stat_period);
-            recorder.Add("Rewards/alignmentDistance_contribution", alignmentDistance_reward / (float)stat_period);
-			recorder.Add("Rewards/velocity_contribution", velocity_reward / (float)stat_period);
-            time_reward = 0;
-            distance_reward = 0;
-            allignment_reward = 0;
-            episode_count = 0;
-            goals_achieved_count = 0;
-            timeouts_count = 0;
-            collisions_count = 0;
-            dense_reward = 0;
-            collisions_reward = 0;
-            goals_reward = 0;
-			velocity_reward = 0;
+
+            if (episode_count >= stat_period)
+            {
+                recorder.Add("Events/Goals", 100 * goals_achieved_count / (float)stat_period);
+                recorder.Add("Events/Timeouts", 100 * timeouts_count / (float)stat_period);
+                recorder.Add("Events/Collisions", 100 * collisions_count / (float)(stat_period));
+                recorder.Add("Rewards/Goals", goals_reward / (float)stat_period);
+                recorder.Add("Rewards/Dense", dense_reward / (float)stat_period);
+                recorder.Add("Rewards/Collisions", collisions_reward / (float)stat_period);
+                recorder.Add("Rewards/Time", time_reward / (float)stat_period);
+                recorder.Add("Rewards/Distance", distance_reward / (float)stat_period);
+                recorder.Add("Rewards/Allignment", allignment_reward / (float)stat_period);
+                recorder.Add("Rewards/alignmentDistance_contribution", alignmentDistance_reward / (float)stat_period);
+                recorder.Add("Rewards/velocity_contribution", velocity_reward / (float)stat_period);
+                time_reward = 0;
+                distance_reward = 0;
+                allignment_reward = 0;
+                episode_count = 0;
+                goals_achieved_count = 0;
+                timeouts_count = 0;
+                collisions_count = 0;
+                dense_reward = 0;
+                collisions_reward = 0;
+                goals_reward = 0;
+                velocity_reward = 0;
+            }
+            if (isTraining == false)
+            {
+                //print("Episode: " + episode_count + " Goals: " + goals_achieved_count + " Collisions: " + collisions_count + " Timeouts: " + timeouts_count);
+            }
         }
-        if (isTraining == false) print("Episode: " + episode_count + " Goals: " + goals_achieved_count + " Collisions: " + collisions_count + " Timeouts: " + timeouts_count);
+        
         episode_count++;
+        test_episode_count++;
     }
 }

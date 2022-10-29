@@ -312,7 +312,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000
+  MaxStep: 50000
 --- !u!1 &784643597
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +508,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: a2b2a44553e295b4e95645eb61f43fb1,
+      objectReference: {fileID: 5022602860645237092, guid: 0f7edbaeb5ae7f848bdfdbf42d47733f,
         type: 3}
     - target: {fileID: 630971112755342598, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
@@ -823,7 +823,7 @@ PrefabInstance:
     - target: {fileID: 8319894326139446600, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22
+      value: -26
       objectReference: {fileID: 0}
     - target: {fileID: 8319894326139446601, guid: 7d58252adac394d5e9c5b72501a6d336,
         type: 3}
@@ -899,6 +899,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RandomEnv
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743638570533762064, guid: 7d58252adac394d5e9c5b72501a6d336,
+        type: 3}
+      propertyPath: m_RayLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743638570533762065, guid: 7d58252adac394d5e9c5b72501a6d336,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8319894326139446607, guid: 7d58252adac394d5e9c5b72501a6d336, type: 3}

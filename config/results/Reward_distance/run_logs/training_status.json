@@ -2,64 +2,64 @@
     "PathFollowing": {
         "checkpoints": [
             {
-                "steps": 8499912,
-                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-8499912.onnx",
-                "reward": 9.494650706075705,
-                "creation_time": 1657106945.8244429,
+                "steps": 398999896,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-398999896.onnx",
+                "reward": 9.384857831141316,
+                "creation_time": 1665978019.9385746,
                 "auxillary_file_paths": [
-                    "results\\Reward_distance\\PathFollowing\\PathFollowing-8499912.pt"
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-398999896.pt"
                 ]
             },
             {
-                "steps": 8999967,
-                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-8999967.onnx",
-                "reward": 9.570685575342615,
-                "creation_time": 1657109775.522544,
+                "steps": 399499988,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-399499988.onnx",
+                "reward": 9.510188157545691,
+                "creation_time": 1665981237.418264,
                 "auxillary_file_paths": [
-                    "results\\Reward_distance\\PathFollowing\\PathFollowing-8999967.pt"
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-399499988.pt"
                 ]
             },
             {
-                "steps": 9499954,
-                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-9499954.onnx",
-                "reward": 9.55058179217074,
-                "creation_time": 1657112641.4895408,
+                "steps": 399999958,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-399999958.onnx",
+                "reward": 9.366775579766912,
+                "creation_time": 1665984452.5087879,
                 "auxillary_file_paths": [
-                    "results\\Reward_distance\\PathFollowing\\PathFollowing-9499954.pt"
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-399999958.pt"
                 ]
             },
             {
-                "steps": 9999984,
-                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-9999984.onnx",
-                "reward": 9.708495164724443,
-                "creation_time": 1657115506.025193,
+                "steps": 400000005,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-400000005.onnx",
+                "reward": 9.367711035828842,
+                "creation_time": 1665984452.6155024,
                 "auxillary_file_paths": [
-                    "results\\Reward_distance\\PathFollowing\\PathFollowing-9999984.pt"
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-400000005.pt"
                 ]
             },
             {
-                "steps": 10088075,
-                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-10088075.onnx",
-                "reward": 5.426972329616547,
-                "creation_time": 1657116024.0799837,
+                "steps": 400004265,
+                "file_path": "results\\Reward_distance\\PathFollowing\\PathFollowing-400004265.onnx",
+                "reward": 9.821828275623888,
+                "creation_time": 1667039511.8431003,
                 "auxillary_file_paths": [
-                    "results\\Reward_distance\\PathFollowing\\PathFollowing-10088075.pt"
+                    "results\\Reward_distance\\PathFollowing\\PathFollowing-400004265.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 10088075,
+            "steps": 400004265,
             "file_path": "results\\Reward_distance\\PathFollowing.onnx",
-            "reward": 5.426972329616547,
-            "creation_time": 1657116024.0799837,
+            "reward": 9.821828275623888,
+            "creation_time": 1667039511.8431003,
             "auxillary_file_paths": [
-                "results\\Reward_distance\\PathFollowing\\PathFollowing-10088075.pt"
+                "results\\Reward_distance\\PathFollowing\\PathFollowing-400004265.pt"
             ]
         }
     },
     "metadata": {
         "stats_format_version": "0.3.0",
         "mlagents_version": "0.29.0",
-        "torch_version": "1.12.0+cpu"
+        "torch_version": "1.12.1+cpu"
     }
 }

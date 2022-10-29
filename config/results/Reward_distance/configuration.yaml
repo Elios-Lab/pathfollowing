@@ -49,7 +49,7 @@ behaviors:
     hyperparameters:
       batch_size: 512
       buffer_size: 51200
-      learning_rate: 0.0001
+      learning_rate: 0.0
       beta: 0.005
       epsilon: 0.2
       lambd: 0.95
@@ -80,7 +80,7 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 50000000
+    max_steps: 410000000
     time_horizon: 128
     summary_freq: 10000
     threaded: false
@@ -100,7 +100,7 @@ engine_settings:
   width: 84
   height: 84
   quality_level: 5
-  time_scale: 20
+  time_scale: 20.0
   target_frame_rate: -1
   capture_frame_rate: 60
   no_graphics: false
