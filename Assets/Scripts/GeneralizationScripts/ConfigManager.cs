@@ -243,7 +243,7 @@ public class ConfigManager : MonoBehaviour
                 break;
             case EnvironmentComplexity.ADVANCED:
                 numberOfDynamicObstacle = 0;
-                numberOfAlignedObstacle = 3;
+                numberOfAlignedObstacle = 9;
                 break;
             case EnvironmentComplexity.EXTREME:
                 numberOfDynamicObstacle = 0;
@@ -342,7 +342,9 @@ public class ConfigManager : MonoBehaviour
         Vector3 targetPosition = GameObject.FindGameObjectWithTag("Finish").transform.localPosition;
         Vector3 agentPosition = GameObject.FindGameObjectWithTag("agent").transform.localPosition;
         //Vector3 center = ( (targetPosition + agentPosition) * 0.5f );
-        Vector3 center = ( (targetPosition + agentPosition) * 0.5f );
+        Vector3 center1 = ( (targetPosition + agentPosition) * 0.5f );
+        Vector3 center2 = ( (targetPosition + agentPosition) * 0.5f );
+        Vector3 center3 = ( (targetPosition + agentPosition) * 0.5f );
 
         float zAngle = (targetPosition.z - agentPosition.z);
         float xAngle = (targetPosition.x - agentPosition.x);        
@@ -359,7 +361,7 @@ public class ConfigManager : MonoBehaviour
         foreach (GameObject obstacle in obstaclesAligned)
         {
             obstacle.transform.rotation = Quaternion.Euler(0, angleGrad + Random.Range(-30,30), 0);
-            obstacle.transform.localPosition = center;            
+            obstacle.transform.localPosition = center1;            
 
             if (i != 0)
             {
@@ -370,31 +372,51 @@ public class ConfigManager : MonoBehaviour
                 {
                     tempRand = Random.Range(12, 15);
 
-                    obstacle.transform.localPosition = new Vector3(center.x + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad), center.y,
-                                                                    center.z + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad));
+                    obstacle.transform.localPosition = new Vector3(center1.x + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad), center1.y,
+                                                                    center1.z + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad));
                     //Debug.Log("tempRand1[" + i + "]: " + tempRand);
 
-                    tempRand = Random.Range(0, Mathf.Sqrt(Mathf.Pow(targetPosition.x - center.x, 2) + Mathf.Pow(targetPosition.z - center.z, 2)) * 4 / 5);
+                    tempRand = Random.Range(0, Mathf.Sqrt(Mathf.Pow(targetPosition.x - center1.x, 2) + Mathf.Pow(targetPosition.z - center1.z, 2)) * 4 / 5);
                     obstacle.transform.localPosition += new Vector3(tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad - Mathf.PI / 2), 0,
                                                                     tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad - Mathf.PI / 2));
                     //Debug.Log("tempRand2[" + i + "]: " + tempRand);                
                 }
                 else if (i == 3)
                 {
-                    center = ((targetPosition + center) * 0.5f);
-                    obstacle.transform.localPosition = new Vector3(center.x + Mathf.Cos(Mathf.PI - angleRad), center.y,
-                                                                    center.z + Mathf.Sin(Mathf.PI - angleRad));
+                    center2 = ((targetPosition + center1) * 0.5f);
+                    obstacle.transform.localPosition = new Vector3(center2.x + Mathf.Cos(Mathf.PI - angleRad), center2.y,
+                                                                    center2.z + Mathf.Sin(Mathf.PI - angleRad));
 
+                }
+                else if (i >=4 && i <=5)
+                {
+                    tempRand = Random.Range(12, 15);
+
+                    obstacle.transform.localPosition = new Vector3(center2.x + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad), center2.y,
+                                                                    center2.z + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad));
+                    //Debug.Log("tempRand1[" + i + "]: " + tempRand);
+
+                    tempRand = Random.Range(0, Mathf.Sqrt(Mathf.Pow(targetPosition.x - center2.x, 2) + Mathf.Pow(targetPosition.z - center2.z, 2)) * 4 / 5);
+                    obstacle.transform.localPosition += new Vector3(tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad - Mathf.PI / 2), 0,
+                                                                    tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad - Mathf.PI / 2));
+
+                }
+                else if (i == 6)
+                {
+                    //center3 = ((agentPosition + center1) * 0.5f); 
+                    center3 = ((targetPosition + center2) * 0.5f);                  
+                    obstacle.transform.localPosition = new Vector3(center3.x + Mathf.Cos(Mathf.PI - angleRad), center3.y,
+                                                                    center3.z + Mathf.Sin(Mathf.PI - angleRad));
                 }
                 else
                 {
                     tempRand = Random.Range(12, 15);
 
-                    obstacle.transform.localPosition = new Vector3(center.x + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad), center.y,
-                                                                    center.z + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad));
+                    obstacle.transform.localPosition = new Vector3(center3.x + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad), center3.y,
+                                                                    center3.z + tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad));
                     //Debug.Log("tempRand1[" + i + "]: " + tempRand);
 
-                    tempRand = Random.Range(0, Mathf.Sqrt(Mathf.Pow(targetPosition.x - center.x, 2) + Mathf.Pow(targetPosition.z - center.z, 2)) * 4 / 5);
+                    tempRand = Random.Range(0, Mathf.Sqrt(Mathf.Pow(targetPosition.x - center3.x, 2) + Mathf.Pow(targetPosition.z - center3.z, 2)) * 4 / 5);
                     obstacle.transform.localPosition += new Vector3(tempRand * Mathf.Pow(-1.0f, i) * Mathf.Cos(Mathf.PI - angleRad - Mathf.PI / 2), 0,
                                                                     tempRand * Mathf.Pow(-1.0f, i) * Mathf.Sin(Mathf.PI - angleRad - Mathf.PI / 2));
 

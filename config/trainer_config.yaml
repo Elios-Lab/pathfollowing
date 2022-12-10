@@ -27,13 +27,13 @@ behaviors:
             batch_size: 512
             buffer_size: 51200
             learning_rate_schedule: linear
-            learning_rate: 0
+            learning_rate: 1e-4
         network_settings:
             hidden_units: 256
             num_layers: 2
             vis_encode_type: simple
         summary_freq: 10000
-        max_steps: 410.0e6
+        max_steps: 600.0e6
         time_horizon: 128
 
 torch_settings:
