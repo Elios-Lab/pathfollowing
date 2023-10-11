@@ -243,7 +243,7 @@ public class ConfigManager : MonoBehaviour
                 break;
             case EnvironmentComplexity.ADVANCED:
                 numberOfDynamicObstacle = 0;
-                numberOfAlignedObstacle = 9;
+                numberOfAlignedObstacle = 6;
                 break;
             case EnvironmentComplexity.EXTREME:
                 numberOfDynamicObstacle = 0;
