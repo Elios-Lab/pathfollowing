@@ -6,6 +6,7 @@
 * Python: >= 3.8.10
 * ML-Agents: >= 0.25.1 (tested on 0.29.0)
 * ML-Agents Unity package version: 2.0.0
+* Anaconda or Miniconda
 
 To install all the requirements use the command:
 
@@ -13,7 +14,7 @@ To install all the requirements use the command:
 
 or, alternatively:
 
-```pip install -r requirements.txt```
+```conda install -f unity.yml```
 
 ## Useful links:
 
