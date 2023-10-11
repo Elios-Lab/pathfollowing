@@ -199,7 +199,7 @@ public class PathFollowingAgent : Agent {
 
     // Collision reward
     public void CollisionReward() {
-        float reward = -0.01f;
+        float reward = -1f;
         //Debug.Log(reward);
         if (isTraining == true) AddReward(reward);
         collisions_reward += reward;
@@ -207,6 +207,7 @@ public class PathFollowingAgent : Agent {
             collisions_count++;
             hasCollided = true;
         }
+        EndEpisode();
 
         //SaveToFile("test");
     }

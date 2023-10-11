@@ -11,8 +11,6 @@ public class ConfigurationManager : MonoBehaviour
     [SerializeField] public GameObject goal;
     [SerializeField] public ConfigDeserializer parameters;
     [SerializeField] public GameObject carModel;
-    // [SerializeField] public float carLength;
-    // [SerializeField] public float carWidth;
 
     //Variable to set the configuration in training mode or model checking mode
     public bool isTraining;
@@ -129,7 +127,7 @@ public class ConfigurationManager : MonoBehaviour
             agent.GetComponent<CarController>().CurrentBrakeTorque = 0f;
 
             //Setting random rotation
-            agent.transform.rotation = Quaternion.Euler(0, 0, 0);
+            agent.transform.rotation = Quaternion.Euler(0, rotation, 0);
 
             //Setting random position
             agent.transform.position = transform.parent.position + new Vector3(x_base, 0.5f, z_base);
