@@ -1,9 +1,9 @@
 behaviors:
     default:
-        trainer_type: ppo
+        trainer_type: sac
         hyperparameters:
             batch_size: 512 
-            buffer_size: 5120
+            buffer_size: 51200
             learning_rate_schedule: linear
             learning_rate: 1e-4
         network_settings:
@@ -14,7 +14,7 @@ behaviors:
             memory:
                 memory_size: 512
                 sequence_length: 512
-        max_steps: 10.0e5
+        max_steps: 20.0e6
         time_horizon: 64    
         summary_freq: 10000
         reward_signals:
@@ -29,15 +29,15 @@ behaviors:
             learning_rate_schedule: linear
             learning_rate: 1e-4
         network_settings:
-            hidden_units: 128
+            hidden_units: 256
             num_layers: 2
-            vis_encode_type: fully_connected
-        summary_freq: 10000
-        max_steps: 1.0e6
+            vis_encode_type: simple
+        max_steps: 20.0e6
         time_horizon: 128
-
+        summary_freq: 10000
+        
 torch_settings:
-    device: cpu
-
-
-
+    device: cuda
+    
+env_settings:
+    num_envs: 1
