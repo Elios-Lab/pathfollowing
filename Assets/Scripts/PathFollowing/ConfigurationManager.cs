@@ -129,7 +129,7 @@ public class ConfigurationManager : MonoBehaviour
             agent.GetComponent<CarController>().CurrentBrakeTorque = 0f;
 
             //Setting random rotation
-            agent.transform.rotation = Quaternion.Euler(0, 0, 0);
+            agent.transform.rotation = Quaternion.Euler(0, rotation, 0);
 
             //Setting random position
             agent.transform.position = transform.parent.position + new Vector3(x_base, 0.5f, z_base);

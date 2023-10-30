@@ -5299,12 +5299,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AgentPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 9144689784766214375, guid: e43555bd90b0a42db8d71fdd385969b9,
-        type: 3}
-      propertyPath: m_Model
-      value: 
-      objectReference: {fileID: 5022602860645237092, guid: 0c7a7478a5918463c921b9e405e5a30a,
-        type: 3}
     m_RemovedComponents:
     - {fileID: 6671740710838963041, guid: e43555bd90b0a42db8d71fdd385969b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e43555bd90b0a42db8d71fdd385969b9, type: 3}

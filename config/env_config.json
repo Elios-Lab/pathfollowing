@@ -1,7 +1,7 @@
 {
     "car": {
-        "length": 2,
-        "width": 1,
+        "length": 4.9,
+        "width": 2.1,
         "height": 1,
         "weight": 1500,
         "steering": 33,

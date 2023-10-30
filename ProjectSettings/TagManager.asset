@@ -12,6 +12,8 @@ TagManager:
   - ground
   - sensor
   - Checkpoint
+  - obstacle
+  - obstacleAligned
   layers:
   - Default
   - TransparentFX

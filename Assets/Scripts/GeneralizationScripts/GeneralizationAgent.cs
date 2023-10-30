@@ -33,12 +33,21 @@ public class GeneralizationAgent : Agent {
     private int goals_achieved_count = 0;
     private int timeouts_count = 0;
 
+    private int test_episode_count = 0;
+    private int test_collisions_count = 0;
+    private int test_goals_achieved_count = 0;
+    private int test_timeouts_count = 0;
+
     private float dense_reward = 0;
     private float time_reward = 0;
     private float distance_reward = 0;
     private float allignment_reward = 0;
     private float collisions_reward = 0;
+    private float alignmentDistance_reward = 0;
+	private float velocity_reward = 0;
     private float goals_reward = 0;
+    
+    private double maxObs; // To normalize observationss
 
     public override void Initialize() {
         _rigidBody = GetComponent<Rigidbody>();
@@ -48,6 +57,8 @@ public class GeneralizationAgent : Agent {
         maxIteration = _simulation.configManager.maxIteration;
         _simulation.InitializeSimulation();
         recorder = Academy.Instance.StatsRecorder;
+        
+        maxObs = Math.Sqrt(2) * _simulation.configManager.MaxLength();
 
         if (isTraining == false) stat_period = maxIteration;
     }
@@ -56,7 +67,7 @@ public class GeneralizationAgent : Agent {
         if(_simulation.configManager.isOver == true && isTraining == false) Time.timeScale = 0;
         if(isTraining == false && _simulation.configManager.isOver == false) 
         _simulation.configManager.iteration++;
-        _simulation.InitializeSimulation();
+        _simulation.InitializeSimulation();                
         _target = _simulation.configManager.goal;
         hasCollided = false;
         UpdateRatio();
@@ -67,6 +78,9 @@ public class GeneralizationAgent : Agent {
         _controller.CurrentSteeringAngle = vectorAction.ContinuousActions[0];
         _controller.CurrentAcceleration = vectorAction.ContinuousActions[1];
         _controller.CurrentBrakeTorque = vectorAction.ContinuousActions[2];
+		
+		//Debug.Log("\n Action0: " + vectorAction.ContinuousActions[0] + " - Action1: " + vectorAction.ContinuousActions[1] + " - Action2: " + vectorAction.ContinuousActions[2]);
+		//Debug.Log("\n Velocity: " + _rigidBody.velocity);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut) {
@@ -80,7 +94,27 @@ public class GeneralizationAgent : Agent {
     void FixedUpdate() { if(StepCount == MaxStep - 1) TimeOut(); }
 
     // Collision
-    private void OnCollisionEnter(Collision other) {  if (other.gameObject.CompareTag("barrier")) CollisionReward(); }
+    private void OnCollisionEnter(Collision other) 
+    {  
+        if (other.gameObject.CompareTag("barrier"))  
+        {
+            CollisionReward(); 
+			EndEpisode();
+            //Debug.Log("Collisione Barrier-Agent");
+        }
+        if (other.gameObject.CompareTag("obstacle"))
+        {
+            CollisionReward();
+			EndEpisode();
+            //Debug.Log("Collisione Obstacle-Agent");
+        }
+        if (other.gameObject.CompareTag("obstacleAligned"))
+        {
+            CollisionReward();
+			EndEpisode();
+            //Debug.Log("Collisione ObstacleAligned-Agent");
+        }
+    }
 
     // Observation
     public override void CollectObservations(VectorSensor sensor) {
@@ -95,89 +129,129 @@ public class GeneralizationAgent : Agent {
         Vector2 target_forward = new Vector2(_target.transform.forward.x, _target.transform.forward.z);
         int time = StepCount;
 
-        sensor.AddObservation(target_position - agent_position); // Direction towards the target
+        sensor.AddObservation( (target_position - agent_position) /*/ (float)maxObs */); // Direction towards the target
         sensor.AddObservation(velocity); // Agent velocity
         sensor.AddObservation(agent_forward); // Agent direction
         sensor.AddObservation(target_forward); // Target direction
         //sensor.AddObservation(time); // Time
+        
 
         // Add dense reward
         float distance = Mathf.Abs(_target.transform.position.x - transform.position.x) + Mathf.Abs(_target.transform.position.z - transform.position.z); 
         float alignment = Mathf.Abs(Vector3.Dot(agent_forward, target_forward));
+        float alignmentDistance = Mathf.Abs(Vector3.Dot(agent_forward, target_position - agent_position)); // To learn to go over the target
 
-        DenseReward(alignment, time, distance);
-    }
-
-    public void UpdateRatio() {
-        if(episode_count >= stat_period) {
-            recorder.Add("Events/Goals", 100 * goals_achieved_count / (float)stat_period);
-            recorder.Add("Events/Timeouts", 100 * timeouts_count / (float)stat_period);
-            recorder.Add("Events/Collisions", 100 * collisions_count / (float)(stat_period));
-            recorder.Add("Rewards/Goals", goals_reward / (float)stat_period);
-            recorder.Add("Rewards/Dense", dense_reward / (float)stat_period);
-            recorder.Add("Rewards/Collisions", collisions_reward / (float)stat_period);
-            recorder.Add("Rewards/Time", time_reward / (float)stat_period);
-            recorder.Add("Rewards/Distance", distance_reward / (float)stat_period);
-            recorder.Add("Rewards/Allignment", allignment_reward / (float)stat_period);
-            time_reward = 0;
-            distance_reward = 0;
-            allignment_reward = 0;
-            episode_count=0;
-            goals_achieved_count = 0;
-            timeouts_count = 0;
-            collisions_count = 0;
-            dense_reward = 0;
-            collisions_reward = 0;
-            goals_reward = 0;
-        }
-        if (isTraining == false) print("Episode: " + episode_count + " Goals: " + goals_achieved_count + " Collisions: " + collisions_count + " Timeouts: " + timeouts_count);
-        episode_count++;
-    }
+        DenseReward(alignment, time, distance, alignmentDistance, _rigidBody.velocity);
+        //Debug.Log("obs1: " + ((target_position - agent_position) / (float)maxObs) + " obs2: " + velocity + " obs3: " + agent_forward + " obs4: " + target_forward);
+    }    
 
     // Dense reward
     private float sigmoid(float value) { return (float)(1.0f / (1.0f + Math.Pow(Math.E, -value))); }
     private float distance_contribution(float weight, float distance) { return (float)(-weight * distance); }
     private float alignment_contribution(float weight, float alignment, float distance) { return (float)(-weight * (1 - alignment) / (distance * distance + 1)); }
+    private float alignmentDistance_contribution(float weight, float alignment, float distance) { return (float)(-weight * (1 - alignment) / (distance * distance + 1)); }
     private float time_contribution(float weight, float time, float distance) { return -weight * sigmoid((time/30)-4) * sigmoid(distance-4); }
-    public void DenseReward(float alignment, float time, float distance) {
+	
+	private float velocity_contribution(float weight, Vector3 velocity)
+	{
+		if (Mathf.Abs(velocity[0]) <= 0.05f && Mathf.Abs(velocity[2]) <= 0.05f)
+			return -weight;
+		else
+			return 0;
+	}
+	
+	
+    public void DenseReward(float alignment, float time, float distance, float alignmentDistance, Vector3 velocity) {
         //float tc = time_contribution(0.1f, time, distance);
         float tc = 0;
         float dc = distance_contribution(0.01f, distance);
-        float ac = alignment_contribution(1.5f, alignment, distance);
-        float reward = 0.01f * ( tc + dc + ac );
+        float ac = alignment_contribution(0, alignment, distance);
+        float adc = alignmentDistance_contribution(0, alignment, distance);
+		float vc = velocity_contribution(1, velocity);
+        float reward = 0.01f * ( tc + dc + ac + adc + vc);
         //Debug.Log("dc: " + dc + " ac: " + ac + " tc: " + tc + "reward: " + reward);
         if (isTraining == true) AddReward(reward);
         dense_reward += reward;
         time_reward += tc;
         distance_reward += dc;
         allignment_reward += ac;
+        alignmentDistance_reward += adc;
+		velocity_reward += vc;
     }
 
     // Goal reward
     public void GoalReward() {
-        float reward = 1.0f;
-        //Debug.Log(reward);
+        float reward = 10.0f;        
         if (isTraining == true) AddReward(reward);
         goals_reward += reward;
         goals_achieved_count++;
+        test_goals_achieved_count++;
         EndEpisode();
     }
 
     // Collision reward
     public void CollisionReward() {
-        float reward = -0.01f;
+        float reward = -20.0f;
         //Debug.Log(reward);
         if (isTraining == true) AddReward(reward);
         collisions_reward += reward;
         if(!hasCollided) {
             collisions_count++;
+            test_collisions_count++;
             hasCollided = true;
         }
     }
 
     // Timeout
      public void TimeOut() {
-        timeouts_count++;
+        float reward = -0.5f;
+		if (isTraining == true) AddReward(reward);
+		timeouts_count++;
+        test_timeouts_count++;
         EndEpisode();
+    }
+
+    public void UpdateRatio()
+    {
+        //if //(!isTraining)
+        //{
+            Debug.Log("Episode: " + test_episode_count + " Goals: " + test_goals_achieved_count + " Collisions: " + test_collisions_count + " Timeouts: " + test_timeouts_count);
+        //}
+        //else
+        {
+
+            if (episode_count >= stat_period)
+            {
+                recorder.Add("Events/Goals", 100 * goals_achieved_count / (float)stat_period);
+                recorder.Add("Events/Timeouts", 100 * timeouts_count / (float)stat_period);
+                recorder.Add("Events/Collisions", 100 * collisions_count / (float)(stat_period));
+                recorder.Add("Rewards/Goals", goals_reward / (float)stat_period);
+                recorder.Add("Rewards/Dense", dense_reward / (float)stat_period);
+                recorder.Add("Rewards/Collisions", collisions_reward / (float)stat_period);
+                recorder.Add("Rewards/Time", time_reward / (float)stat_period);
+                recorder.Add("Rewards/Distance", distance_reward / (float)stat_period);
+                recorder.Add("Rewards/Allignment", allignment_reward / (float)stat_period);
+                recorder.Add("Rewards/alignmentDistance_contribution", alignmentDistance_reward / (float)stat_period);
+                recorder.Add("Rewards/velocity_contribution", velocity_reward / (float)stat_period);
+                time_reward = 0;
+                distance_reward = 0;
+                allignment_reward = 0;
+                episode_count = 0;
+                goals_achieved_count = 0;
+                timeouts_count = 0;
+                collisions_count = 0;
+                dense_reward = 0;
+                collisions_reward = 0;
+                goals_reward = 0;
+                velocity_reward = 0;
+            }
+            if (isTraining == false)
+            {
+                //print("Episode: " + episode_count + " Goals: " + goals_achieved_count + " Collisions: " + collisions_count + " Timeouts: " + timeouts_count);
+            }
+        }
+        
+        episode_count++;
+        test_episode_count++;
     }
 }
