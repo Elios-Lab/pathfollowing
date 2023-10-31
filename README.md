@@ -2,6 +2,14 @@
 
 This project explores path following using Deep Reinforcement Learning in two distinct contexts. The first context involves navigating a vehicle through tight and narrow spaces, making it suitable for urban environments, parking lots, or any scenario requiring precise maneuvering. The second context presents a larger area with obstacles randomly positioned between the start and end points, simulating scenarios like cluttered warehouses, dynamic construction sites, or obstacle-filled terrains.
 
+![Garage](images/Garage.png)
+
+The `Garage` simulation environment.
+
+![RandomObstacles](images/RandomObstacles.png)
+
+Three examples of the `RandomObstacles` scenario.
+
 ## Prerequisites:
 
 * Unity: >= 2020.3.22f1 (tested on 2021.3.2f1)
@@ -71,6 +79,7 @@ Training can be performed in the Unity editor or in a built project.
     - `--num-envs`: Controls the number of concurrent Unity instances that are executed in parallel during training, allowing to speed up training (this is very dependent on your hardware specifics).
     - `--force`: Overwrites an existing training session.
     - `--inference`: Starts a session in inference mode.
+    - `--no-graphics`: Does not render the scene.
 
 4. A Tensorboard session will be automatically created. You can follow the training evolution by launching Tensorboard on a separate command line window:
     ```bash
@@ -94,6 +103,9 @@ Inference can be performed in the Unity editor or in a built project.
 ## Citing
 Consider citing our work related to the low-speed maneuvers and car parking topic.
 - [Deep Reinforcement Learning for Automated Car Parking](https://link.springer.com/chapter/10.1007/978-3-031-30333-3_16)
+
+## Comparison against Hybrid-A-Star
+The two scenarios presented have been compared with the popular Hybrid-A-Star heuristic path planning algorithm. More detais are visible [here](https://github.com/Elios-Lab/Hybrid-A-Star).
 
 ## Useful links:
 

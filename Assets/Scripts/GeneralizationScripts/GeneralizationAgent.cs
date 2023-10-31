@@ -6,6 +6,7 @@ using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System.IO;
 
 [RequireComponent(typeof(CarController))]
 [RequireComponent(typeof(Rigidbody))]
@@ -119,7 +120,11 @@ public class GeneralizationAgent : Agent {
     // Observation
     public override void CollectObservations(VectorSensor sensor) {
         if (!_simulation.InitComplete) { sensor.AddObservation(new float[9]); return; }
-        if (_simulation.configManager.iteration >= maxIteration && isTraining == false) _simulation.configManager.isOver = true;
+        if (_simulation.configManager.iteration >= maxIteration && isTraining == false) {
+            _simulation.configManager.isOver = true;
+            // Save relevant data to txt file when in inference mode and max iterations reached
+            SaveData();
+        }
         
         // Observations
         Vector2 agent_position = new Vector2(transform.position.x, transform.position.z);
@@ -144,7 +149,24 @@ public class GeneralizationAgent : Agent {
         DenseReward(alignment, time, distance, alignmentDistance, _rigidBody.velocity);
         //Debug.Log("obs1: " + ((target_position - agent_position) / (float)maxObs) + " obs2: " + velocity + " obs3: " + agent_forward + " obs4: " + target_forward);
     }    
+    private void SaveData() {
+        string dataToSave = "Episode: " + test_episode_count + " Goals: " + test_goals_achieved_count + " Collisions: " + test_collisions_count + " Timeouts: " + test_timeouts_count;      
+        string filePath = Path.Combine(Application.persistentDataPath, "savedData" + test_episode_count + ".txt");
+        try
+        {
+            // Create a StreamWriter to write to the file
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                // Write the data to the file
+                writer.WriteLine(dataToSave);
+            }
 
+            Debug.Log("Data saved to: " + filePath);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error saving data: " + e.Message);
+        }
     // Dense reward
     private float sigmoid(float value) { return (float)(1.0f / (1.0f + Math.Pow(Math.E, -value))); }
     private float distance_contribution(float weight, float distance) { return (float)(-weight * distance); }
